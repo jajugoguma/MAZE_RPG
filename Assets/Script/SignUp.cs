@@ -13,12 +13,17 @@ public class SignUp : MonoBehaviour
     public InputField PWInputField;
     public InputField PWConfirmField;
 
+    [Header("PopUpPanel")]
+    public GameObject PopUpPanel;
+    public Text PopUpTitle;
+
     [Header("Url")]
     public string CreateUrl;
 
     // Start is called before the first frame update
     void Start()
     {
+        PopUpPanel.SetActive(false);
         CreateUrl = "http://jajugoguma.synology.me/CreateAccount.php";
     }
 
@@ -42,12 +47,14 @@ public class SignUp : MonoBehaviour
     {
         if (String.IsNullOrEmpty(IDInputField.text) || (String.IsNullOrEmpty(PWInputField.text)))
         {
-            Debug.Log("Complete all input boxs");
+            PopUpPanel.SetActive(true);
+            PopUpTitle.text = "Complete all input boxs";
             yield break;
         }
         if (!PWInputField.text.Equals(PWConfirmField.text))
         {
-            Debug.Log("Not match");
+            PopUpPanel.SetActive(true);
+            PopUpTitle.text = "Password is Not matched";
             yield break;
         }
         
@@ -61,11 +68,22 @@ public class SignUp : MonoBehaviour
 
         if (webRequest.text.Contains("added"))
         {
-            Debug.Log("Complete");
+            PopUpPanel.SetActive(true);
+            PopUpTitle.text = "Sign Up Complete";
         }
         else
         {
-            Debug.Log("Fail");
+            PopUpPanel.SetActive(true);
+            PopUpTitle.text = "Sign Up Failure";
+        }
+    }
+
+    public void PopUpOKButtonClicked()
+    {
+        PopUpPanel.SetActive(false);
+        if (PopUpTitle.text.Equals("Sign Up Complete"))
+        {
+            SceneManager.LoadScene("Title");
         }
     }
 }
