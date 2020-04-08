@@ -8,6 +8,8 @@ using UnityEngine.Networking;
 
 public class SignUp_v2: MonoBehaviour
 {
+    public GameObject UI_SignUp;
+
     [Header("LoginPanel")]
     public UIInput id_Input;
     public UIInput pwd_Input;
@@ -23,7 +25,7 @@ public class SignUp_v2: MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        PopUpWindow.SetActive(false);
+        //PopUpWindow.SetActive(false);
         CreateUrl = "http://jajugoguma.synology.me/CreateAccount.php";
     }
 
@@ -48,12 +50,14 @@ public class SignUp_v2: MonoBehaviour
         if (String.IsNullOrEmpty(id_Input.text) || (String.IsNullOrEmpty(pwd_Input.text)))
         {
             PopUpWindow.SetActive(true);
+            UI_SignUp.SetActive(false);
             PopUpTitle.text = "Complete all input boxs";
             yield break;
         }
         if (!pwd_Input.text.Equals(pwd_confirm_Input.text))
         {
             PopUpWindow.SetActive(true);
+            UI_SignUp.SetActive(false);
             PopUpTitle.text = "Password is Not matched";
             yield break;
         }
@@ -70,11 +74,13 @@ public class SignUp_v2: MonoBehaviour
         if (webRequest.text.Contains("added"))
         {
             PopUpWindow.SetActive(true);
+            UI_SignUp.SetActive(false);
             PopUpTitle.text = "Sign Up Complete";
         }
         else
         {
             PopUpWindow.SetActive(true);
+            UI_SignUp.SetActive(false);
             PopUpTitle.text = "Sign Up Failure";
         }
     }
@@ -82,6 +88,7 @@ public class SignUp_v2: MonoBehaviour
     public void PopUpOKButtonClicked()
     {
         PopUpWindow.SetActive(false);
+        UI_SignUp.SetActive(true);
         if (PopUpTitle.text.Equals("Sign Up Complete"))
         {
             SceneManager.LoadScene("Title_v2");
