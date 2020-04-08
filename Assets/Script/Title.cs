@@ -19,6 +19,6 @@ public class Title : MonoBehaviour
 
     public void SignUpButtonClicked()
     {
-        SceneManager.LoadScene("SignUp");
+        SceneManager.LoadScene("SignUp_v2");
     }
 }
