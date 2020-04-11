@@ -72,6 +72,7 @@ public class SignUp_v2: MonoBehaviour
         
         if (webRequest.text.Contains("added"))
         {
+            
             PopUpWindow.SetActive(true);
             PopUpTitle.text = "Sign Up Complete";
         }
