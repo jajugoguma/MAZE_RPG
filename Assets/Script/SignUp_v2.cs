@@ -54,7 +54,7 @@ public class SignUp_v2: MonoBehaviour
             PopUpTitle.text = "Complete all input boxs";
             yield break;
         }
-        if (!pwd_Input.text.Equals(pwd_confirm_Input.text))
+        if (!pwd_Input.text.Equals(pwd_confirm_Input.text)) 
         {
             PopUpWindow.SetActive(true);
             PopUpTitle.text = "Password is Not matched";
@@ -95,6 +95,6 @@ public class SignUp_v2: MonoBehaviour
 
     public void onSubmit()
     {
-       
+        CreateButtonVlClicked();
     }
 }

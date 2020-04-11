@@ -256,12 +256,12 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 360
-  mHeight: 134
+  mWidth: 300
+  mHeight: 112
   mDepth: 0
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
-  keepAspectRatio: 0
+  keepAspectRatio: 1
   aspectRatio: 2.686567
   mType: 1
   mFillDirection: 4
@@ -482,12 +482,12 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 360
-  mHeight: 134
+  mWidth: 300
+  mHeight: 112
   mDepth: 2
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
-  keepAspectRatio: 0
+  keepAspectRatio: 1
   aspectRatio: 2.686567
   mType: 1
   mFillDirection: 4
@@ -806,8 +806,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 360, y: 134, z: 0}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 301.19812, y: 111.23797, z: 0}
+  m_Center: {x: -0.31615734, y: 0.6322825, z: 0}
 --- !u!1 &843045686
 GameObject:
   m_ObjectHideFlags: 0
@@ -866,7 +866,11 @@ MonoBehaviour:
   activeTextColor: {r: 1, g: 1, b: 1, a: 1}
   caretColor: {r: 1, g: 1, b: 1, a: 0.8}
   selectionColor: {r: 1, g: 0.8745098, b: 0.5529412, a: 0.5}
-  onSubmit: []
+  onSubmit:
+  - mTarget: {fileID: 179046572}
+    mMethodName: onSubmit
+    mParameters: []
+    oneShot: 0
   onChange: []
   onDeSelected: []
   mValue: 
@@ -930,7 +934,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   label: {fileID: 1548196769}
-  inputType: 0
+  inputType: 2
   onReturnKey: 0
   keyboardType: 0
   hideInput: 0
@@ -941,7 +945,11 @@ MonoBehaviour:
   activeTextColor: {r: 1, g: 1, b: 1, a: 1}
   caretColor: {r: 1, g: 1, b: 1, a: 0.8}
   selectionColor: {r: 1, g: 0.8745098, b: 0.5529412, a: 0.5}
-  onSubmit: []
+  onSubmit:
+  - mTarget: {fileID: 179046572}
+    mMethodName: onSubmit
+    mParameters: []
+    oneShot: 0
   onChange: []
   onDeSelected: []
   mValue: 
@@ -1697,8 +1705,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 360, y: 134, z: 0}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 302.26566, y: 112.480835, z: 0}
+  m_Center: {x: 0, y: 0.78727126, z: 0}
 --- !u!1 &1218366352
 GameObject:
   m_ObjectHideFlags: 0
@@ -2186,7 +2194,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   label: {fileID: 561853337}
-  inputType: 0
+  inputType: 2
   onReturnKey: 0
   keyboardType: 0
   hideInput: 0
@@ -2606,7 +2614,7 @@ Transform:
   m_GameObject: {fileID: 2090516159}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.0027739252, y: 0.0027739252, z: 0.0027739252}
+  m_LocalScale: {x: 0.0027777778, y: 0.0027777778, z: 0.0027777778}
   m_Children:
   - {fileID: 717102071}
   - {fileID: 1934357884}
