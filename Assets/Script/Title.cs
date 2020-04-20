@@ -27,12 +27,21 @@ public class Title : MonoBehaviour
     {
         CreateUrl = "http://jajugoguma.synology.me/LogIn.php";
         // DonDestroyOnLoad(gameobject);
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-       
+        if (id_Input.isSelected && Input.GetKeyDown(KeyCode.Tab))
+        {
+            id_Input.isSelected = false;
+            pwd_Input.isSelected = true;
+            Debug.Log("ss");
+
+        }
+        if (pwd_Input.isSelected && Input.GetKeyDown(KeyCode.Tab))
+            id_Input.isSelected = true;
     }
 
     public void Onsubmit()
@@ -53,7 +62,7 @@ public class Title : MonoBehaviour
 
     IEnumerator LogIn()
     {
-        if (String.IsNullOrEmpty(id_Input.text) || (String.IsNullOrEmpty(pwd_Input.text)))
+        if (String.IsNullOrEmpty(id_Input.value) || (String.IsNullOrEmpty(pwd_Input.value)))
         {
             PopUpWindow.SetActive(true);
             PopUpTitle.text = "Complete all input boxs";
@@ -61,8 +70,8 @@ public class Title : MonoBehaviour
         }
 
         WWWForm form = new WWWForm();
-        form.AddField("param_id", id_Input.text);
-        form.AddField("param_pwd", pwd_Input.text);
+        form.AddField("param_id", id_Input.value);
+        form.AddField("param_pwd", pwd_Input.value);
 
         WWW webRequest = new WWW(CreateUrl, form);
         yield return webRequest;
@@ -70,8 +79,11 @@ public class Title : MonoBehaviour
         if (webRequest.text.Contains("complete"))
         {
             // todo : change start game
-            PopUpWindow.SetActive(true);
-            PopUpTitle.text = webRequest.text;
+            //PopUpWindow.SetActive(true);
+            //PopUpTitle.text = webRequest.text;
+            SceneManager.LoadScene("SelectCharacter");
+            InfoManager.Instance.id = id_Input.value;
+            InfoManager.Instance.pwd = pwd_Input.value;
         }
         else
         {

@@ -46,8 +46,8 @@ MonoBehaviour:
   material: {fileID: 2100000, guid: 02d9c4c5f80dfb142a218db49dc6b705, type: 2}
   mSprites:
   - name: Cancle Button
-    x: 0
-    y: 691
+    x: 513
+    y: 902
     width: 349
     height: 122
     borderLeft: 0
@@ -58,9 +58,22 @@ MonoBehaviour:
     paddingRight: 2
     paddingTop: 4
     paddingBottom: 7
+  - name: CharacterImg
+    x: 863
+    y: 986
+    width: 38
+    height: 38
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
   - name: Create Button
-    x: 350
-    y: 691
+    x: 513
+    y: 779
     width: 349
     height: 122
     borderLeft: 0
@@ -71,9 +84,22 @@ MonoBehaviour:
     paddingRight: 2
     paddingTop: 4
     paddingBottom: 7
+  - name: img
+    x: 863
+    y: 947
+    width: 38
+    height: 38
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
   - name: InputFiled
-    x: 351
-    y: 477
+    x: 0
+    y: 87
     width: 331
     height: 91
     borderLeft: 0
@@ -85,8 +111,8 @@ MonoBehaviour:
     paddingTop: 4
     paddingBottom: 2
   - name: LogIn Button
-    x: 0
-    y: 569
+    x: 513
+    y: 657
     width: 350
     height: 121
     borderLeft: 0
@@ -98,8 +124,8 @@ MonoBehaviour:
     paddingTop: 4
     paddingBottom: 8
   - name: OKButton
-    x: 351
-    y: 569
+    x: 513
+    y: 535
     width: 350
     height: 121
     borderLeft: 0
@@ -112,7 +138,7 @@ MonoBehaviour:
     paddingBottom: 8
   - name: SignUp Button
     x: 0
-    y: 447
+    y: 179
     width: 350
     height: 121
     borderLeft: 0
@@ -123,9 +149,22 @@ MonoBehaviour:
     paddingRight: 2
     paddingTop: 4
     paddingBottom: 8
+  - name: x-button
+    x: 0
+    y: 512
+    width: 512
+    height: 512
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
   - name: "\uADF8\uB9BC1"
     x: 0
-    y: 814
+    y: 301
     width: 736
     height: 210
     borderLeft: 0

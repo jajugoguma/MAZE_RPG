@@ -171,7 +171,7 @@ MonoBehaviour:
   caretColor: {r: 1, g: 1, b: 1, a: 0.8}
   selectionColor: {r: 1, g: 0.8745098, b: 0.5529412, a: 0.5}
   onSubmit:
-  - mTarget: {fileID: 1644002304}
+  - mTarget: {fileID: 1976412871}
     mMethodName: Onsubmit
     mParameters: []
     oneShot: 0
@@ -268,7 +268,7 @@ MonoBehaviour:
   disabledSprite2D: {fileID: 0}
   pixelSnap: 0
   onClick:
-  - mTarget: {fileID: 1644002304}
+  - mTarget: {fileID: 1976412871}
     mMethodName: LoginButtonClicked
     mParameters: []
     oneShot: 0
@@ -344,7 +344,7 @@ MonoBehaviour:
   caretColor: {r: 1, g: 1, b: 1, a: 0.8}
   selectionColor: {r: 1, g: 0.8745098, b: 0.5529412, a: 0.5}
   onSubmit:
-  - mTarget: {fileID: 1644002304}
+  - mTarget: {fileID: 1976412871}
     mMethodName: Onsubmit
     mParameters: []
     oneShot: 0
@@ -488,7 +488,6 @@ Transform:
   - {fileID: 1129250607}
   - {fileID: 1764648394}
   - {fileID: 772023797}
-  - {fileID: 1644002305}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -944,7 +943,7 @@ MonoBehaviour:
   disabledSprite2D: {fileID: 0}
   pixelSnap: 0
   onClick:
-  - mTarget: {fileID: 1644002304}
+  - mTarget: {fileID: 1976412871}
     mMethodName: PopUpOKButtonClicked
     mParameters: []
     oneShot: 0
@@ -1664,54 +1663,6 @@ MonoBehaviour:
   mAtlas: {fileID: 1515509124429707914, guid: f923dc5dced00454eb2f55f856b9a0d8, type: 3}
   mSpriteName: OKButton
   mFillCenter: 1
---- !u!1 &1644002303
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1644002305}
-  - component: {fileID: 1644002304}
-  m_Layer: 8
-  m_Name: GameManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1644002304
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1644002303}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7aad0d41d94233a4b817893bbb0a2a42, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CreateUrl: 
-  id_Input: {fileID: 683557}
-  pwd_Input: {fileID: 305706122}
-  PopUpWindow: {fileID: 772023796}
-  PopUpTitle: {fileID: 659004904}
---- !u!4 &1644002305
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1644002303}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 333529001}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1685818533
 GameObject:
   m_ObjectHideFlags: 0
@@ -2348,7 +2299,7 @@ MonoBehaviour:
   disabledSprite2D: {fileID: 0}
   pixelSnap: 0
   onClick:
-  - mTarget: {fileID: 1644002304}
+  - mTarget: {fileID: 1976412871}
     mMethodName: SignUpButtonClicked
     mParameters: []
     oneShot: 0
@@ -2365,6 +2316,67 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 301.24335, y: 115.16775, z: 0}
   m_Center: {x: 0.7532394, y: 0.37664652, z: 0}
+--- !u!1 &1976412868
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1976412869}
+  - component: {fileID: 1976412870}
+  - component: {fileID: 1976412871}
+  m_Layer: 0
+  m_Name: TitleScene
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1976412869
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1976412868}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.14990345, y: 0.16799343, z: 0.18669434}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1976412870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1976412868}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc8cc7e70d5791f46a348ed5ba43c4be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1976412871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1976412868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7aad0d41d94233a4b817893bbb0a2a42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CreateUrl: 
+  id_Input: {fileID: 683557}
+  pwd_Input: {fileID: 305706122}
+  PopUpWindow: {fileID: 772023796}
+  PopUpTitle: {fileID: 659004904}
 --- !u!1 &2015271926
 GameObject:
   m_ObjectHideFlags: 0
