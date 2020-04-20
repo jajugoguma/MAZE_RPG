@@ -2301,18 +2301,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e05dd46e71dd6684d8b212c2c6f6d325, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Character1: {fileID: 1073687998}
-  Character2: {fileID: 812011291}
-  Character3: {fileID: 485414322}
-  True1: {fileID: 104205388}
-  True2: {fileID: 690914039}
-  True3: {fileID: 802966863}
-  False1: {fileID: 1128592769}
-  False2: {fileID: 1971974623}
-  False3: {fileID: 224116362}
-  Character1name: {fileID: 1558535971}
-  Character2name: {fileID: 1733418170}
-  Character3name: {fileID: 1964512912}
+  Characters:
+  - {fileID: 1073687998}
+  - {fileID: 812011291}
+  - {fileID: 485414322}
+  True:
+  - {fileID: 104205388}
+  - {fileID: 690914039}
+  - {fileID: 802966863}
+  False:
+  - {fileID: 1128592769}
+  - {fileID: 1971974623}
+  - {fileID: 224116362}
+  CharacterName:
+  - {fileID: 1558535971}
+  - {fileID: 1733418170}
+  - {fileID: 1964512912}
   ID: {fileID: 616490983}
 --- !u!4 &1410555827
 Transform:

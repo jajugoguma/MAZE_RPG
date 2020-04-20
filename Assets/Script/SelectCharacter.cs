@@ -6,24 +6,17 @@ using UnityEngine.SceneManagement;
 public class SelectCharacter : MonoBehaviour
 {
     
-    public GameObject Character1;
-    public GameObject Character2;
-    public GameObject Character3;
-
+   
     //Character True or False Controll
-    public GameObject True1;
-    public GameObject True2;
-    public GameObject True3;
-
-    public GameObject False1;
-    public GameObject False2;
-    public GameObject False3;
-
+    public GameObject[] Characters;
+    public GameObject[] True;
+    public GameObject[] False;
+   
     //Character name 
-    public UILabel Character1name;
-    public UILabel Character2name;
-    public UILabel Character3name;
+    public UILabel[] CharacterName;
 
+    
+    
     //ID
     public UILabel ID;
 
@@ -34,6 +27,7 @@ public class SelectCharacter : MonoBehaviour
     void Start()
     {
         ID.text = "ID : "+InfoManager.Instance.id;
+       
 
     }
 
@@ -52,20 +46,20 @@ public class SelectCharacter : MonoBehaviour
 
     public void DeleteButtonClicked(GameObject button)
     {
-        if (button == Character1)
+        if (button == Characters[0])
         {
-            True1.SetActive(false);
-            False1.SetActive(true);
+            True[0].SetActive(false);
+            False[0].SetActive(true);
         }
-        else if (button == Character2)
+        else if (button == Characters[1])
         {
-            True2.SetActive(false);
-            False2.SetActive(true);
+            True[1].SetActive(false);
+            False[1].SetActive(true);
         }
-        else if (button == Character3)
+        else if (button == Characters[2])
         {
-            True3.SetActive(false);
-            False3.SetActive(true);
+            True[2].SetActive(false);
+            False[2].SetActive(true);
         }
         else
             Debug.LogError("Wrong Clicked");
@@ -77,20 +71,20 @@ public class SelectCharacter : MonoBehaviour
     {
 
         // 만드는 부분 필요 캐릭터별 닉네임 ??
-        if (button == Character1)
+        if (button == Characters[0])
         {
-            True1.SetActive(true);
-            False1.SetActive(false);
+            True[0].SetActive(true);
+            False[0].SetActive(false);
         }
-        else if (button == Character2)
+        else if (button == Characters[1])
         {
-            True2.SetActive(true);
-            False2.SetActive(false);
+            True[1].SetActive(true);
+            False[1].SetActive(false);
         }
-        else if (button == Character3)
+        else if (button == Characters[2])
         {
-            True3.SetActive(true);
-            False3.SetActive(false);
+            True[2].SetActive(true);
+            False[2].SetActive(false);
         }
         else
             Debug.LogError("Wrong Clicked");
@@ -99,19 +93,19 @@ public class SelectCharacter : MonoBehaviour
     // 게임 시작 캐릭터 정보를 가진상태로 시작하게 만들어야함 text값 사용 하면 될듯
     public void StartButtonClicked(GameObject button)
     {
-        if (button == Character1)
+        if (button == Characters[0])
         {
-            Debug.Log("Game Start with " + Character1name.text);
+            Debug.Log("Game Start with " + CharacterName[0].text);
         }
 
-        else if (button == Character2)
+        else if (button == Characters[1])
         {
-            Debug.Log("Game Start with " + Character2name.text);
+            Debug.Log("Game Start with " + CharacterName[1].text);
 
         }
-        else if (button == Character3)
+        else if (button == Characters[2])
         {
-            Debug.Log("Game Start with " + Character3name.text);
+            Debug.Log("Game Start with " + CharacterName[2].text);
 
         }
 
