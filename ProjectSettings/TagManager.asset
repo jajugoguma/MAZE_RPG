@@ -15,10 +15,10 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - NGUI
+  - LightObstacles
+  - LightSource
+  - AmbientLight
   - 
   - 
   - 
