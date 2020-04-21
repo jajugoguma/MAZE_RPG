@@ -6,6 +6,8 @@ TagManager:
   tags:
   - true1
   - false1
+  - goal
+  - map
   layers:
   - Default
   - TransparentFX

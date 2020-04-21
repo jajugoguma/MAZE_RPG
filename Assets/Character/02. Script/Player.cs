@@ -6,6 +6,8 @@ public class Player : Character
 {
 
     // Update is called once per frame
+
+    public GameObject manager;
     protected override void Update()
     {
         GetInput();
@@ -29,13 +31,19 @@ public class Player : Character
 
         direction = moveVector;
     }
+
+    
     private void OnTriggerStay2D(Collider2D collision)
     {
         Debug.Log("character arrive at end point");
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if(collision.gameObject.tag == "goal")
         {
-            Debug.Log("key donw space");
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Debug.Log("key down space");
+                manager.GetComponent<ManagerController>().change_map();
+            }
         }
     }
 }
