@@ -29,4 +29,13 @@ public class Player : Character
 
         direction = moveVector;
     }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        Debug.Log("character arrive at end point");
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Debug.Log("key donw space");
+        }
+    }
 }
