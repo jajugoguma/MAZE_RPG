@@ -39,4 +39,19 @@ public class SoundManager : MonoSingleton<SoundManager>
     {
         //SceneManager.GetSceneAt(
     }
+
+    Vector3 playerPos;
+    Vector3 EnemyPos;
+
+    void Temp()
+    {
+        Vector3 vec = (EnemyPos - playerPos);
+        float dis = Vector3.Distance(EnemyPos, playerPos);
+
+        vec.Normalize();
+
+        float v1 = Vector3.Magnitude(vec);
+
+        float te = vec.x * vec.y;
+    }
 }
