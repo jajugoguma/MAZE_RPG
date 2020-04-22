@@ -44,12 +44,10 @@ public class Player : Character
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
             animator.SetBool("attack", true);
-            SetAttackTure();
         }
         if (Input.GetKeyUp(KeyCode.LeftControl))
         {
             animator.SetBool("attack", false);
-            SetAttackFalse();
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -68,14 +66,17 @@ public class Player : Character
 
     }
 
-    public void SetAttackTure()
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        isAttack = true;
-    }
+        Debug.Log("character arrive at end point");
 
-    public void SetAttackFalse()
-    {
-        isAttack = false;
-        Debug.Log(isAttack);
+        if (collision.gameObject.tag == "goal")
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Debug.Log("key down space");
+                //manager.GetComponent<ManagerController>().change_map();
+            }
+        }
     }
 }
