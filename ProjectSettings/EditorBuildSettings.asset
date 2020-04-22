@@ -14,10 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/01. Scenes/SignUp_v2.unity
     guid: ba3cd622cb783d84db666f86135aabd3
-  - enabled: 0
-    path: Assets/Scenes/LogIn.unity
-    guid: 13324132fcc4a9d4499a29bedc3b26b0
   - enabled: 1
     path: Assets/01. Scenes/SelectCharacter.unity
     guid: 00c350428d65c8f4ab57fd1ea0f68748
+  - enabled: 1
+    path: Assets/01. Scenes/map_testbed.unity
+    guid: 44136092631d1884c9ce4d81ff21a7f4
   m_configObjects: {}
