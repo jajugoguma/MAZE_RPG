@@ -2,13 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
-
-
 public class Monster : MonoBehaviour
 {
     public Transform player;
     public Transform RayCam;
+    public Animator animator;
 
     int MoveSpeed = 3;
     int MinDist = 1;
@@ -20,8 +18,7 @@ public class Monster : MonoBehaviour
 
     void Start()
     {
-
-
+        animator = GetComponent<Animator>();
     }
     // Update is called once per frame
     void Update()
