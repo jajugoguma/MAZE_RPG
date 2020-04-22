@@ -14,6 +14,7 @@ public class ManagerController : MonoBehaviour
     {
         //maps = GameObject.FindGameObjectsWithTag("map");
         Debug.Log("maps length: " + maps.Length);
+        StartCoroutine("Fade");
         
     }
 
