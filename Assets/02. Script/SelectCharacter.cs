@@ -95,6 +95,7 @@ public class SelectCharacter : MonoBehaviour
     {
         if (button == Characters[0])
         {
+            SceneManager.LoadScene("map_testbed");
             Debug.Log("Game Start with " + CharacterName[0].text);
         }
 
