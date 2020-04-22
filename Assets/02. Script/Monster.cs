@@ -58,11 +58,17 @@ public class Monster : Character
         RaycastHit2D hit = Physics2D.Raycast(RayCam.position, vec, MaxDist);
         if (hit.transform.name.Equals("wall"))
         {
+            animator.SetBool("move", false);
             Debug.Log("Detect Wall");
         }
         else if (hit.transform.name.Equals("Player"))
         {
-           transform.position += vec * MoveSpeed * Time.deltaTime;
+            transform.position += vec * MoveSpeed * Time.deltaTime;
+
+            animator.SetBool("move", true);
+
+            animator.SetFloat("x", vec.x);
+            animator.SetFloat("y", vec.y);
         }
         else
         {
