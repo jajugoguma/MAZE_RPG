@@ -7,6 +7,8 @@ public class Monster : MonoBehaviour
     public Transform player;
     public Transform RayCam;
     public Animator animator;
+    public RectTransform HpBar;
+
 
     int MoveSpeed = 3;
     int MinDist = 1;
@@ -19,6 +21,8 @@ public class Monster : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
+        HpBar = GetComponentInChildren<RectTransform>();
+        MonsterManager.Instance.mosters.Add(this);
     }
     // Update is called once per frame
     void Update()
@@ -54,6 +58,11 @@ public class Monster : MonoBehaviour
             
                 Debug.Log("chasing");
             }
+
+            if(HpBar.localScale.x <= 0.0f)
+            {
+                gameObject.SetActive(false);
+            }
     }
 
     void Ray(Vector3 vec)
@@ -62,7 +71,7 @@ public class Monster : MonoBehaviour
         if (hit.transform.name.Equals("wall"))
         {
             animator.SetBool("move", false);
-            Debug.Log("Detect Wall");
+            //Debug.Log("Detect Wall");
         }
         else if (hit.transform.name.Equals("Player"))
         {
@@ -75,10 +84,30 @@ public class Monster : MonoBehaviour
         }
         else
         {
-            Debug.LogError("error");
+            //Debug.LogError("error");
         }
        // Debug.Log(hit.transform.name);
 
 
+    }
+
+    public void attackedfunc()
+    {
+        if (HpBar.localScale.x > 0.0f)
+        {
+            HpBar.localScale = new Vector3(HpBar.localScale.x - 0.100001f, 0.3f, 1.0f);
+        }
+       
+
+    }
+
+    public void resurrection()
+    {
+        if (gameObject.activeInHierarchy == false)
+        {
+            HpBar.localScale = new Vector3(0.3f, 0.3f, 1.0f);
+            gameObject.SetActive(true);
+        }
+       
     }
 }

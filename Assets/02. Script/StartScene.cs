@@ -10,7 +10,9 @@ public class StartScene : MonoBehaviour
     {
         SoundManager.Instance.Init();
         InfoManager.Instance.Init();
-        SceneManager.LoadScene("Title_v2");
+        MonsterManager.Instance.Init();
+        SceneManager.LoadScene("Title_v3");
+
     }
     
 }
