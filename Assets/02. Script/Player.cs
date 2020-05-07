@@ -9,6 +9,7 @@ public class Player : Character
     public RectTransform HpBar;
     public Transform player;
     public Vector3 directionVec = Vector3.zero;
+    public float attackdamage = 0.10001f;
 
 
     void start()
@@ -32,7 +33,7 @@ public class Player : Character
     {
         Debug.Log("attack");
         // 나중에 맞는 애니메이션 및 채력 관련한 func 추가
-        monster.attackedfunc();
+        monster.attacked(attackdamage);
 
     }
 
@@ -111,6 +112,13 @@ public class Player : Character
             }
         }
 
+    }
+
+    public void attacked(float attackdamage)
+    {
+        //캐릭터 맞는 애니메이션 추가자리
+        if (HpBar.localScale.x > 0.0f)
+            HpBar.localScale = new Vector3(HpBar.localScale.x - attackdamage, 1.0f, 1.0f);
     }
 
     private void OnTriggerStay2D(Collider2D collision)

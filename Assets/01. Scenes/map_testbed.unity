@@ -112,45 +112,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!21 &29906125
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Generated Material (DONT change it)
-  m_Shader: {fileID: 4800000, guid: 9423e206b9b6f5f45b0eeb0790bba270, type: 3}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 0846a06dcf035814d9cee71f4ba273f9, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _ObstacleTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _ShadowTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats:
-    - _EmissionColorMul: 1
-    - _ObstacleMul: 500
-    - _Shininess: 0.7
-    m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Emission: {r: 0, g: 0, b: 0, a: 0}
-    - _SpecColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &79626261
 GameObject:
   m_ObjectHideFlags: 0
@@ -270,6 +231,7 @@ MonoBehaviour:
   HpBar: {fileID: 936243344}
   player: {fileID: 79626264}
   directionVec: {x: 0, y: 0, z: 0}
+  attackdamage: 0.10001
 --- !u!61 &79626266
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -574,7 +536,7 @@ GameObject:
   - component: {fileID: 757894645}
   - component: {fileID: 757894651}
   - component: {fileID: 757894652}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Monster1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -656,15 +618,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e92f8b84558fdfb4cb36af5b8f6292b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 79626264}
-  RayCam: {fileID: 829297139}
+  player: {fileID: 79626265}
   animator: {fileID: 757894652}
   HpBar: {fileID: 0}
-  dir:
-  - {x: -0.75, y: 0}
-  - {x: 0.75, y: 0}
-  - {x: 0, y: 0.75}
-  - {x: 0, y: -0.75}
+  attackDelay: 2
 --- !u!212 &757894649
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -724,7 +681,6 @@ Transform:
   m_LocalPosition: {x: 10.912963, y: -30.037037, z: -0.23}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 829297139}
   - {fileID: 1691907975}
   m_Father: {fileID: 0}
   m_RootOrder: 5
@@ -764,36 +720,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!1 &829297138
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 829297139}
-  m_Layer: 0
-  m_Name: RayCam
-  m_TagString: Untagged
-  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &829297139
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 829297138}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.022, y: -0.755, z: 0.011}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 757894650}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &936243343
 GameObject:
   m_ObjectHideFlags: 0
@@ -995,7 +921,7 @@ GameObject:
   - component: {fileID: 1032653887}
   - component: {fileID: 1032653886}
   - component: {fileID: 1032653885}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Monster2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1112,15 +1038,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e92f8b84558fdfb4cb36af5b8f6292b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 79626264}
-  RayCam: {fileID: 2029447174}
+  player: {fileID: 79626265}
   animator: {fileID: 1032653885}
   HpBar: {fileID: 0}
-  dir:
-  - {x: -0.75, y: 0}
-  - {x: 0.75, y: 0}
-  - {x: 0, y: 0.75}
-  - {x: 0, y: -0.75}
+  attackDelay: 2
 --- !u!212 &1032653891
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1180,7 +1101,6 @@ Transform:
   m_LocalPosition: {x: 5.06, y: -27.71, z: -0.23}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 2029447174}
   - {fileID: 2049363917}
   m_Father: {fileID: 0}
   m_RootOrder: 6
@@ -1314,10 +1234,6 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!222 &1116235672
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1374,7 +1290,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!43 &1244725429
+--- !u!43 &1220336385
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9877,7 +9793,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1635639069}
-  m_Mesh: {fileID: 1244725429}
+  m_Mesh: {fileID: 1220336385}
 --- !u!23 &1635639072
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -9895,7 +9811,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 29906125}
+  - {fileID: 1680346033}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9933,6 +9849,45 @@ MonoBehaviour:
   Material: {fileID: 2100000, guid: 5d8645bc2e5501a4ebd138db5aa609bd, type: 2}
   LightOrigin: {x: 0, y: 0, z: 1}
   Shape: 0
+--- !u!21 &1680346033
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Generated Material (DONT change it)
+  m_Shader: {fileID: 4800000, guid: 9423e206b9b6f5f45b0eeb0790bba270, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 0846a06dcf035814d9cee71f4ba273f9, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ObstacleTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ShadowTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _EmissionColorMul: 1
+    - _ObstacleMul: 500
+    - _Shininess: 0.7
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Emission: {r: 0, g: 0, b: 0, a: 0}
+    - _SpecColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1686458722
 GameObject:
   m_ObjectHideFlags: 0
@@ -29140,7 +29095,7 @@ Transform:
   - {fileID: 1566180841}
   - {fileID: 1922674591}
   m_Father: {fileID: 757894650}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1769571217
 GameObject:
@@ -29533,36 +29488,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!1 &2029447173
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2029447174}
-  m_Layer: 0
-  m_Name: RayCam
-  m_TagString: Untagged
-  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2029447174
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2029447173}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.022, y: -0.755, z: 0.011}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1032653892}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2049363916
 GameObject:
   m_ObjectHideFlags: 0
@@ -29593,7 +29518,7 @@ Transform:
   - {fileID: 1116235670}
   - {fileID: 476901418}
   m_Father: {fileID: 1032653892}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2119384889
 GameObject:
