@@ -13,6 +13,14 @@ public class StartScene : MonoBehaviour
         MonsterManager.Instance.Init();
         SceneManager.LoadScene("Title_v3");
 
+#if UNITY_EDITOR_WIN
+        Debug.Log("unity");
+#endif
+#if UNITY_ANDROID
+        Debug.Log("android");
+#endif
+
+
     }
-    
+
 }

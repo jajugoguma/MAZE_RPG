@@ -6,8 +6,8 @@ public class Character : MonoBehaviour
 {
     [SerializeField]
     protected float speed;
-    protected Vector2 direction;
-    protected Animator animator;
+    public Vector2 direction;
+    public Animator animator;
 
     void Start()
     {

@@ -46,8 +46,8 @@ MonoBehaviour:
   material: {fileID: 2100000, guid: 72f4624941b808b459251ef76b45d909, type: 2}
   mSprites:
   - name: blackbar
-    x: 0
-    y: 110
+    x: 562
+    y: 1006
     width: 120
     height: 18
     borderLeft: 0
@@ -58,9 +58,35 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: redbar
+  - name: iconfinder__morning-coffee2_2324147
+    x: 497
+    y: 970
+    width: 64
+    height: 54
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 5
+    paddingBottom: 5
+  - name: iconfinder_cafe-food_and_restaurant-commerce_and_shopping-architecture_and_city-coffee_shop-store-buildings_4059760
     x: 0
-    y: 92
+    y: 528
+    width: 496
+    height: 496
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 8
+    paddingRight: 8
+    paddingTop: 8
+    paddingBottom: 8
+  - name: redbar
+    x: 683
+    y: 1007
     width: 119
     height: 17
     borderLeft: 0

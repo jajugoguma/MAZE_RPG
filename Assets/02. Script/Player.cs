@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Threading;
+using UnityStandardAssets.CrossPlatformInput;
 
 public class Player : Character
 {
@@ -10,24 +11,57 @@ public class Player : Character
     public Transform player;
     public Vector3 directionVec = Vector3.zero;
     public float attackdamage = 0.10001f;
+    public Rigidbody2D rb;
+    public Vector2 moveVector;
 
 
     void start()
     {
         HpBar = GetComponent<RectTransform>();
+        
     }
 
     // Update is called once per frame
     protected override void Update()
     {
+#if UNITY_EDITOR_WIN
         GetInput();
-        
+#endif
+
+
+#if UNITY_ANDROID
+        GetInput_joystick();
+#endif
 
         if (!isAttack)
         {
             base.Move();
         }
     }
+
+    public void attack(Vector3 directionVec)
+    {
+        animator.SetBool("attack", true);
+
+
+
+        for (int i = 0; i < MonsterManager.Instance.mosters.Count; i++)
+        {
+            Vector3 monsterVec = MonsterManager.Instance.mosters[i].transform.position - transform.position;
+            float dist = Vector3.Distance(MonsterManager.Instance.mosters[i].transform.position, transform.position);
+            monsterVec.Normalize();
+
+            float dot = Vector3.Dot(directionVec, monsterVec);
+            Debug.Log(directionVec);
+            Debug.Log(dot);
+            if (dot > 0.5 && dist < 1)
+            {
+                AttackMoster(MonsterManager.Instance.mosters[i]);
+            }
+
+        }
+    }
+
 
     private void AttackMoster(Monster monster)
     {
@@ -37,14 +71,43 @@ public class Player : Character
 
     }
 
+
+    private void GetInput_joystick()
+    {
+        moveVector.x = CrossPlatformInputManager.GetAxisRaw("Horizontal");
+        moveVector.y = CrossPlatformInputManager.GetAxisRaw("Vertical");
+
+
+        if(moveVector.x != 0 && moveVector.y != 0)
+        {
+            directionVec = moveVector;
+        }
+        direction = moveVector;
+
+        
+
+       // if (CrossPlatformInputManager.GetButtonUp("Jump"))
+     //  {
+      //      Debug.Log("ket Up");
+      //  }
+        
+       // Debug.Log(moveVector);
+
+    }
+
+    private void FixedUpdate()
+    {
+        rb.velocity = new Vector2(moveVector.x, moveVector.y);
+    }
+
     private void GetInput()
     {
-        Vector2 moveVector;
+        
         moveVector.x = Input.GetAxisRaw("Horizontal");
         moveVector.y = Input.GetAxisRaw("Vertical");
 
         direction = moveVector;
-        Debug.Log(animator.GetBool("attack"));
+       // Debug.Log(animator.GetBool("attack"));
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             Debug.Log("Shift Down");
@@ -55,7 +118,7 @@ public class Player : Character
             Debug.Log("Shift Up");
             speed = speed / (float)2;
         }
-
+       
 
         if (Input.GetKeyDown(KeyCode.LeftArrow))
             directionVec = Vector3.left;
@@ -68,23 +131,7 @@ public class Player : Character
 
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
-            animator.SetBool("attack", true);
-            
-            for (int i = 0; i < MonsterManager.Instance.mosters.Count; i++)
-            {
-                Vector3 monsterVec = MonsterManager.Instance.mosters[i].transform.position - transform.position;
-                float dist = Vector3.Distance(MonsterManager.Instance.mosters[i].transform.position, transform.position);
-                monsterVec.Normalize();
-
-                float dot = Vector3.Dot(directionVec, monsterVec);
-                Debug.Log(directionVec);
-                if( dot > 0.5 && dist <1)
-                {                   
-                    AttackMoster(MonsterManager.Instance.mosters[i]);
-                }
-
-            }
-           
+            attack(directionVec);
         }
 
         if (Input.GetKeyDown(KeyCode.R))
