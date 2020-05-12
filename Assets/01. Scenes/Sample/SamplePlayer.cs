@@ -74,8 +74,9 @@ public class SamplePlayer : SampleCharacter
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
+                
                 Debug.Log("key down space");
-                manager.GetComponent<ManagerController>().change_map();
+                manager.GetComponent<ManagerController>().change_map(collision.gameObject.name);
             }
         }
     }
