@@ -18,7 +18,6 @@ public class ManagerController : MonoBehaviour
         //maps = GameObject.FindGameObjectsWithTag("map");
         Debug.Log("maps length: " + maps.Length);
         StartCoroutine("Fade");
-        
     }
 
 
@@ -39,6 +38,10 @@ public class ManagerController : MonoBehaviour
      */
     public void select_door()
     {
+        for(int i=0;i<doors.Length;i++)
+        {
+            doors[i].SetActive(false);
+        }
 
     }
 
@@ -48,7 +51,7 @@ public class ManagerController : MonoBehaviour
 
     public void select_map()
     {
-
+        
     }
 
     private void set_player_position(string name)
@@ -83,9 +86,8 @@ public class ManagerController : MonoBehaviour
     {
         Debug.Log("function change_map call");
         maps[0].SetActive(false);
-        //player.transform.position = new Vector3(-0.18f, -9.14f, 0);
         set_player_position(name);
-        maps[1].SetActive(true);
+        maps[2].SetActive(true);
         StartCoroutine("Fade");
         
     }
