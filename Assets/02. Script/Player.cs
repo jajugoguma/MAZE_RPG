@@ -13,7 +13,7 @@ public class Player : Character
     public float attackdamage = 0.10001f;
     public Rigidbody2D rb;
     public Vector2 moveVector;
-
+    public bool flag = true;
 
     void start()
     {
@@ -25,14 +25,15 @@ public class Player : Character
     protected override void Update()
     {
 #if UNITY_EDITOR_WIN
-        GetInput();
+        
+            GetInput();
 #endif
 
 
 #if UNITY_ANDROID
-        GetInput_joystick();
+        if(flag)
+            GetInput_joystick();
 #endif
-
         if (!isAttack)
         {
             base.Move();
@@ -74,25 +75,12 @@ public class Player : Character
 
     private void GetInput_joystick()
     {
+        
         moveVector.x = CrossPlatformInputManager.GetAxisRaw("Horizontal");
         moveVector.y = CrossPlatformInputManager.GetAxisRaw("Vertical");
-
-
-        if(moveVector.x != 0 && moveVector.y != 0)
-        {
-            directionVec = moveVector;
-        }
+        moveVector.Normalize();
+        Debug.Log(moveVector);
         direction = moveVector;
-
-        
-
-       // if (CrossPlatformInputManager.GetButtonUp("Jump"))
-     //  {
-      //      Debug.Log("ket Up");
-      //  }
-        
-       // Debug.Log(moveVector);
-
     }
 
     private void FixedUpdate()
@@ -107,7 +95,6 @@ public class Player : Character
         moveVector.y = Input.GetAxisRaw("Vertical");
 
         direction = moveVector;
-       // Debug.Log(animator.GetBool("attack"));
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             Debug.Log("Shift Down");

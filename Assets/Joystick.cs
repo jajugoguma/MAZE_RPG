@@ -27,6 +27,7 @@ namespace UnityStandardAssets.CrossPlatformInput
 		void OnEnable()
 		{
 			CreateVirtualAxes();
+
 		}
 
         void Start()
@@ -75,7 +76,7 @@ namespace UnityStandardAssets.CrossPlatformInput
 		public void OnDrag(PointerEventData data)
 		{
             
-            Debug.Log(gameObject.name);
+           
             Vector3 newPos = Vector3.zero;
 
 			if (m_UseX)
@@ -85,7 +86,7 @@ namespace UnityStandardAssets.CrossPlatformInput
 				newPos.x = delta;
 			}
 
-            Debug.Log("OnDrag 2");
+          
 
             if (m_UseY)
 			{
@@ -96,12 +97,13 @@ namespace UnityStandardAssets.CrossPlatformInput
 			transform.position = new Vector3(m_StartPos.x + newPos.x, m_StartPos.y + newPos.y, m_StartPos.z + newPos.z);
 			UpdateVirtualAxes(transform.position);
 
-            Debug.Log("OnDrag 3");
+            
 		}
 
 
 		public void OnPointerUp(PointerEventData data)
 		{
+
 			transform.position = m_StartPos;
 			UpdateVirtualAxes(m_StartPos);
         }

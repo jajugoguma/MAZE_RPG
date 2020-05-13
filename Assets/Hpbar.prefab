@@ -46,8 +46,8 @@ MonoBehaviour:
   material: {fileID: 2100000, guid: 72f4624941b808b459251ef76b45d909, type: 2}
   mSprites:
   - name: blackbar
-    x: 562
-    y: 1006
+    x: 55
+    y: 454
     width: 120
     height: 18
     borderLeft: 0
@@ -59,8 +59,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: iconfinder__morning-coffee2_2324147
-    x: 497
-    y: 970
+    x: 55
+    y: 473
     width: 64
     height: 54
     borderLeft: 0
@@ -71,6 +71,19 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 5
     paddingBottom: 5
+  - name: iconfinder_29_Sound_alt_106217
+    x: 0
+    y: 359
+    width: 64
+    height: 64
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
   - name: iconfinder_cafe-food_and_restaurant-commerce_and_shopping-architecture_and_city-coffee_shop-store-buildings_4059760
     x: 0
     y: 528
@@ -84,9 +97,35 @@ MonoBehaviour:
     paddingRight: 8
     paddingTop: 8
     paddingBottom: 8
+  - name: iconfinder_icons_exit2_1564506
+    x: 0
+    y: 424
+    width: 54
+    height: 54
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 5
+    paddingRight: 5
+    paddingTop: 5
+    paddingBottom: 5
+  - name: iconfinder_screenshot_2639913
+    x: 0
+    y: 479
+    width: 48
+    height: 48
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 8
+    paddingRight: 8
+    paddingTop: 8
+    paddingBottom: 8
   - name: redbar
-    x: 683
-    y: 1007
+    x: 55
+    y: 436
     width: 119
     height: 17
     borderLeft: 0

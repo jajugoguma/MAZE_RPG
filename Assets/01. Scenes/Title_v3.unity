@@ -1206,7 +1206,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3003
+  startingRenderQueue: 3002
   mClipTexture: {fileID: 2800000, guid: ef4c522d50b82ac408c7f6c423a8b9df, type: 3}
   mAlpha: 1
   mClipping: 0

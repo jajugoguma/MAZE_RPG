@@ -6,6 +6,8 @@ using System.IO;
 
 public class SampleBehaviour : MonoBehaviour {
 
+    public Menubutton menu;
+
     [Header("NAVER CAFE ID")]
     public int CafeId = 28290504;
 
@@ -42,20 +44,28 @@ public class SampleBehaviour : MonoBehaviour {
     }
 
     public void OnClickGlinkButton () {
-        Debug.Log("clicked");
+#if UNITY_ANDROID
         GLink.sharedInstance().setWidgetStartPosition(false, 60);
 		GLink.sharedInstance().executeHome ();
-       
-	}
+#else
+        Application.OpenURL("https://section.cafe.naver.com/");
+#endif
+    }
 
 	public void OnClickScreenShotButton () {
-		StartCoroutine (SaveScreenShot ());
-	}
+        menu.onClicked();
+#if UNITY_ANDROID
+        StartCoroutine(SaveScreenShot ());
+#else
+        UnityEngine.ScreenCapture.CaptureScreenshot("screenshot.png");
+#endif
 
-	// http://wiki.unity3d.com/index.php/ScreenCapture
-	private IEnumerator SaveScreenShot () {
+    }
+
+    // http://wiki.unity3d.com/index.php/ScreenCapture
+    private IEnumerator SaveScreenShot () {
 		yield return new WaitForEndOfFrame();
-
+        
 		string filePath = Application.persistentDataPath + "/GLShareImage.png";
 
 		//Create a texture to pass to encoding

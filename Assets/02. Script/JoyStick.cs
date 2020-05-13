@@ -1,52 +1,132 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityStandardAssets.CrossPlatformInput;
 
-public class JoyStick : MonoBehaviour
-{
-    // 공개
-    public Transform Stick;         // 조이스틱.
+	public class Joystick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IDragHandler
+	{
+		public enum AxisOption
+		{
+			// Options for which axes to use
+			Both, // Use both
+			OnlyHorizontal, // Only horizontal
+			OnlyVertical // Only vertical
+		}
+        public int MovementRange = 100;
+		public AxisOption axesToUse = AxisOption.Both; // The options for the axes that the still will use
+		public string horizontalAxisName = "Horizontal"; // The name given to the horizontal axis for the cross platform input
+		public string verticalAxisName = "Vertical"; // The name given to the vertical axis for the cross platform input
 
-    // 비공개
-    private Vector3 StickFirstPos;  // 조이스틱의 처음 위치.
-    private Vector3 JoyVec;         // 조이스틱의 벡터(방향)
-    private float Radius;           // 조이스틱 배경의 반 지름.
-
-    void Start()
-    {
-        Radius = GetComponent<RectTransform>().sizeDelta.y * 0.5f;
-        StickFirstPos = Stick.transform.position;
-
-        // 캔버스 크기에대한 반지름 조절.
-        float Can = transform.parent.GetComponent<RectTransform>().localScale.x;
-        Radius *= Can;
+		Vector3 m_StartPos;
+		bool m_UseX; // Toggle for using the x axis
+		bool m_UseY; // Toggle for using the Y axis
+		CrossPlatformInputManager.VirtualAxis m_HorizontalVirtualAxis; // Reference to the joystick in the cross platform input
+		CrossPlatformInputManager.VirtualAxis m_VerticalVirtualAxis; // Reference to the joystick in the cross platform input
+        public Player player;
+        Vector2 tmpVec = Vector2.zero;
+      bool flag = true;
+    
+		void OnEnable()
+    { 
+			CreateVirtualAxes();
     }
 
-    // 드래그
-    public void Drag(BaseEventData _Data)
-    {
-        PointerEventData Data = _Data as PointerEventData;
-        Vector3 Pos = Data.position;
+        void Start()
+        {
+            m_StartPos = transform.position;
+            Debug.Log(Cursor.lockState);
+            Cursor.lockState = CursorLockMode.Confined;
+            flag = false;
+        }
 
-        // 조이스틱을 이동시킬 방향을 구함.(오른쪽,왼쪽,위,아래)
-        JoyVec = (Pos - StickFirstPos).normalized;
+		void UpdateVirtualAxes(Vector3 value)
+		{
+			var delta = m_StartPos - value;
+			delta.y = -delta.y;
+			delta /= MovementRange;
+			if (m_UseX)
+			{
+				m_HorizontalVirtualAxis.Update(-delta.x);
+			}
 
-        // 조이스틱의 처음 위치와 현재 내가 터치하고있는 위치의 거리를 구한다.
-        float Dis = Vector3.Distance(Pos, StickFirstPos);
+			if (m_UseY)
+			{
+				m_VerticalVirtualAxis.Update(delta.y);
+			}
+		}
 
-        // 거리가 반지름보다 작으면 조이스틱을 현재 터치하고 있는곳으로 이동. 
-        if (Dis < Radius)
-            Stick.position = StickFirstPos + JoyVec * Dis;
-        // 거리가 반지름보다 커지면 조이스틱을 반지름의 크기만큼만 이동.
-        else
-            Stick.position = StickFirstPos + JoyVec * Radius;
-    }
+		void CreateVirtualAxes()
+		{
+			// set axes to use
+			m_UseX = (axesToUse == AxisOption.Both || axesToUse == AxisOption.OnlyHorizontal);
+			m_UseY = (axesToUse == AxisOption.Both || axesToUse == AxisOption.OnlyVertical);
 
-    // 드래그 끝.
-    public void DragEnd()
-    {
-        Stick.position = StickFirstPos; // 스틱을 원래의 위치로.
-        JoyVec = Vector3.zero;          // 방향을 0으로.
-    }
-}
+			// create new axes based on axes to use
+			if (m_UseX)
+			{
+				m_HorizontalVirtualAxis = new CrossPlatformInputManager.VirtualAxis(horizontalAxisName);
+				CrossPlatformInputManager.RegisterVirtualAxis(m_HorizontalVirtualAxis);
+			}
+			if (m_UseY)
+			{
+				m_VerticalVirtualAxis = new CrossPlatformInputManager.VirtualAxis(verticalAxisName);
+				CrossPlatformInputManager.RegisterVirtualAxis(m_VerticalVirtualAxis);
+			}
+		}
+
+
+		public void OnDrag(PointerEventData data)
+		{
+        
+           
+            Vector3 newPos = Vector3.zero;
+
+			if (m_UseX)
+			{
+				int delta = (int)(data.position.x - m_StartPos.x);
+				delta = Mathf.Clamp(delta, - MovementRange, MovementRange);
+				newPos.x = delta;
+			}
+
+          
+
+            if (m_UseY)
+			{
+				int delta = (int)(data.position.y - m_StartPos.y);
+				delta = Mathf.Clamp(delta, -MovementRange, MovementRange);
+				newPos.y = delta;
+			}
+			transform.position = new Vector3(m_StartPos.x + newPos.x, m_StartPos.y + newPos.y, m_StartPos.z + newPos.z);
+			UpdateVirtualAxes(transform.position);
+
+            
+		}
+
+
+		public void OnPointerUp(PointerEventData data)
+		{
+           
+        tmpVec = (transform.position - m_StartPos);
+            tmpVec.Normalize();
+            player.directionVec = tmpVec;
+        
+        transform.position = m_StartPos;
+			UpdateVirtualAxes(m_StartPos);
+        }
+
+
+		public void OnPointerDown(PointerEventData data) { }
+
+		void OnDisable()
+		{
+			// remove the joysticks from the cross platform input
+			if (m_UseX)
+			{
+				m_HorizontalVirtualAxis.Remove();
+			}
+			if (m_UseY)
+			{
+				m_VerticalVirtualAxis.Remove();
+			}
+		}
+	}

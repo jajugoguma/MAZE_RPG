@@ -16,15 +16,13 @@ public class ButtonHandler : MonoBehaviour
         public void SetDownState()
         {
             CrossPlatformInputManager.SetButtonDown(Name);
-             
             player.attack(player.directionVec);
         }
 
 
         public void SetUpState()
         {
-        CrossPlatformInputManager.SetButtonUp(Name);
-            
+            CrossPlatformInputManager.SetButtonUp(Name);
             player.animator.SetBool("attack", false);
         }
 
@@ -48,6 +46,6 @@ public class ButtonHandler : MonoBehaviour
 
         public void Update()
         {
-
+    
         }
     }

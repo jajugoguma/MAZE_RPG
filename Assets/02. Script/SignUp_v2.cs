@@ -41,7 +41,7 @@ public class SignUp_v2: MonoBehaviour
 
     public void CancleButtonClicked()
     {
-        SceneManager.LoadScene("Title_v2");
+        SceneManager.LoadScene("Title_v3");
     }
 
     public void CreateButtonVlClicked()
@@ -93,7 +93,7 @@ public class SignUp_v2: MonoBehaviour
 
         if (PopUpTitle.text.Equals("Sign Up Complete"))
         {
-            SceneManager.LoadScene("Title_v2");
+            SceneManager.LoadScene("Title_v3");
         }
     }
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
 public class SelectCharacter : MonoBehaviour
 {
     
@@ -11,6 +12,7 @@ public class SelectCharacter : MonoBehaviour
     public GameObject[] Characters;
     public GameObject[] True;
     public GameObject[] False;
+
    
     //Character name 
     public UILabel[] CharacterName;
@@ -20,6 +22,8 @@ public class SelectCharacter : MonoBehaviour
     //ID
     public UILabel ID;
 
+    //Andoroid only
+    public GameObject caffebutton;
 
 
     // Start is called before the first frame update
@@ -27,7 +31,10 @@ public class SelectCharacter : MonoBehaviour
     void Start()
     {
         ID.text = "ID : "+InfoManager.Instance.id;
-       
+
+#if UNITY_ANDROID
+        caffebutton.SetActive(true);
+#endif
 
     }
 
