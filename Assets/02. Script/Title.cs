@@ -73,9 +73,10 @@ public class Title : MonoBehaviour
         form.AddField("param_id", id_Input.value);
         form.AddField("param_pwd", pwd_Input.value);
 
-        WWW webRequest = new WWW(CreateUrl, form);
+        WWW webRequest = new WWW(CreateUrl,form);
         yield return webRequest;
 
+        
         if (webRequest.text.Contains("complete"))
         {
             // todo : change start game

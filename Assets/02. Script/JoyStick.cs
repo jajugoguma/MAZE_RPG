@@ -36,8 +36,8 @@ using UnityStandardAssets.CrossPlatformInput;
             m_StartPos = transform.position;
             Debug.Log(Cursor.lockState);
             Cursor.lockState = CursorLockMode.Confined;
-            flag = false;
-        }
+
+    }
 
 		void UpdateVirtualAxes(Vector3 value)
 		{

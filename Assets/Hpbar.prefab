@@ -46,8 +46,8 @@ MonoBehaviour:
   material: {fileID: 2100000, guid: 72f4624941b808b459251ef76b45d909, type: 2}
   mSprites:
   - name: blackbar
-    x: 55
-    y: 454
+    x: 497
+    y: 493
     width: 120
     height: 18
     borderLeft: 0
@@ -58,9 +58,35 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
+  - name: hat-helmet-soldier-viking-war-warrior-icon-450406
+    x: 0
+    y: 513
+    width: 511
+    height: 511
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 1
+    paddingRight: 0
+    paddingTop: 1
+    paddingBottom: 0
+  - name: hiclipart.com
+    x: 512
+    y: 512
+    width: 400
+    height: 512
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 56
+    paddingRight: 56
+    paddingTop: 0
+    paddingBottom: 0
   - name: iconfinder__morning-coffee2_2324147
-    x: 55
-    y: 473
+    x: 913
+    y: 905
     width: 64
     height: 54
     borderLeft: 0
@@ -72,8 +98,8 @@ MonoBehaviour:
     paddingTop: 5
     paddingBottom: 5
   - name: iconfinder_29_Sound_alt_106217
-    x: 0
-    y: 359
+    x: 913
+    y: 960
     width: 64
     height: 64
     borderLeft: 0
@@ -86,7 +112,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: iconfinder_cafe-food_and_restaurant-commerce_and_shopping-architecture_and_city-coffee_shop-store-buildings_4059760
     x: 0
-    y: 528
+    y: 16
     width: 496
     height: 496
     borderLeft: 0
@@ -98,8 +124,8 @@ MonoBehaviour:
     paddingTop: 8
     paddingBottom: 8
   - name: iconfinder_icons_exit2_1564506
-    x: 0
-    y: 424
+    x: 913
+    y: 850
     width: 54
     height: 54
     borderLeft: 0
@@ -111,8 +137,8 @@ MonoBehaviour:
     paddingTop: 5
     paddingBottom: 5
   - name: iconfinder_screenshot_2639913
-    x: 0
-    y: 479
+    x: 968
+    y: 856
     width: 48
     height: 48
     borderLeft: 0
@@ -124,8 +150,8 @@ MonoBehaviour:
     paddingTop: 8
     paddingBottom: 8
   - name: redbar
-    x: 55
-    y: 436
+    x: 618
+    y: 494
     width: 119
     height: 17
     borderLeft: 0
