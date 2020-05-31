@@ -1,0 +1,9 @@
+diff a/Assets/Light2D/Examples/Images/Castle/WallTop.psd.meta b/Assets/Light2D/Examples/Images/Castle/WallTop.psd.meta	(rejected hunks)
+@@ -70,7 +70,6 @@
+     allowsAlphaSplitting: 0
+     overridden: 0
+     androidETC2FallbackOverride: 0
+-    forceMaximumCompressionQuality_BC6H_BC7: 0
+   spriteSheet:
+     serializedVersion: 2
+     sprites: []

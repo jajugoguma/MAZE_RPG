@@ -1,0 +1,14 @@
+diff a/Assets/Light2D/Examples/Images/Castle/WallTopRight.psd.meta b/Assets/Light2D/Examples/Images/Castle/WallTopRight.psd.meta	(rejected hunks)
+@@ -78,12 +78,10 @@
+     physicsShape: []
+     bones: []
+     spriteID: 5e97eb03825dee720800000000000000
+-    internalID: 0
+     vertices: []
+     indices: 
+     edges: []
+     weights: []
+-    secondaryTextures: []
+   spritePackingTag: Castle
+   pSDRemoveMatte: 1
+   pSDShowRemoveMatteOption: 1

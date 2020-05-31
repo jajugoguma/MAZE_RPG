@@ -1,0 +1,14 @@
+diff a/Assets/Light2D/Examples/Images/Lights/LineLightBlurred.psd.meta b/Assets/Light2D/Examples/Images/Lights/LineLightBlurred.psd.meta	(rejected hunks)
+@@ -1,9 +1,10 @@
+ fileFormatVersion: 2
+ guid: 52146be1fefc37a4f897ca9d235d8caa
+ TextureImporter:
+-  internalIDToNameTable: []
++  fileIDToRecycleName:
++    2186277476908879412: ImportLogs
+   externalObjects: {}
+-  serializedVersion: 11
++  serializedVersion: 9
+   mipmaps:
+     mipMapMode: 0
+     enableMipMap: 1
