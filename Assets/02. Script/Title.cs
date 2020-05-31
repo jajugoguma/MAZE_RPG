@@ -90,6 +90,8 @@ public class Title : MonoBehaviour
         {
             PopUpWindow.SetActive(true);
             PopUpTitle.text = webRequest.text;
+            Debug.Log(webRequest.text);
+            Debug.Log(webRequest.error);
         }
 
     }
