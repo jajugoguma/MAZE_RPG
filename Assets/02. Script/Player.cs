@@ -14,11 +14,18 @@ public class Player : Character
     public Rigidbody2D rb;
     public Vector2 moveVector;
     public bool flag = true;
+    private Inventory inventory;
+    public UI_Inventory uiInventory;
+    
 
-    void start()
+    void Start()
     {
-        HpBar = GetComponent<RectTransform>();
         
+        HpBar = GetComponent<RectTransform>();
+        inventory = new Inventory();
+       
+
+        uiInventory.SetInventory(inventory);
     }
 
     // Update is called once per frame

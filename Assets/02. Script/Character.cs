@@ -14,6 +14,7 @@ public class Character : MonoBehaviour
         animator = GetComponent<Animator>();
         animator.SetBool("attack", false);
         animator.SetBool("move", false);
+        Debug.Log("animator");
     }
 
     protected virtual void Update()

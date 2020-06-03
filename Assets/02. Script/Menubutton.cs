@@ -10,6 +10,7 @@ public class Menubutton : MonoBehaviour
     public Joystick joystick;
     public GameObject joystick_;
     public GameObject menu;
+    public GameObject uiInventory;
     public Player player;
 
     // Start is called before the first frame update
@@ -29,7 +30,13 @@ public class Menubutton : MonoBehaviour
         Application.Quit();
     }
 
-    
+    public void InventoryClicked()
+    {
+        menu.SetActive(false);
+        uiInventory.SetActive(true);
+    }
+
+
 
     public void onClicked()
     {
@@ -48,6 +55,7 @@ public class Menubutton : MonoBehaviour
         }
       
        
+        
             
             
         
@@ -58,7 +66,13 @@ public class Menubutton : MonoBehaviour
         else
             menu.SetActive(true);
 
-        
-        
+        if (uiInventory.activeInHierarchy)
+        {
+            uiInventory.SetActive(false);
+            player.flag = false;
+            panel.SetActive(false);
+            joystick_.SetActive(false);
+        }
+
     }
 }
