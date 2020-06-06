@@ -12,6 +12,10 @@ public class ManagerController : MonoBehaviour
     public GameObject[] doors_fifteen;
     private GameObject[] doors;
 
+    public GameObject[] door_walls_ten;
+    public GameObject[] door_walls_fifteen;
+    private GameObject[] door_walls;
+
     public GameObject[] rest_doors;
     public GameObject rest_room;
 
@@ -96,6 +100,18 @@ public class ManagerController : MonoBehaviour
         }
     }
 
+    private void set_walls()
+    {
+        if (map_size == TEN)
+        {
+            door_walls = door_walls_ten;
+        }
+        else
+        {
+            door_walls = door_walls_fifteen;
+        }
+    }
+
     void init_world_map()
     {
         map_size = TEN; // 매개변수로 전달 받아야함
@@ -120,6 +136,7 @@ public class ManagerController : MonoBehaviour
         // top_door = GameObject.Find("goal_top").transform.position;
         // bottom_door = GameObject.Find("goal_bottom").transform.position;
         set_doors();
+        set_walls();
 
         rest_left_door_position = GameObject.Find("rest_goal_left").transform.position;
         rest_right_door_position = GameObject.Find("rest_goal_right").transform.position;
@@ -154,20 +171,28 @@ public class ManagerController : MonoBehaviour
     public void select_door()
     {
         close_all_rest_door();
+        activeAllWalls();
 
         int now = world_map_ten[(int)world_position_l, (int)world_position_r];
         if(now ==3)
         {
             doors[1].SetActive(true);
             doors[3].SetActive(true);
+
+            door_walls[1].SetActive(false);
+            door_walls[3].SetActive(false);
         }
         else if(now==1)
         {
             doors[3].SetActive(true);
+
+            door_walls[3].SetActive(false);
         }
         else if(now==2)
         {
             doors[1].SetActive(true);
+
+            door_walls[1].SetActive(false);
         }
 
         if(world_position_r>0)
@@ -176,6 +201,8 @@ public class ManagerController : MonoBehaviour
             if(l==1 || l==3)
             {
                 doors[2].SetActive(true);
+
+                door_walls[2].SetActive(false);
             }
         }
         if(world_position_l>0)
@@ -184,6 +211,8 @@ public class ManagerController : MonoBehaviour
             if(r==2 || r==3)
             {
                 doors[0].SetActive(true);
+
+                door_walls[0].SetActive(false);
             }
         }
     }
@@ -203,6 +232,12 @@ public class ManagerController : MonoBehaviour
         rest_room.SetActive(true);
         now_map.SetActive(false);
         close_all_door();
+    }
+
+    private void activeAllWalls()
+    {
+        for (int i = 0; i < 4; i++)
+            door_walls[i].SetActive(true);
     }
 
     /*

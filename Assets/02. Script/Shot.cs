@@ -57,9 +57,9 @@ public class Shot : MonoBehaviour
             }
 
             bounds.w = boundaries.min.x;
-            bounds.x = boundaries.max.x;
+            bounds.x = boundaries.max.x + 10;
             bounds.y = boundaries.min.y;
-            bounds.z = boundaries.max.y;
+            bounds.z = boundaries.max.y + 10;
         }
         else
         {
@@ -86,9 +86,9 @@ public class Shot : MonoBehaviour
                 if (boundaries != null)
                 {
                     bounds.w = Mathf.Min(bounds.w, boundaries.min.x);
-                    bounds.x = Mathf.Max(bounds.x, boundaries.max.x);
+                    bounds.x = Mathf.Max(bounds.x, boundaries.max.x) + 10;
                     bounds.y = Mathf.Min(bounds.y, boundaries.min.y);
-                    bounds.z = Mathf.Max(bounds.z, boundaries.max.y);
+                    bounds.z = Mathf.Max(bounds.z, boundaries.max.y) + 10;
                 }
             }
         }
