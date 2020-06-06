@@ -51,13 +51,13 @@ public class SignUp_v2: MonoBehaviour
 
     IEnumerator CreateAccount()
     {
-        if (String.IsNullOrEmpty(id_Input.text) || (String.IsNullOrEmpty(pwd_Input.text)))
+        if (String.IsNullOrEmpty(id_Input.value) || (String.IsNullOrEmpty(pwd_Input.value)))
         {
             PopUpWindow.SetActive(true);
             PopUpTitle.text = "Complete all input boxs";
             yield break;
         }
-        if (!pwd_Input.text.Equals(pwd_confirm_Input.text)) 
+        if (!pwd_Input.text.Equals(pwd_confirm_Input.value)) 
         {
             PopUpWindow.SetActive(true);
             PopUpTitle.text = "Password is Not matched";
@@ -66,8 +66,8 @@ public class SignUp_v2: MonoBehaviour
         
 
         WWWForm form = new WWWForm();
-        form.AddField("param_id", id_Input.text);
-        form.AddField("param_pwd", pwd_Input.text);
+        form.AddField("param_id", id_Input.value);
+        form.AddField("param_pwd", pwd_Input.value);
 
         WWW webRequest = new WWW(CreateUrl, form);
         yield return webRequest;

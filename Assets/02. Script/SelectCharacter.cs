@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -6,15 +7,16 @@ using UnityEngine.SceneManagement;
 
 public class SelectCharacter : MonoBehaviour
 {
-    
-   
     //Character True or False Controll
     public GameObject[] Characters;
     public GameObject[] True;
     public GameObject[] False;
 
-   
+    public GameObject logoutBtn;
+
+
     //Character name 
+    public JsonDataClass _jsonData;
     public UILabel[] CharacterName;
 
     
@@ -22,52 +24,142 @@ public class SelectCharacter : MonoBehaviour
     //ID
     public UILabel ID;
 
+    [Header("CreateCharacter")]
+    public UIInput name_Input;
+    public GameObject namInputGO;
+    public GameObject createButton;
+    public GameObject cancelButton;
+
     //Andoroid only
-    
+
+    private string jsonURL = "http://jajugoguma.synology.me/LoadChars.php";
+    private string createURL = "http://jajugoguma.synology.me/CreateChar.php";
+    private string deleteURL = "http://jajugoguma.synology.me/DeleteChar.php";
+
 
 
     // Start is called before the first frame update
     // ID 정보값에 맞춰서 DB에서 케릭터들을 가져와서 스폰해야됨 ID값은 InfoManager.Instance로 접근 가능
     void Start()
     {
-        ID.text = "ID : "+InfoManager.Instance.id;
+        disableCreateObjects();
 
+        ID.text = "ID : " + InfoManager.Instance.id;
 
+        StartCoroutine(getData());
 
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator getData()
     {
-    
+        Debug.Log("Start");
+
+        WWWForm form = new WWWForm();
+        form.AddField("param_id", InfoManager.Instance.id);
+
+        WWW _www = new WWW(jsonURL, form);
+        yield return _www;
+
+        Debug.Log(_www.text);
+        if (_www.error == null)
+        {
+            loadCharacters(_www.text);
+        }
+        else
+        {
+            Debug.Log("Something worng...");
+        }
     }
 
+    private void loadCharacters(string _url)
+    {
+        JsonDataClass _jsonData = JsonUtility.FromJson<JsonDataClass>(_url);
+        Debug.Log(_jsonData.chracters.Count.ToString());
 
+        int i;
+        for (i = 0; i < _jsonData.chracters.Count; i++)
+        {
+            CharacterName[i].text = _jsonData.chracters[i].name;
+            True[i].SetActive(true);
+            False[i].SetActive(false);
+        }
+
+        for (int j = i; j < 3; j++)
+        {
+            True[j].SetActive(false);
+            False[j].SetActive(true);
+        }
+    }
+
+    private void disableCreateObjects()
+    {
+        namInputGO.SetActive(false);
+        createButton.SetActive(false);
+        cancelButton.SetActive(false);
+    }
+
+    private void enableCreateObjects()
+    {
+        namInputGO.SetActive(true);
+        createButton.SetActive(true);
+        cancelButton.SetActive(true);
+    }
+
+    private void disableSelectObjects()
+    {
+        for (int i = 0; i < 3; i++)
+            Characters[i].SetActive(false);
+        logoutBtn.SetActive(false);
+    }
+
+    private void enableSelectObjects()
+    {
+        for (int i = 0; i < 3; i++)
+            Characters[i].SetActive(true);
+        logoutBtn.SetActive(true);
+    }
   
     public void LogoutButoonClicked()
     {
-        SceneManager.LoadScene("Title_v2");
+        SceneManager.LoadScene("Title_v3");
     }
 
     public void DeleteButtonClicked(GameObject button)
     {
-        if (button == Characters[0])
-        {
-            True[0].SetActive(false);
-            False[0].SetActive(true);
+        for (int i = 0; i < 3; i++) {
+            if (button == Characters[i])
+            {
+                StartCoroutine(deleteCharacter(CharacterName[i].text));
+            }
         }
-        else if (button == Characters[1])
+    }
+
+    IEnumerator deleteCharacter(string name)
+    {
+        WWWForm form = new WWWForm();
+        form.AddField("param_name", name);
+
+        WWW _www = new WWW(deleteURL, form);
+        //yield return _www;
+
+        Debug.Log(_www.text);
+        if (_www.error == null)
         {
-            True[1].SetActive(false);
-            False[1].SetActive(true);
-        }
-        else if (button == Characters[2])
-        {
-            True[2].SetActive(false);
-            False[2].SetActive(true);
+            if (_www.text == "delete complete")
+            {
+                Debug.Log("delete complete");
+            }
+            else
+            {
+                Debug.Log("delete Fail");
+            }
         }
         else
-            Debug.LogError("Wrong Clicked");
+        {
+            Debug.Log("Something worng...");
+        }
+
+        yield return StartCoroutine(getData());
     }
 
 
@@ -76,23 +168,63 @@ public class SelectCharacter : MonoBehaviour
     {
 
         // 만드는 부분 필요 캐릭터별 닉네임 ??
-        if (button == Characters[0])
+        if (button == Characters[0] || button == Characters[1] || button == Characters[2])
         {
-            True[0].SetActive(true);
-            False[0].SetActive(false);
-        }
-        else if (button == Characters[1])
-        {
-            True[1].SetActive(true);
-            False[1].SetActive(false);
-        }
-        else if (button == Characters[2])
-        {
-            True[2].SetActive(true);
-            False[2].SetActive(false);
+            enableCreateObjects();
+            disableSelectObjects();
         }
         else
             Debug.LogError("Wrong Clicked");
+    }
+
+    public void charCreateBtnClicked()
+    {
+        if (String.IsNullOrEmpty(name_Input.value))
+        {
+            Debug.Log("input name");
+        }
+        else
+        {
+            StartCoroutine(createCharacter());
+        }
+
+        disableCreateObjects();
+        enableSelectObjects();
+    }
+
+    public void charCancelBtnClicked()
+    {
+        disableCreateObjects();
+        enableSelectObjects();
+    }
+
+    IEnumerator createCharacter()
+    {
+        WWWForm form = new WWWForm();
+        form.AddField("param_id", InfoManager.Instance.id);
+        form.AddField("param_name", name_Input.value);
+
+        WWW _www = new WWW(createURL, form);
+        //yield return _www;
+
+        Debug.Log(_www.text);
+        if (_www.error == null)
+        {
+            if (_www.text == "create complete")
+            {
+                Debug.Log("create complete");
+            }
+            else
+            {
+                Debug.Log("Create Fail");
+            }
+        }
+        else
+        {
+            Debug.Log("Something worng...");
+        }
+
+        yield return StartCoroutine(getData());
     }
 
     // 게임 시작 캐릭터 정보를 가진상태로 시작하게 만들어야함 text값 사용 하면 될듯
@@ -106,11 +238,13 @@ public class SelectCharacter : MonoBehaviour
 
         else if (button == Characters[1])
         {
+            SceneManager.LoadScene("map_testbed");
             Debug.Log("Game Start with " + CharacterName[1].text);
 
         }
         else if (button == Characters[2])
         {
+            SceneManager.LoadScene("map_testbed");
             Debug.Log("Game Start with " + CharacterName[2].text);
 
         }

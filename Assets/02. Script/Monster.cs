@@ -35,12 +35,22 @@ public class Monster : MonoBehaviour
 
 
         if (Vector3.Distance(transform.position, player.transform.position) <= MaxDist)
+        {
             if (Vector3.Distance(transform.position, player.transform.position) >= MinDist)
             {
                 Ray(moveVec);
                 Debug.Log("chasing");
             }
-        if ((Vector3.Distance(transform.position, player.transform.position)) <= MinDist)
+        }
+        else
+        {
+            //Idle 애니메이션으로 전환
+            animator.SetFloat("Horizontal", 0f);
+            animator.SetFloat("Vertical", 0f);
+            animator.SetFloat("Magnitude", -0.1f);
+        }
+           
+        if (Vector3.Distance(transform.position, player.transform.position) <= MinDist)
         {
             if (Time.time > lastAttacked + attackDelay)
             {
@@ -49,7 +59,6 @@ public class Monster : MonoBehaviour
 
                 animator.SetBool("attack", true);
 
-                //몬스터가 캐릭터를 공격 몬스터 공격 애니메이션 추가 자리
                 player.attacked(attackdamage);
                 lastAttacked = Time.time;
             }
@@ -58,6 +67,7 @@ public class Monster : MonoBehaviour
 
         if (HpBar.localScale.x <= 0.0f)
         {
+            //TODO : 죽음 애니메이션 추가
             gameObject.SetActive(false);
         }
     }
@@ -72,7 +82,7 @@ public class Monster : MonoBehaviour
             //Debug.Log("Detect Wall");
             animator.SetFloat("Horizontal", 0f);
             animator.SetFloat("Vertical", 0f);
-            animator.SetFloat("Magnitude", -0.001f);
+            animator.SetFloat("Magnitude", -0.1f);
         }
         else if (hit.transform.name.Equals("Player"))
         {
