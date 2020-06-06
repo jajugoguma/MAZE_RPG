@@ -6,7 +6,7 @@ public class Character : MonoBehaviour
 {
     [SerializeField]
     public float speed;
-    public Vector2 direction;
+    public Vector3 movement;
     public Animator animator;
 
     void Start()
@@ -24,23 +24,12 @@ public class Character : MonoBehaviour
 
     public void Move()
     {
-        transform.Translate(direction * speed * Time.deltaTime);
+        movement = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0.0f);
 
-        if(direction.x != 0 || direction.y != 0)
-        {
-            AnimateMovement();
-        }
-        else
-        {
-            animator.SetBool("move", false);
-        }
-    }
+        animator.SetFloat("Horizontal", movement.x);
+        animator.SetFloat("Vertical", movement.y);
+        animator.SetFloat("Magnitude", movement.magnitude);
 
-    public void AnimateMovement()
-    {
-        animator.SetBool("move", true);
-
-        animator.SetFloat("x", direction.x);
-        animator.SetFloat("y", direction.y);
+        transform.position = transform.position + movement * speed * Time.deltaTime;
     }
 }

@@ -3,7 +3,10 @@ guid: 33a24564eeb226e41afa2a93527bd4dd
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - _tilte_bgm: {fileID: 8300000, guid: 9dd3645c53b5c414cb7d2ff484d5dea3, type: 3}
+  - _signup_bgm: {instanceID: 0}
+  - audioComponent: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

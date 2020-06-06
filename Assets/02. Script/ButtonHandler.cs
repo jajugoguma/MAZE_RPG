@@ -16,7 +16,8 @@ public class ButtonHandler : MonoBehaviour
         public void SetDownState()
         {
             CrossPlatformInputManager.SetButtonDown(Name);
-            player.attack(player.directionVec);
+        //player.attack(player.directionVec);
+            player.attack();
         }
 
 
