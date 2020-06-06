@@ -24,7 +24,7 @@ using UnityStandardAssets.CrossPlatformInput;
 		CrossPlatformInputManager.VirtualAxis m_VerticalVirtualAxis; // Reference to the joystick in the cross platform input
         public Player player;
         Vector2 tmpVec = Vector2.zero;
-      bool flag = true;
+        bool flag = true;
     
 		void OnEnable()
     { 

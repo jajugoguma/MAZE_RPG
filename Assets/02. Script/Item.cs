@@ -24,6 +24,23 @@ public class Item : MonoBehaviour
             }
     }
 
+    public Item GetObjet()
+    {
+        return this;
+    } 
+
+    public void OnAction(Player player)
+    {
+        switch (itemType)
+        {
+            default: 
+            case ItemType.Armor: Debug.Log("Armor");  break ;
+            case ItemType.Sword: Debug.Log("Sword"); break;
+            case ItemType.Helmet: Debug.Log("Helemt"); break;
+            case ItemType.Potion: player.UsePotion(); break;
+        }
+    }
+
 
     public ItemType itemType;
     public bool isWearing = false;

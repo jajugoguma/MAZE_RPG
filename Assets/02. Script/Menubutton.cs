@@ -13,17 +13,6 @@ public class Menubutton : MonoBehaviour
     public GameObject uiInventory;
     public Player player;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void exitButtonClicked()
     {

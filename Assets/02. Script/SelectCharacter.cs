@@ -23,7 +23,7 @@ public class SelectCharacter : MonoBehaviour
     public UILabel ID;
 
     //Andoroid only
-    public GameObject caffebutton;
+    
 
 
     // Start is called before the first frame update
@@ -32,9 +32,7 @@ public class SelectCharacter : MonoBehaviour
     {
         ID.text = "ID : "+InfoManager.Instance.id;
 
-#if UNITY_ANDROID
-        caffebutton.SetActive(true);
-#endif
+
 
     }
 

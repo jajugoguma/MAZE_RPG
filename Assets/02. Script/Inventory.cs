@@ -6,6 +6,7 @@ public class Inventory : MonoBehaviour
 {
 
     private List<Item> itemList;
+    public Player player;
 
     public Inventory()
     {
@@ -22,7 +23,7 @@ public class Inventory : MonoBehaviour
 
     }
 
-    public void AddItem(Item item)  
+    public void AddItem(Item item)
     {
         itemList.Add(item);
     }
@@ -30,6 +31,16 @@ public class Inventory : MonoBehaviour
     public List<Item> GetItemList()
     {
         return itemList;
+    }
+
+    public void RemoveItem(int index)
+    {
+        Debug.Log(index);
+        
+        Item item = itemList[index];
+        item.OnAction(player);
+        itemList.RemoveAt(index);
+        
     }
 
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Threading;
 using UnityStandardAssets.CrossPlatformInput;
+using UnityEngine.SceneManagement;
 
 public class Player : Character
 {
@@ -20,11 +21,9 @@ public class Player : Character
 
     void Start()
     {
-        
-        HpBar = GetComponent<RectTransform>();
+             
         inventory = new Inventory();
-       
-
+        inventory.player = this;
         uiInventory.SetInventory(inventory);
     }
 
@@ -45,7 +44,14 @@ public class Player : Character
         {
             base.Move();
         }
+
+        if(HpBar.localScale.x <= 0.0f)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
     }
+
+    
 
     public void attack(Vector3 directionVec)
     {
@@ -157,10 +163,23 @@ public class Player : Character
 
     public void attacked(float attackdamage)
     {
+        
         //캐릭터 맞는 애니메이션 추가자리
         if (HpBar.localScale.x > 0.0f)
             HpBar.localScale = new Vector3(HpBar.localScale.x - attackdamage, 1.0f, 1.0f);
     }
+
+    public void UsePotion()
+    {
+        Debug.Log("use potion");
+        if (HpBar.localScale.x < 0.8f)
+            HpBar.localScale = new Vector3(HpBar.localScale.x + 0.2f, 1.0f, 1.0f);
+        else
+            HpBar.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+
+    }
+
+    
 
     private void OnTriggerStay2D(Collider2D collision)
     {

@@ -209,6 +209,10 @@ public class EventDelegate
 #endif
             return mParameters;
         }
+        set
+        {
+            mParameters = value;
+        }
     }
 
     /// <summary>
