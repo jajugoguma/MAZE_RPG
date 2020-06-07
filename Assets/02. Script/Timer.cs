@@ -35,4 +35,9 @@ public class Timer : MonoBehaviour
             Debug.Log("StopWatch : " + second.ToString() + "s");
         }
     }
+
+    public int getDuration()
+    {
+        return second;
+    }
 }

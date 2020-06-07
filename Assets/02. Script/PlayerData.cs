@@ -81,8 +81,8 @@ public class PlayerData : MonoBehaviour
         form.AddField("param_luck", luck);
         form.AddField("param_health", health);
         form.AddField("param_ap", ap);
-        form.AddField("param_pose_x", pose_x);
-        form.AddField("param_pose_y", pose_y);
+        form.AddField("param_pose_x", pose_x.ToString());
+        form.AddField("param_pose_y", pose_y.ToString());
         form.AddField("param_world_pose_x", world_pose_x);
         form.AddField("param_world_pose_y", world_pose_y);
 
