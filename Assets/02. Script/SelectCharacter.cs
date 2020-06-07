@@ -30,6 +30,8 @@ public class SelectCharacter : MonoBehaviour
     public GameObject createButton;
     public GameObject cancelButton;
 
+    public MazeGenerator mazeGen;
+
     //Andoroid only
 
     private string jsonURL = "http://jajugoguma.synology.me/LoadChars.php";
@@ -48,6 +50,7 @@ public class SelectCharacter : MonoBehaviour
 
         StartCoroutine(getData());
 
+        mazeGen = GameObject.Find("MazeGen").GetComponent<MazeGenerator>();
     }
 
     IEnumerator getData()
@@ -200,9 +203,18 @@ public class SelectCharacter : MonoBehaviour
 
     IEnumerator createCharacter()
     {
+        mazeGen.generate();
+
         WWWForm form = new WWWForm();
         form.AddField("param_id", InfoManager.Instance.id);
         form.AddField("param_name", name_Input.value);
+        form.AddField("param_maze_size", mazeGen.maze_size);
+        form.AddField("param_mazes", mazeGen.mazes);
+        form.AddField("param_doors", mazeGen.doors);
+        form.AddField("param_in_x", mazeGen.in_x);
+        form.AddField("param_in_y", mazeGen.in_y);
+        form.AddField("param_out_x", mazeGen.out_x);
+        form.AddField("param_out_y", mazeGen.out_y);
 
         WWW _www = new WWW(createURL, form);
         //yield return _www;

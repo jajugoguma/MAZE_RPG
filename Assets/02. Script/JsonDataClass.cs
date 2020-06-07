@@ -22,4 +22,13 @@ public class Chracters
     public int ap;
     public double pose_x;
     public double pose_y;
+    public int maze_size;
+    public string mazes;
+    public string doors;
+    public int world_pose_x;
+    public int world_pose_y;
+    public int in_x;
+    public int in_y;
+    public int out_x;
+    public int out_y;
 }
