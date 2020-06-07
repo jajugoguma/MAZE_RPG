@@ -25,8 +25,8 @@ public class Chracters
     public int maze_size;
     public string mazes;
     public string doors;
-    public int world_pose_x;
-    public int world_pose_y;
+    public int world_pos_x;
+    public int world_pos_y;
     public int in_x;
     public int in_y;
     public int out_x;

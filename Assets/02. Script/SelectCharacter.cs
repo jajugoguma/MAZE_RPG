@@ -18,8 +18,8 @@ public class SelectCharacter : MonoBehaviour
     //Character name 
     public JsonDataClass _jsonData;
     public UILabel[] CharacterName;
+    public GameObject PlayerData;
 
-    
     
     //ID
     public UILabel ID;
@@ -37,7 +37,6 @@ public class SelectCharacter : MonoBehaviour
     private string jsonURL = "http://jajugoguma.synology.me/LoadChars.php";
     private string createURL = "http://jajugoguma.synology.me/CreateChar.php";
     private string deleteURL = "http://jajugoguma.synology.me/DeleteChar.php";
-
 
 
     // Start is called before the first frame update
@@ -76,7 +75,7 @@ public class SelectCharacter : MonoBehaviour
 
     private void loadCharacters(string _url)
     {
-        JsonDataClass _jsonData = JsonUtility.FromJson<JsonDataClass>(_url);
+        _jsonData = JsonUtility.FromJson<JsonDataClass>(_url);
         Debug.Log(_jsonData.chracters.Count.ToString());
 
         int i;
@@ -143,7 +142,7 @@ public class SelectCharacter : MonoBehaviour
         form.AddField("param_name", name);
 
         WWW _www = new WWW(deleteURL, form);
-        //yield return _www;
+        yield return _www;
 
         Debug.Log(_www.text);
         if (_www.error == null)
@@ -217,7 +216,7 @@ public class SelectCharacter : MonoBehaviour
         form.AddField("param_out_y", mazeGen.out_y);
 
         WWW _www = new WWW(createURL, form);
-        //yield return _www;
+        yield return _www;
 
         Debug.Log(_www.text);
         if (_www.error == null)
@@ -242,28 +241,14 @@ public class SelectCharacter : MonoBehaviour
     // 게임 시작 캐릭터 정보를 가진상태로 시작하게 만들어야함 text값 사용 하면 될듯
     public void StartButtonClicked(GameObject button)
     {
-        if (button == Characters[0])
+        for (int i = 0; i < 3; i++)
         {
-            SceneManager.LoadScene("map_testbed");
-            Debug.Log("Game Start with " + CharacterName[0].text);
-        }
-
-        else if (button == Characters[1])
-        {
-            SceneManager.LoadScene("map_testbed");
-            Debug.Log("Game Start with " + CharacterName[1].text);
-
-        }
-        else if (button == Characters[2])
-        {
-            SceneManager.LoadScene("map_testbed");
-            Debug.Log("Game Start with " + CharacterName[2].text);
-
-        }
-
-        else
-        {
-            Debug.LogError("Wrong Clicked");
+            if (button == Characters[i])
+            {
+                PlayerData.GetComponent<PlayerData>().loadData(_jsonData.chracters[i]);
+                SceneManager.LoadScene("map_testbed");
+                Debug.Log("Game Start with " + CharacterName[i].text);
+            }
         }
 
     }
