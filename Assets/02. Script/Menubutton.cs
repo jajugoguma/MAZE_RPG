@@ -11,6 +11,7 @@ public class Menubutton : MonoBehaviour
     public GameObject joystick_;
     public GameObject menu;
     public GameObject uiInventory;
+    public GameObject uiEquipment;
     public Player player;
 
 
@@ -23,6 +24,12 @@ public class Menubutton : MonoBehaviour
     {
         menu.SetActive(false);
         uiInventory.SetActive(true);
+    }
+
+    public void EquipmentClicked()
+    {
+        menu.SetActive(false);
+        uiEquipment.SetActive(true);
     }
 
 
@@ -44,8 +51,7 @@ public class Menubutton : MonoBehaviour
         }
       
        
-        
-            
+       
             
         
         
@@ -58,6 +64,14 @@ public class Menubutton : MonoBehaviour
         if (uiInventory.activeInHierarchy)
         {
             uiInventory.SetActive(false);
+            player.flag = false;
+            panel.SetActive(false);
+            joystick_.SetActive(false);
+        }
+
+        if (uiEquipment.activeInHierarchy)
+        {
+            uiEquipment.SetActive(false);
             player.flag = false;
             panel.SetActive(false);
             joystick_.SetActive(false);

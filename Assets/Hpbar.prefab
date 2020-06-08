@@ -47,20 +47,20 @@ MonoBehaviour:
   mSprites:
   - name: armor
     x: 497
-    y: 383
-    width: 114
-    height: 128
+    y: 275
+    width: 235
+    height: 236
     borderLeft: 0
     borderRight: 0
     borderTop: 0
     borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
+    paddingLeft: 17
+    paddingRight: 12
+    paddingTop: 15
+    paddingBottom: 6
   - name: blackbar
-    x: 497
-    y: 250
+    x: 668
+    y: 13
     width: 120
     height: 18
     borderLeft: 0
@@ -84,6 +84,19 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 1
     paddingBottom: 0
+  - name: helmet
+    x: 677
+    y: 146
+    width: 114
+    height: 128
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
   - name: hiclipart.com
     x: 512
     y: 512
@@ -98,8 +111,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: iconfinder__morning-coffee2_2324147
-    x: 612
-    y: 392
+    x: 562
+    y: 40
     width: 64
     height: 54
     borderLeft: 0
@@ -111,8 +124,8 @@ MonoBehaviour:
     paddingTop: 5
     paddingBottom: 5
   - name: iconfinder_29_Sound_alt_106217
-    x: 913
-    y: 960
+    x: 497
+    y: 30
     width: 64
     height: 64
     borderLeft: 0
@@ -137,7 +150,7 @@ MonoBehaviour:
     paddingTop: 8
     paddingBottom: 8
   - name: iconfinder_icons_exit2_1564506
-    x: 653
+    x: 733
     y: 457
     width: 54
     height: 54
@@ -150,8 +163,8 @@ MonoBehaviour:
     paddingTop: 5
     paddingBottom: 5
   - name: iconfinder_screenshot_2639913
-    x: 913
-    y: 911
+    x: 733
+    y: 408
     width: 48
     height: 48
     borderLeft: 0
@@ -162,9 +175,22 @@ MonoBehaviour:
     paddingRight: 8
     paddingTop: 8
     paddingBottom: 8
+  - name: Playerimg
+    x: 733
+    y: 373
+    width: 32
+    height: 34
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 2
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
   - name: potion
-    x: 612
-    y: 447
+    x: 627
+    y: 30
     width: 40
     height: 64
     borderLeft: 0
@@ -176,8 +202,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: redbar
-    x: 618
-    y: 251
+    x: 497
+    y: 12
     width: 119
     height: 17
     borderLeft: 0
@@ -189,8 +215,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: sword
-    x: 497
-    y: 269
+    x: 677
+    y: 32
     width: 126
     height: 113
     borderLeft: 0
@@ -201,6 +227,19 @@ MonoBehaviour:
     paddingRight: 1
     paddingTop: 7
     paddingBottom: 8
+  - name: "\uD2C0"
+    x: 497
+    y: 95
+    width: 179
+    height: 179
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
   mPixelSize: 1
   mReplacement: {fileID: 0}
   mCoordinates: 0

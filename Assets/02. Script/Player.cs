@@ -14,8 +14,10 @@ public class Player : Character
     public Rigidbody2D rb;
     public Vector3 moveVector;
     public bool flag = true;
-    private Inventory inventory;
+    public Inventory inventory;
+    public Equipment equipment;
     public UI_Inventory uiInventory;
+    public UI_Equipment uiEquipment;
 
     private bool isKeyDwnRight, isKeyDwnLeft, isKeyDwnUp, isKeyDwnDown;
 
@@ -23,9 +25,15 @@ public class Player : Character
 
     void Start()
     {
-        inventory = new Inventory();
-        inventory.player = this;
+        //인벤토리 및 장비창 초기화
+        inventory = new Inventory(this);
+        equipment = new Equipment(this);
+                      
         uiInventory.SetInventory(inventory);
+        uiEquipment.SetEquipment(equipment);
+
+        //인벤토리에 테스트 값넣음
+        inventory.TestInsert();
 
         isKeyDwnRight = false; isKeyDwnLeft = false; isKeyDwnUp = false; isKeyDwnDown = false;
     }

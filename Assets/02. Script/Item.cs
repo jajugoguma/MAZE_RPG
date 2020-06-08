@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item : MonoBehaviour
+public class Item
 {
    public enum ItemType
     {
@@ -24,7 +24,7 @@ public class Item : MonoBehaviour
             }
     }
 
-    public Item GetObjet()
+    public Item GetObject()
     {
         return this;
     } 
@@ -34,9 +34,9 @@ public class Item : MonoBehaviour
         switch (itemType)
         {
             default: 
-            case ItemType.Armor: Debug.Log("Armor");  break ;
-            case ItemType.Sword: Debug.Log("Sword"); break;
-            case ItemType.Helmet: Debug.Log("Helemt"); break;
+            case ItemType.Armor: if (isWearing == false) { isWearing = true; } else { isWearing = false; }; break ;
+            case ItemType.Sword: if (isWearing == false) { isWearing = true; } else { isWearing = false; } break;
+            case ItemType.Helmet: if (isWearing == false) { isWearing = true; } else { isWearing = false; };  break;
             case ItemType.Potion: player.UsePotion(); break;
         }
     }
@@ -44,5 +44,6 @@ public class Item : MonoBehaviour
 
     public ItemType itemType;
     public bool isWearing = false;
+    public int index = 0;
 
 }

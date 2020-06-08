@@ -8,87 +8,75 @@ public class UI_Inventory : MonoBehaviour
     private Transform itemSlotBG;
     private Transform itemSlot;
 
+    [SerializeField]
+    private UIGrid grid = null;
+    [SerializeField]
+    private List<SlotItemView> slotItemViewList = new List<SlotItemView>();
 
- 
+    private void OnEnable()
+    {
+        if (null != grid)
+            grid.Reposition();
+    }
 
     public void SetInventory(Inventory inventory)
     {
         this.inventory = inventory;
         RefreshInventory();
     }
-
-    public void Clickeditem(int index)
+   
+    public void ClickedItemObject(GameObject itemObj)
     {
-        
-        inventory.RemoveItem(index);
+        if(null == itemObj)
+        {
+            Debug.LogError("itemObj is null");
+            return;
+        }
+
+        SlotItemView item = itemObj.GetComponent<SlotItemView>();
+
+        inventory.RemoveItem(item.ItemInfo);
         RefreshInventory();
+        
+        
+        //Debug.Log(item.ItemInfo);
     }
-
-    private EventDelegate.Parameter MakerParameter (Object value , System.Type type)
-    {
-        EventDelegate.Parameter param = new EventDelegate.Parameter();
-        //Debug.Log("xxxx" + value);
-        param.obj = value;
-        param.expectedType = type;
-
-        return param;
-    }
-
+   
+  
     // 인벤토리에 있는 물품을 실제 UI로 띄우는 Func
     public void RefreshInventory()
     {
-        itemSlotBG = transform.Find("InventoryBackGround");
-        itemSlot = itemSlotBG.Find("itemSlot");
+        List<Item> itemList = inventory.GetItemList();
 
-        foreach (Transform child in itemSlotBG)
+        if (null == itemList)
+            return;
+
+        for (int i = 0; i < Inventory.MaxItemCount; i++)
         {
-            if (child == itemSlot) continue;
-            Destroy(child.gameObject);
-            
+            if (null == slotItemViewList[i])
+                continue;
+
+            slotItemViewList[i].gameObject.SetActive(false);
         }
 
-        int x = -150;
-        int y = 100;
-        float itemSlotCellSize = 0f;
-        int index = 0;
-
-        //UIButton button = itemSlot.GetComponent<UIButton>();
-        //EventDelegate btnEvent = new EventDelegate(this, "Clickeditem");
-        //button.onClick.Add(btnEvent);
-        foreach (Item item in inventory.GetItemList())
+        for (int i = 0;i < itemList.Count;i++)
         {
-            //Debug.Log(index);
-            UISprite tmpUisprite = itemSlot.GetComponent<UISprite>();
-            tmpUisprite.spriteName = item.GetImage();
+            if (null == slotItemViewList[i])
+                continue;
 
-            UIButton button = itemSlot.GetComponent<UIButton>();
-            object obj = index;
-            button.onClick[0].parameters[0].value = obj;
+            if (null == itemList[i])
+                continue;
 
-            // btnEvent.parameters[0] = MakerParameter(, typeof(int);
-            
-            //btnEvent.parameters[0] = new EventDelegate.Parameter(obj);
+            if(itemList[i].isWearing == true)
+                continue;
 
-            //EventDelegate.Add(button.onClick, btnEvent);
-           
-            
-            
-
-            RectTransform itemSlotRectTransform = Instantiate(itemSlot, itemSlotBG).GetComponent<RectTransform>();
-            //Debug.Log(item.GetImage());
-            itemSlotRectTransform.gameObject.SetActive(true);
-            itemSlotRectTransform.anchoredPosition = new Vector2(x + itemSlotCellSize, y + itemSlotCellSize);
-
-            
-
-            x += 100;
-            if (x > 150)
-            {
-                x = -150;
-                y-=100;
-            }
-            index++;
+            slotItemViewList[i].SetItemInfo(itemList[i]);
+            slotItemViewList[i].SetSprite(itemList[i].GetImage());
+            slotItemViewList[i].SetBtnEvent(ClickedItemObject);
+            slotItemViewList[i].gameObject.SetActive(true);
         }
 
+        if (null != grid)
+            grid.Reposition();
     }
 }
