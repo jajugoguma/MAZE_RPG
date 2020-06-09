@@ -111,8 +111,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: iconfinder__morning-coffee2_2324147
-    x: 562
-    y: 40
+    x: 733
+    y: 457
     width: 64
     height: 54
     borderLeft: 0
@@ -124,7 +124,7 @@ MonoBehaviour:
     paddingTop: 5
     paddingBottom: 5
   - name: iconfinder_29_Sound_alt_106217
-    x: 497
+    x: 562
     y: 30
     width: 64
     height: 64
@@ -151,7 +151,7 @@ MonoBehaviour:
     paddingBottom: 8
   - name: iconfinder_icons_exit2_1564506
     x: 733
-    y: 457
+    y: 402
     width: 54
     height: 54
     borderLeft: 0
@@ -164,7 +164,7 @@ MonoBehaviour:
     paddingBottom: 5
   - name: iconfinder_screenshot_2639913
     x: 733
-    y: 408
+    y: 353
     width: 48
     height: 48
     borderLeft: 0
@@ -177,7 +177,7 @@ MonoBehaviour:
     paddingBottom: 8
   - name: Playerimg
     x: 733
-    y: 373
+    y: 318
     width: 32
     height: 34
     borderLeft: 0
@@ -185,6 +185,19 @@ MonoBehaviour:
     borderTop: 0
     borderBottom: 0
     paddingLeft: 2
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: plusButton
+    x: 497
+    y: 30
+    width: 64
+    height: 64
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0

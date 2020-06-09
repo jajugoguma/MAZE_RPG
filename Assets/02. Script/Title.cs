@@ -37,7 +37,7 @@ public class Title : MonoBehaviour
         {
             id_Input.isSelected = false;
             pwd_Input.isSelected = true;
-            Debug.Log("ss");
+           
 
         }
         if (pwd_Input.isSelected && Input.GetKeyDown(KeyCode.Tab))

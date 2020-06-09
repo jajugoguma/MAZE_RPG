@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class UI_Equipment : MonoBehaviour
 {
@@ -10,10 +11,54 @@ public class UI_Equipment : MonoBehaviour
     [SerializeField]
     private List<SlotItemView> slotItemViewList = new List<SlotItemView>();
 
+    public UILabel speedLabel;
+    public UILabel healthLabel;
+    public UILabel damageLabel;
+    public UILabel levpointLabel;
+    public UILabel levelLabel;
+
+
+
+    public void HealthButtonClicked()
+    {
+        Debug.Log("HealthButtonclicked");
+    }
+
+
+    public void SpeedButtonClicked()
+    {
+        Debug.Log("speedButtonclicked");
+        if(equipment.player.levPoint > 0)
+            equipment.player.levPoint -= 1;
+        equipment.player.speed += 1;
+
+        ResetLabels();
+
+    }
+
+    public void DamageButtonClicked()
+    {
+        Debug.Log("damageButtonclicked");
+
+    }
+
+    public void ResetLabels()
+    {
+        levelLabel.text = "Lev : " + equipment.player.level;
+        levpointLabel.text = "Point : " + equipment.player.levPoint;
+        speedLabel.text = "Speed : " + equipment.player.speed;
+        //healthLabel.text = "Health : " + equipment.player.level;
+        damageLabel.text = "Damage : " + Math.Truncate(equipment.player.attackdamage *100);
+    }
+
+
 
     public void SetEquipment(Equipment equipment)
     {
         this.equipment = equipment;
+
+        ResetLabels();
+
         RefreshEquipment();
     }
 

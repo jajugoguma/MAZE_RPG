@@ -19,6 +19,9 @@ public class Player : Character
     public UI_Inventory uiInventory;
     public UI_Equipment uiEquipment;
     public GameObject manager;
+    public int level;
+    public int levPoint;
+   
 
     private bool isKeyDwnRight, isKeyDwnLeft, isKeyDwnUp, isKeyDwnDown;
 
@@ -29,12 +32,15 @@ public class Player : Character
         //인벤토리 및 장비창 초기화
         inventory = new Inventory(this);
         equipment = new Equipment(this);
-                      
+        level = 1;
+        levPoint = 10;
+
         uiInventory.SetInventory(inventory);
         uiEquipment.SetEquipment(equipment);
 
         //인벤토리에 테스트 값넣음
         inventory.TestInsert();
+        
 
         isKeyDwnRight = false; isKeyDwnLeft = false; isKeyDwnUp = false; isKeyDwnDown = false;
     }
