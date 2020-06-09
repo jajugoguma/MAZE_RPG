@@ -18,6 +18,7 @@ public class Player : Character
     public Equipment equipment;
     public UI_Inventory uiInventory;
     public UI_Equipment uiEquipment;
+    public GameObject manager;
 
     private bool isKeyDwnRight, isKeyDwnLeft, isKeyDwnUp, isKeyDwnDown;
 
@@ -246,7 +247,8 @@ public class Player : Character
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 Debug.Log("key down space");
-                //manager.GetComponent<ManagerController>().change_map();
+                
+                manager.GetComponent<ManagerController>().change_map(collision.gameObject.name);
             }
         }
     }
