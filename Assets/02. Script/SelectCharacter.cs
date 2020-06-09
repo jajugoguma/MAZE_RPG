@@ -246,7 +246,8 @@ public class SelectCharacter : MonoBehaviour
             if (button == Characters[i])
             {
                 PlayerData.GetComponent<PlayerData>().loadData(_jsonData.chracters[i]);
-                SceneManager.LoadScene("map_testbed");
+                //SceneManager.LoadScene("map_testbed");
+                SceneManager.LoadScene("GameScene");
                 Debug.Log("Game Start with " + CharacterName[i].text);
             }
         }
