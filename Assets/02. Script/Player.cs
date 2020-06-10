@@ -10,7 +10,7 @@ public class Player : Character
     public RectTransform HpBar;
     public Transform player;
     public Vector3 directionVec = Vector3.zero;
-    public float attackdamage = 0.10001f;
+    public float attackdamage;
     public Rigidbody2D rb;
     public Vector3 moveVector;
     public bool flag = true;
@@ -21,6 +21,10 @@ public class Player : Character
     public GameObject manager;
     public int level;
     public int levPoint;
+    public float maxHp;
+    public float currentHp;
+    private float uihp;
+
    
 
     private bool isKeyDwnRight, isKeyDwnLeft, isKeyDwnUp, isKeyDwnDown;
@@ -33,7 +37,10 @@ public class Player : Character
         inventory = new Inventory(this);
         equipment = new Equipment(this);
         level = 1;
-        levPoint = 10;
+        levPoint = 5;
+        maxHp = 100f;
+        attackdamage = 10f;
+        currentHp = maxHp;
 
         uiInventory.SetInventory(inventory);
         uiEquipment.SetEquipment(equipment);
@@ -64,8 +71,10 @@ public class Player : Character
             base.Move();
         }
 
-        if(HpBar.localScale.x <= 0.0f)
+        if(currentHp <= 0 )
         {
+            //다시시작을 다른방법으로 해야할듯 정보가 다 끊김
+
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
@@ -228,19 +237,32 @@ public class Player : Character
     public void attacked(float attackdamage)
     {
         //캐릭터 맞는 애니메이션 추가자리
+
+        if (currentHp <= 0)
+        {
+            currentHp = 0;
+            return;
+        }
+
+        currentHp -= attackdamage;
+        uihp = currentHp / maxHp;
+        Debug.Log(uihp);
+
         if (HpBar.localScale.x > 0.0f)
-            HpBar.localScale = new Vector3(HpBar.localScale.x - attackdamage, 1.0f, 1.0f);
+            HpBar.localScale = new Vector3(uihp, 1.0f, 1.0f);
     }
 
     public void UsePotion()
     {
         Debug.Log("use potion");
-        if (HpBar.localScale.x < 0.8f)
-            HpBar.localScale = new Vector3(HpBar.localScale.x + 0.2f, 1.0f, 1.0f);
+        if (currentHp + 20 > maxHp)
+            currentHp = maxHp;
         else
-            HpBar.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+            currentHp += 20;
 
-    }
+        uihp = currentHp / maxHp;
+        HpBar.localScale = new Vector3(uihp, 1.0f, 1.0f);
+     }
 
     
 

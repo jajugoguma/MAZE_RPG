@@ -10,11 +10,16 @@ public class Monster : MonoBehaviour
     public float attackDelay = 2f;
     float lastAttacked = -9999f;
 
+    public float maxHp;
+    public float currentHp;
+    private float uihp;
+
+
 
     int MoveSpeed = 3;
     float MinDist = 1.0f;
     int MaxDist = 5;
-    float attackdamage = 0.1000001f;
+    float attackdamage = 10f;
 
     Vector2 moveVec = Vector2.zero;
 
@@ -24,6 +29,8 @@ public class Monster : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         HpBar = GetComponentInChildren<RectTransform>();
+        maxHp = 100f;
+        currentHp = maxHp;
         MonsterManager.Instance.mosters.Add(this);
     }
     // Update is called once per frame
@@ -65,7 +72,7 @@ public class Monster : MonoBehaviour
 
         }
 
-        if (HpBar.localScale.x <= 0.0f)
+        if (currentHp <= 0)
         {
             //TODO : 죽음 애니메이션 추가
             gameObject.SetActive(false);
@@ -102,10 +109,22 @@ public class Monster : MonoBehaviour
     }
 
     public void attacked(float attackdamage)
+        
     {
+        if (currentHp <= 0)
+        {
+            currentHp = 0;
+            return;
+        }
+
+
+        currentHp -= attackdamage;
+
+        uihp = currentHp / maxHp;
+        
         if (HpBar.localScale.x > 0.0f)
         {
-            HpBar.localScale = new Vector3(HpBar.localScale.x - attackdamage, 0.3f, 1.0f);
+            HpBar.localScale = new Vector3(uihp, 0.3f, 1.0f);
         }
 
 

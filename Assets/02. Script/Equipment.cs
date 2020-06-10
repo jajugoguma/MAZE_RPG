@@ -16,7 +16,21 @@ public class Equipment
 
     public void AddEquipment(Item item)
     {
+        if(null == item)
+            return;
         equipmentList.Add(item);
+        switch (item.itemType)
+        {
+            default:
+            case Item.ItemType.Armor:
+            case Item.ItemType.Helmet:
+                player.maxHp += 20;
+                player.currentHp += 20;
+                break;
+            case Item.ItemType.Sword:
+                player.attackdamage += 3;
+                break;
+        }
         player.uiEquipment.RefreshEquipment();
     }
 
@@ -27,8 +41,24 @@ public class Equipment
 
     public void RemoveEquipment(Item item)
     {
+        if (null == item)
+            return;
         item.OnAction(player);
         equipmentList.Remove(item);
+
+        switch (item.itemType)
+        {
+            default:
+            case Item.ItemType.Armor:
+            case Item.ItemType.Helmet:
+                player.maxHp -= 20;
+                player.currentHp -= 20;
+                break;
+            case Item.ItemType.Sword:
+                player.attackdamage -= 3;
+                break;
+        }
+
         player.uiInventory.RefreshInventory();
 
     }
