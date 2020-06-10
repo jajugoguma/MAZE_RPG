@@ -25,6 +25,9 @@ public class Player : Character
     public float currentHp;
     private float uihp;
 
+    [SerializeField]
+    private UIProgressBar expBar = null;
+
    
 
     private bool isKeyDwnRight, isKeyDwnLeft, isKeyDwnUp, isKeyDwnDown;
@@ -50,6 +53,8 @@ public class Player : Character
         
 
         isKeyDwnRight = false; isKeyDwnLeft = false; isKeyDwnUp = false; isKeyDwnDown = false;
+
+        //expBar.value = 1;
     }
 
     // Update is called once per frame
