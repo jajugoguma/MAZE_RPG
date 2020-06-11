@@ -20,8 +20,8 @@ public class SoundManager : MonoSingleton<SoundManager>
 
         audioComponent.time = 0;
         
-
-        audioComponent.playOnAwake = true;
+        //audioComponent.playOnAwake = true;
+        audioComponent.Play();
 
         Debug.Log(gameObject);
         /*
