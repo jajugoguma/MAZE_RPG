@@ -32,4 +32,13 @@ public class Character : MonoBehaviour
 
         transform.position = transform.position + movement * speed * Time.deltaTime;
     }
+
+    public void MoveMobile()
+    {
+        animator.SetFloat("Horizontal", movement.x);
+        animator.SetFloat("Vertical", movement.y);
+        animator.SetFloat("Magnitude", movement.magnitude);
+
+        transform.position = transform.position + movement * speed * Time.deltaTime;
+    }
 }

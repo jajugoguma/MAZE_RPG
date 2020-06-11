@@ -25,6 +25,12 @@ public class Player : Character
     public float currentHp;
     private float uihp;
 
+    private PlayerData _playerData;
+
+    private float TimeLeft = 10.0f;
+    private float nextTime = 0.0f;
+
+
     [SerializeField]
     private UIProgressBar expBar = null;
 
@@ -36,6 +42,10 @@ public class Player : Character
 
     void Start()
     {
+        _playerData = GameObject.Find("PlayerData").GetComponent<PlayerData>();
+        Vector3 initpos = new Vector3(_playerData.pose_x, _playerData.pose_y, 0.0f);
+        transform.position = initpos;
+
         //인벤토리 및 장비창 초기화
         inventory = new Inventory(this);
         equipment = new Equipment(this);
@@ -72,15 +82,26 @@ public class Player : Character
         //공격 중일땐 이동 속도 대폭 감소 (기본 속도)
         if (!animator.GetBool("attack"))
         {
+#if UNITY_ANDROID
+            base.MoveMobile();
+#else
             base.Move();
+#endif
         }
 
-        if(currentHp <= 0 )
+        if (currentHp <= 0 )
         {
             //다시시작을 다른방법으로 해야할듯 정보가 다 끊김
 
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
+
+        if (Time.time > nextTime)
+        {
+            nextTime = Time.time + TimeLeft;
+            _playerData.saveData(transform.position.x, transform.position.y);
+        }
+
     }
 
     

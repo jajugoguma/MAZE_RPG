@@ -20,8 +20,8 @@ public class Chracters
     public int luck;
     public int health;
     public int ap;
-    public double pose_x;
-    public double pose_y;
+    public string pose_x;
+    public string pose_y;
     public int maze_size;
     public string mazes;
     public string doors;

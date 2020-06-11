@@ -14,8 +14,8 @@ public class PlayerData : MonoBehaviour
     public int luck;
     public int health;
     public int ap;
-    public double pose_x;
-    public double pose_y;
+    public float pose_x;
+    public float pose_y;
     public int maze_size;
     public string mazes;
     public string doors;
@@ -50,8 +50,8 @@ public class PlayerData : MonoBehaviour
         luck = data.luck;
         health = data.health;
         ap = data.ap;
-        pose_x = data.pose_x;
-        pose_y = data.pose_y;
+        pose_x = float.Parse(data.pose_x);
+        pose_y = float.Parse(data.pose_y);
         maze_size = data.maze_size;
         mazes = data.mazes;
         doors = data.doors;
@@ -63,8 +63,10 @@ public class PlayerData : MonoBehaviour
         out_y = data.out_y;
     }
 
-    public void saveData()
+    public void saveData(float posi_x, float posi_y)
     {
+        pose_x = posi_x;
+        pose_y = posi_y;
         StartCoroutine(createCharacter());
     }
 
@@ -98,7 +100,7 @@ public class PlayerData : MonoBehaviour
             }
             else
             {
-                Debug.Log("save Fail");
+                Debug.Log("save Fail" + _www.text);
             }
         }
         else
