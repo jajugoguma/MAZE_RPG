@@ -155,7 +155,7 @@ public class ManagerController : MonoBehaviour
 
     IEnumerator Fade()
     {
-        for (float f = 1f; f >= 0; f -= 0.0095f) 
+        for (float f = 1f; f >= 0; f -= 0.0045f) 
         {
             Color c = image.material.color;
             c.a = f;

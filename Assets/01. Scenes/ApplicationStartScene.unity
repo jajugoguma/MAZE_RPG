@@ -207,6 +207,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8369269786834055044, guid: 196980127ebbfbe4ca9c9ff470759cd9,
+        type: 3}
+      propertyPath: _tilte_bgm
+      value: 
+      objectReference: {fileID: 8300000, guid: 9dd3645c53b5c414cb7d2ff484d5dea3, type: 3}
+    - target: {fileID: 8369269786834055045, guid: 196980127ebbfbe4ca9c9ff470759cd9,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 9dd3645c53b5c414cb7d2ff484d5dea3, type: 3}
     - target: {fileID: 8369269786834055046, guid: 196980127ebbfbe4ca9c9ff470759cd9,
         type: 3}
       propertyPath: m_Name
