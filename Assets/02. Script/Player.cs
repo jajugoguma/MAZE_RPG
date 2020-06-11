@@ -60,11 +60,10 @@ public class Player : Character
     // Update is called once per frame
     protected override void Update()
     {
-#if UNITY_EDITOR_WIN
-        
-            GetInput();
-#endif
 
+
+        GetInput();
+        
 
 #if UNITY_ANDROID
         if(flag)
@@ -144,6 +143,8 @@ public class Player : Character
         moveVector.z = 0f;
 
         movement = moveVector;
+
+
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             Debug.Log("Shift Down");

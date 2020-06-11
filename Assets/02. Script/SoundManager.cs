@@ -18,11 +18,14 @@ public class SoundManager : MonoSingleton<SoundManager>
         DontDestroyOnLoad(gameObject);
         audioComponent = gameObject.GetComponent<AudioSource>();
 
+        audioComponent.time = 0;
+        
+
         audioComponent.playOnAwake = true;
 
         Debug.Log(gameObject);
-
-        /*// Debug Example
+        /*
+        // Debug Example
         if (null == audioComponent)
             Debug.LogError("null");
         else
@@ -34,24 +37,5 @@ public class SoundManager : MonoSingleton<SoundManager>
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        //SceneManager.GetSceneAt(
-    }
 
-    Vector3 playerPos;
-    Vector3 EnemyPos;
-
-    void Temp()
-    {
-        Vector3 vec = (EnemyPos - playerPos);
-        float dis = Vector3.Distance(EnemyPos, playerPos);
-
-        vec.Normalize();
-
-        float v1 = Vector3.Magnitude(vec);
-
-        float te = vec.x * vec.y;
-    }
 }
