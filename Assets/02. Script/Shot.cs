@@ -13,7 +13,20 @@ public class Shot : MonoBehaviour
     private int resolution = 320;
     private float cameraDistance = -10.0f;
 
+    public GameObject[] maps;
+
     void Start()
+    {
+        for (int i = 0; i < maps.Length; i++)
+        {
+            maps[i].SetActive(true);
+            target = maps[i];
+            shot(i + 1);
+            maps[i].SetActive(false);
+        }
+    }
+
+    void shot(int num)
     {
         Debug.Log("Initializing camera and stuff...");
 
@@ -125,7 +138,7 @@ public class Shot : MonoBehaviour
 
         byte[] bytes = virtualPhoto.EncodeToPNG();
 
-        System.IO.File.WriteAllBytes(@"C:\Users\jajug\Pictures\ScreenShotTaken.png", bytes);
+        System.IO.File.WriteAllBytes(@"C:\Users\jajug\Pictures\map_10_" + num.ToString() + ".png", bytes);
 
         Debug.Log("All done! Always happy to help you :)");
     }
