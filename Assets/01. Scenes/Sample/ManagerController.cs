@@ -47,8 +47,9 @@ public class ManagerController : MonoBehaviour
 
     }
 
-    void set_random_map()
+    void set_random_map(string r_str)
     {
+        string[] token = r_str.Split(' ');
         if(map_size == TEN)
         {
             random_map = new int[10, 10];
@@ -56,7 +57,7 @@ public class ManagerController : MonoBehaviour
             {
                 for (int j = 0; j < 10; j++)
                 {
-                    random_map[i, j] = j;
+                    random_map[i, j] = int.Parse(token[i * 10 + j]);
                 }
             }
         }
@@ -67,7 +68,7 @@ public class ManagerController : MonoBehaviour
             {
                 for (int j = 0; j < 15; j++)
                 {
-                    random_map[i, j] = j;
+                    random_map[i, j] = int.Parse(token[i * 10 + j]);
                 }
             }
         }
@@ -151,17 +152,30 @@ public class ManagerController : MonoBehaviour
             }
         }
     }
+    private void select_maps(int size)
+    {
+        if(size == TEN)
+        {
+            maps = maps_10;
+            
+        }
+        else
+        {
+            maps = maps_15;
+        }
+    }
 
     void init_world_map()
     {
         PlayerData data = GameObject.Find("PlayerData").GetComponent<PlayerData>();
         map_size = data.maze_size;
         off_active(map_size);
-        world_position_l = data.world_pose_y;
+        world_position_l = data.world_pose_y;        
         world_position_r = data.world_pose_x;
+        Debug.Log("l:" + world_position_l + " " + " r:" + world_position_r);
         set_doors_array(data.doors, map_size);
-        
-        set_random_map();
+        select_maps(map_size);
+        set_random_map(data.mazes);
 
         set_doors();
         set_walls();
