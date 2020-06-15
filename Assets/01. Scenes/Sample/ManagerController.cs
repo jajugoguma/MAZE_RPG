@@ -7,7 +7,8 @@ public class ManagerController : MonoBehaviour
     // Start is called before the first frame update
     public GameObject player;
     public GameObject[] maps;
-    
+    public GameObject[] maps_10;
+    public GameObject[] maps_15;
     public GameObject[] doors_ten;
     public GameObject[] doors_fifteen;
     private GameObject[] doors;
@@ -23,6 +24,7 @@ public class ManagerController : MonoBehaviour
     public Image image;
     public int[,] world_map_ten;
     public int[,] random_map;
+    private int[,] world_doors;
     public double world_position_l, world_position_r;
     private const int TEN = 10;
     private const int FIFTEEN = 15;
@@ -99,9 +101,10 @@ public class ManagerController : MonoBehaviour
         }
         else
         {
-            /*
-             * 15X15 
-             */
+            left_door_position = GameObject.Find("goal_left_15").transform.position;
+            right_door_position = GameObject.Find("goal_right_15").transform.position;
+            top_door_position = GameObject.Find("goal_top_15").transform.position;
+            bottom_door_position = GameObject.Find("goal_bottom_15").transform.position;
             doors = doors_fifteen;
         }
     }
@@ -117,30 +120,49 @@ public class ManagerController : MonoBehaviour
             door_walls = door_walls_fifteen;
         }
     }
+    private void set_doors_array(string str, int size)
+    {
+        string[] result = str.Split(' ');
+        world_doors = new int[size, size];
+        for (int i = 0; i < size; i++)
+        {
+            for (int j = 0; j < size; j++)
+            {
+                world_doors[i, j] = int.Parse(result[i * 10 + j]);
+            }
+        }
+    }
+    private void off_active(int size)
+    {
+        if (size == TEN)
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                door_walls_fifteen[i].SetActive(false);
+                doors_fifteen[i].SetActive(false);
+            }
+        }
+        else
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                door_walls_ten[i].SetActive(false);
+                doors_ten[i].SetActive(false);
+            }
+        }
+    }
 
     void init_world_map()
     {
-        map_size = TEN; // 매개변수로 전달 받아야함
-        world_position_l = 0;
-        world_position_r = 0;
+        PlayerData data = GameObject.Find("PlayerData").GetComponent<PlayerData>();
+        map_size = data.maze_size;
+        off_active(map_size);
+        world_position_l = data.world_pose_y;
+        world_position_r = data.world_pose_x;
+        set_doors_array(data.doors, map_size);
+        
         set_random_map();
 
-        world_map_ten = new int[10, 10] {
-        { 1, 1, 1, 3, 0, 2, 2, 2, 1, 2 },
-        { 3,1,1,2,3,2,3,1,0,2},
-        {2,1,3,0,2,1,2,1,2,2 },
-        {0,3,1,1,0,1,1,1,0,2 },
-        {3,1,1,2,1,2,2,1,3,0 },
-        {1,3,2,1,1,1,2,1,3,0 },
-        {2,0,3,3,1,2,1,3,1,2 },
-        {3,1,0,2,1,3,2,3,0,0 },
-        {2,2,2,2,1,2,0,2,3,0 },
-        {0,1,1,1,0,0,1,1,1,0 } };
-
-        // left_door = GameObject.Find("goal_left").transform.position;
-        // right_door = GameObject.Find("goal_right").transform.position;
-        // top_door = GameObject.Find("goal_top").transform.position;
-        // bottom_door = GameObject.Find("goal_bottom").transform.position;
         set_doors();
         set_walls();
 
@@ -151,7 +173,8 @@ public class ManagerController : MonoBehaviour
 
         close_all_rest_door();
         close_all_door();
-        now_map =maps[random_map[0, 0]];
+        //now_map =maps[random_map[0, 0]];
+        now_map = maps[random_map[(int)world_position_l,(int)world_position_r]];
         now_map.SetActive(true);
         select_door();
     }
@@ -178,51 +201,111 @@ public class ManagerController : MonoBehaviour
     public void select_door()
     {
         close_all_rest_door();
-        activeAllWalls();
-
-        int now = world_map_ten[(int)world_position_l, (int)world_position_r];
-        if(now ==3)
+        //activeAllWalls();
+        int now = world_doors[(int)world_position_l, (int)world_position_r];
+        const int YET = -1, U = 0, D = 1, R = 2, L = 3, UD = 4, UR = 5, UL = 6, UDR = 7,
+     UDL = 8, URL = 9, UDRL = 10, DR = 11, DL = 12, DRL = 13, RL = 14;
+        switch (now)
         {
-            doors[1].SetActive(true);
-            doors[3].SetActive(true);
-
-            door_walls[1].SetActive(false);
-            door_walls[3].SetActive(false);
-        }
-        else if(now==1)
-        {
-            doors[3].SetActive(true);
-
-            door_walls[3].SetActive(false);
-        }
-        else if(now==2)
-        {
-            doors[1].SetActive(true);
-
-            door_walls[1].SetActive(false);
-        }
-
-        if(world_position_r>0)
-        {
-            int l = world_map_ten[(int)world_position_l, (int)world_position_r - 1];
-            if(l==1 || l==3)
-            {
-                doors[2].SetActive(true);
-
-                door_walls[2].SetActive(false);
-            }
-        }
-        if(world_position_l>0)
-        {
-            int r = world_map_ten[(int)world_position_l - 1, (int)world_position_r];
-            if(r==2 || r==3)
-            {
+            case YET:
+                break;
+            case U:
                 doors[0].SetActive(true);
-
-                door_walls[0].SetActive(false);
-            }
+                door_walls[0].SetActive(true);
+                break;
+            case D:
+                doors[1].SetActive(true);
+                door_walls[1].SetActive(true);
+                break;
+            case R:
+                doors[3].SetActive(true);
+                door_walls[3].SetActive(true);
+                break;
+            case L:
+                doors[2].SetActive(true);
+                door_walls[2].SetActive(true);
+                break;
+            case UD:
+                doors[0].SetActive(true);
+                door_walls[0].SetActive(true);
+                doors[1].SetActive(true);
+                door_walls[1].SetActive(true);
+                break;
+            case UL:
+                doors[2].SetActive(true);
+                door_walls[2].SetActive(true);
+                doors[0].SetActive(true);
+                door_walls[0].SetActive(true);
+                break;
+            case UR:
+                doors[3].SetActive(true);
+                door_walls[3].SetActive(true);
+                doors[0].SetActive(true);
+                door_walls[0].SetActive(true);
+                break;
+            case UDR:
+                doors[3].SetActive(true);
+                door_walls[3].SetActive(true);
+                doors[1].SetActive(true);
+                door_walls[1].SetActive(true);
+                doors[0].SetActive(true);
+                door_walls[0].SetActive(true);
+                break;
+            case UDL:
+                doors[2].SetActive(true);
+                door_walls[2].SetActive(true);
+                doors[1].SetActive(true);
+                door_walls[1].SetActive(true);
+                doors[0].SetActive(true);
+                door_walls[0].SetActive(true);
+                break;
+            case URL:
+                doors[2].SetActive(true);
+                door_walls[2].SetActive(true);
+                doors[3].SetActive(true);
+                door_walls[3].SetActive(true);
+                doors[0].SetActive(true);
+                door_walls[0].SetActive(true);
+                break;
+            case UDRL:
+                doors[2].SetActive(true);
+                door_walls[2].SetActive(true);
+                doors[3].SetActive(true);
+                door_walls[3].SetActive(true);
+                doors[1].SetActive(true);
+                door_walls[1].SetActive(true);
+                doors[0].SetActive(true);
+                door_walls[0].SetActive(true);
+                break;
+            case DR:
+                doors[3].SetActive(true);
+                door_walls[3].SetActive(true);
+                doors[1].SetActive(true);
+                door_walls[1].SetActive(true);
+                break;
+            case DL:
+                doors[2].SetActive(true);
+                door_walls[2].SetActive(true);
+                doors[1].SetActive(true);
+                door_walls[1].SetActive(true);
+                break;
+            case DRL:
+                doors[2].SetActive(true);
+                door_walls[2].SetActive(true);
+                doors[3].SetActive(true);
+                door_walls[3].SetActive(true);
+                doors[1].SetActive(true);
+                door_walls[1].SetActive(true);
+                break;
+            case RL:
+                doors[2].SetActive(true);
+                door_walls[2].SetActive(true);
+                doors[3].SetActive(true);
+                door_walls[3].SetActive(true);
+                break;
         }
-    }
+
+        }
 
     public void select_rest_door(string name)
     {
