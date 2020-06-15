@@ -26,7 +26,9 @@ namespace UnityStandardAssets.CrossPlatformInput
 
 		void OnEnable()
 		{
-			CreateVirtualAxes();
+           
+
+            CreateVirtualAxes();
 
 		}
 
@@ -34,7 +36,9 @@ namespace UnityStandardAssets.CrossPlatformInput
         {
             m_StartPos = transform.position;
             Debug.Log(Cursor.lockState);
+            
             Cursor.lockState = CursorLockMode.Confined;
+
         }
 
 		void UpdateVirtualAxes(Vector3 value)
@@ -62,12 +66,14 @@ namespace UnityStandardAssets.CrossPlatformInput
 			// create new axes based on axes to use
 			if (m_UseX)
 			{
-				m_HorizontalVirtualAxis = new CrossPlatformInputManager.VirtualAxis(horizontalAxisName);
-				CrossPlatformInputManager.RegisterVirtualAxis(m_HorizontalVirtualAxis);
+                CrossPlatformInputManager.UnRegisterVirtualAxis(horizontalAxisName);
+                m_HorizontalVirtualAxis = new CrossPlatformInputManager.VirtualAxis(horizontalAxisName);
+                CrossPlatformInputManager.RegisterVirtualAxis(m_HorizontalVirtualAxis);
 			}
 			if (m_UseY)
 			{
-				m_VerticalVirtualAxis = new CrossPlatformInputManager.VirtualAxis(verticalAxisName);
+                CrossPlatformInputManager.UnRegisterVirtualAxis(verticalAxisName);
+                m_VerticalVirtualAxis = new CrossPlatformInputManager.VirtualAxis(verticalAxisName);
 				CrossPlatformInputManager.RegisterVirtualAxis(m_VerticalVirtualAxis);
 			}
 		}
