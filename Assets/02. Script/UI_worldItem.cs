@@ -19,6 +19,8 @@ public class UI_worldItem : MonoBehaviour
 
     public void ReSetUI()
     {
+        itemtransform = transform.Find("Item");
+
         foreach(Transform child in itemContainer)
         {
             if (child == transform) continue;

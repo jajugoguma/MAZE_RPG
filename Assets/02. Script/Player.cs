@@ -115,7 +115,9 @@ public class Player : Character
 
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             MonsterManager.Instance.mosters.Clear();
-        }
+            currentHp = maxHp;
+            _playerData.saveData(transform.position.x, transform.position.y, maxHp, currentHp, exp);
+         }
 
         if (maxExp <= exp)
         {
@@ -123,6 +125,7 @@ public class Player : Character
             levPoint += 3;
             exp = 0;
             maxExp = level * 50;
+            ui_exp.ExpUIReflash();
         }
 
         if (Time.time > nextTime)
@@ -317,7 +320,7 @@ public class Player : Character
         else
             currentHp += 20;
 
-        uihp = currentHp / maxHp;
+        uihp = (float)currentHp / maxHp;
         HpBar.localScale = new Vector3(uihp, 1.0f, 1.0f);
      }
 

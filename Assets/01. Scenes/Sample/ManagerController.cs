@@ -33,11 +33,16 @@ public class ManagerController : MonoBehaviour
 
     void Start()
     {
-        init_world_map();        
+        init_world_map();
+        
         //maps = GameObject.FindGameObjectsWithTag("map");
         Debug.Log("maps length: " + maps.Length);
-        
-        //StartCoroutine("Fade");        
+#if UNITY_ANDROID
+        image.gameObject.SetActive(false);
+#else
+        StartCoroutine("Fade");
+#endif
+
     }
 
     void set_random_map()
@@ -316,7 +321,11 @@ public class ManagerController : MonoBehaviour
     public void change_map(string name)
     {
         Debug.Log("function change_map call");
-        set_player_position(name);        
-        //StartCoroutine("Fade");        
+        set_player_position(name);
+#if UNITY_ANDROID
+       image.gameObject.SetActive(false); 
+#else
+        StartCoroutine("Fade");
+#endif    
     }
 }

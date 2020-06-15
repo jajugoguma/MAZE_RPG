@@ -78,6 +78,7 @@ public class Monster : MonoBehaviour
             gameObject.SetActive(false);
             player.exp += 20;
             player.ui_exp.ExpUIReflash();
+            player.worldItem.AddItem(new Item { itemType = Item.ItemType.Potion , pos = transform.localPosition});
         }
     }
 
@@ -136,7 +137,9 @@ public class Monster : MonoBehaviour
     {
         if (gameObject.activeInHierarchy == false)
         {
-            HpBar.localScale = new Vector3(0.3f, 0.3f, 1.0f);
+            currentHp = maxHp;
+            uihp = currentHp / maxHp;
+            HpBar.localScale = new Vector3(uihp / 3 , 0.3f, 1.0f);
             gameObject.SetActive(true);
         }
 
