@@ -78,7 +78,25 @@ public class Monster : MonoBehaviour
             gameObject.SetActive(false);
             player.exp += 20;
             player.ui_exp.ExpUIReflash();
-            player.worldItem.AddItem(new Item { itemType = Item.ItemType.Potion , pos = transform.localPosition});
+            int prob = (int)Random.Range(0, 10);
+            if (prob == 0)
+            {
+                player.worldItem.AddItem(new Item { itemType = Item.ItemType.Potion, pos = transform.localPosition });
+            }
+            else if (prob == 1)
+            {
+                player.worldItem.AddItem(new Item { itemType = Item.ItemType.Armor, pos = transform.localPosition });
+            }
+            else if (prob == 2)
+            {
+                player.worldItem.AddItem(new Item { itemType = Item.ItemType.Helmet, pos = transform.localPosition });
+            }
+            else if (prob == 3)
+            {
+                player.worldItem.AddItem(new Item { itemType = Item.ItemType.Sword, pos = transform.localPosition });
+            }
+            Debug.Log(prob);
+
         }
     }
 

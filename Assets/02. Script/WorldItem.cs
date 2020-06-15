@@ -31,7 +31,7 @@ public class WorldItem
     public void AddItem(Item item)
     {
         itemList.Add(item);
-        player.uiWorldItem.ReSetUI();
+        player.uiWorldItem.ReSetUI(item);
     }
 
     public List<Item> GetItemList()
@@ -39,9 +39,5 @@ public class WorldItem
         return itemList;
     }
 
-    public void RemoveItem(Item item)
-    {
-
-
-    }
+   
 }

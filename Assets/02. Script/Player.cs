@@ -79,8 +79,8 @@ public class Player : Character
             HpBar.localScale = new Vector3(uihp, 1.0f, 1.0f);
 
         //인벤토리에 테스트 값넣음
-        inventory.TestInsert();
-        worldItem.TestInsert();
+        //inventory.TestInsert();
+        //worldItem.TestInsert();
 
         isKeyDwnRight = false; isKeyDwnLeft = false; isKeyDwnUp = false; isKeyDwnDown = false;
 
@@ -111,12 +111,11 @@ public class Player : Character
 
         if (currentHp <= 0)
         {
-            //다시시작을 다른방법으로 해야할듯 정보가 다 끊김
-
+            
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             MonsterManager.Instance.mosters.Clear();
             currentHp = maxHp;
-            _playerData.saveData(transform.position.x, transform.position.y, maxHp, currentHp, exp);
+            _playerData.saveData(transform.position.x, transform.position.y, maxHp, currentHp, exp, level);
          }
 
         if (maxExp <= exp)
@@ -124,14 +123,16 @@ public class Player : Character
             level += 1;
             levPoint += 3;
             exp = 0;
+            currentHp = maxHp;
             maxExp = level * 50;
             ui_exp.ExpUIReflash();
+            uiEquipment.RefreshEquipment();
         }
 
         if (Time.time > nextTime)
         {
             nextTime = Time.time + TimeLeft;
-            _playerData.saveData(transform.position.x, transform.position.y, maxHp,currentHp,exp);
+            _playerData.saveData(transform.position.x, transform.position.y, maxHp,currentHp,exp,level);
            
             
         }
@@ -328,7 +329,26 @@ public class Player : Character
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        Debug.Log("character arrive at end point");
+        if (collision == null)
+            return;
+
+        if(collision.gameObject.tag == "item")
+        {
+            Debug.Log("find item");
+            Destroy(collision.gameObject);
+            Sprite sprite = collision.GetComponent<SpriteRenderer>().sprite;
+            switch (sprite.name)
+            {
+                default:
+                case "armor": inventory.AddItem(new Item { itemType = Item.ItemType.Armor }); break;
+                case "potion": inventory.AddItem(new Item { itemType = Item.ItemType.Potion }); break;
+                case "sword": inventory.AddItem(new Item { itemType = Item.ItemType.Sword }); break;
+                case "helmet": inventory.AddItem(new Item { itemType = Item.ItemType.Helmet }); break;
+
+            }
+            
+            
+        }
 
         if (collision.gameObject.tag == "goal")
         {

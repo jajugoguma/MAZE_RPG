@@ -12,6 +12,11 @@ public class Item
         Armor,
         Potion
     }
+    public Item()
+    {
+
+    }
+    
 
     public String GetImage()
     {
