@@ -219,6 +219,8 @@ public class ManagerController : MonoBehaviour
         int now = world_doors[(int)world_position_l, (int)world_position_r];
         const int YET = -1, U = 0, D = 1, R = 2, L = 3, UD = 4, UR = 5, UL = 6, UDR = 7,
      UDL = 8, URL = 9, UDRL = 10, DR = 11, DL = 12, DRL = 13, RL = 14;
+
+        Debug.Log("select_door call! now door: " + now);
         switch (now)
         {
             case YET:
