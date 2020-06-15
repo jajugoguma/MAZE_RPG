@@ -24,6 +24,19 @@ public class Item
             }
     }
 
+
+    public Sprite GetSprite()
+    {
+        switch (itemType)
+        {
+            default:
+            case ItemType.Armor: return ItemAsset.Instance.armorSprite;
+            case ItemType.Sword: return ItemAsset.Instance.swordSprite;
+            case ItemType.Helmet: return ItemAsset.Instance.helmetSprite;
+            case ItemType.Potion: return ItemAsset.Instance.potionSprite;
+        }
+    }
+
     public Item GetObject()
     {
         return this;
@@ -41,9 +54,16 @@ public class Item
         }
     }
 
+    public Vector2 GetPos()
+    {
+        return pos;
+    }
+
 
     public ItemType itemType;
     public bool isWearing = false;
     public int index = 0;
+    public Vector2 pos = Vector2.zero;
+
 
 }

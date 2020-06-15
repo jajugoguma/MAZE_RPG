@@ -14,16 +14,20 @@ public class Player : Character
     public Rigidbody2D rb;
     public Vector3 moveVector;
     public bool flag = true;
+
     public Inventory inventory;
     public Equipment equipment;
+    public WorldItem worldItem;
     public UI_Inventory uiInventory;
     public UI_Equipment uiEquipment;
+    public UI_worldItem uiWorldItem;
+
     public UI_Exp ui_exp;
     public GameObject manager;
     public int level;
     public int levPoint;
-    public float maxHp;
-    public float currentHp;
+    public int maxHp;
+    public int currentHp;
     private float uihp;
     public int maxExp;
     public int exp;
@@ -53,6 +57,8 @@ public class Player : Character
         //인벤토리 및 장비창 초기화
         inventory = new Inventory(this);
         equipment = new Equipment(this);
+        worldItem = new WorldItem(this);
+
         level = _playerData.level;
         levPoint = _playerData.ap;
         maxHp = _playerData.max_hp;
@@ -63,11 +69,18 @@ public class Player : Character
 
         uiInventory.SetInventory(inventory);
         uiEquipment.SetEquipment(equipment);
+        uiWorldItem.SetWorldItem(worldItem);
+
         ui_exp.ExpUIReflash();
+
+        uihp = (float)currentHp / maxHp;
+
+        if (HpBar.localScale.x > 0.0f)
+            HpBar.localScale = new Vector3(uihp, 1.0f, 1.0f);
 
         //인벤토리에 테스트 값넣음
         inventory.TestInsert();
-        
+        worldItem.TestInsert();
 
         isKeyDwnRight = false; isKeyDwnLeft = false; isKeyDwnUp = false; isKeyDwnDown = false;
 
@@ -115,7 +128,9 @@ public class Player : Character
         if (Time.time > nextTime)
         {
             nextTime = Time.time + TimeLeft;
-            _playerData.saveData(transform.position.x, transform.position.y);
+            _playerData.saveData(transform.position.x, transform.position.y, maxHp,currentHp,exp);
+           
+            
         }
 
     }
@@ -287,10 +302,9 @@ public class Player : Character
             return;
         }
 
-        currentHp -= attackdamage;
-        uihp = currentHp / maxHp;
-        Debug.Log(uihp);
-
+        currentHp -= (int)attackdamage;
+        uihp = (float)currentHp / maxHp;
+      
         if (HpBar.localScale.x > 0.0f)
             HpBar.localScale = new Vector3(uihp, 1.0f, 1.0f);
     }

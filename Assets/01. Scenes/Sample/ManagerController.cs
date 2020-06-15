@@ -37,7 +37,7 @@ public class ManagerController : MonoBehaviour
         //maps = GameObject.FindGameObjectsWithTag("map");
         Debug.Log("maps length: " + maps.Length);
         
-        StartCoroutine("Fade");        
+        //StartCoroutine("Fade");        
     }
 
     void set_random_map()
@@ -317,6 +317,6 @@ public class ManagerController : MonoBehaviour
     {
         Debug.Log("function change_map call");
         set_player_position(name);        
-        StartCoroutine("Fade");        
+        //StartCoroutine("Fade");        
     }
 }
