@@ -35,7 +35,7 @@ public class PlayerData : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(name);
+       // Debug.Log(name);
     }
 
     public void loadData(Chracters data)

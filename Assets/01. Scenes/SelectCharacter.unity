@@ -3419,6 +3419,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1410555827}
   - component: {fileID: 1410555826}
+  - component: {fileID: 1410555828}
   m_Layer: 8
   m_Name: SelectCharacter
   m_TagString: Untagged
@@ -3478,6 +3479,14 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!81 &1410555828
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1410555825}
+  m_Enabled: 1
 --- !u!1 &1452915238
 GameObject:
   m_ObjectHideFlags: 0

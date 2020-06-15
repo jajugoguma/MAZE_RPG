@@ -36,6 +36,7 @@ public class ManagerController : MonoBehaviour
         init_world_map();        
         //maps = GameObject.FindGameObjectsWithTag("map");
         Debug.Log("maps length: " + maps.Length);
+        
         StartCoroutine("Fade");        
     }
 
@@ -151,8 +152,9 @@ public class ManagerController : MonoBehaviour
     }
 
 
+   
 
-
+    
     IEnumerator Fade()
     {
         for (float f = 1f; f >= 0; f -= 0.0045f) 

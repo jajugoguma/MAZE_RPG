@@ -76,6 +76,8 @@ public class Monster : MonoBehaviour
         {
             //TODO : 죽음 애니메이션 추가
             gameObject.SetActive(false);
+            player.exp += 20;
+            player.ui_exp.ExpUIReflash();
         }
     }
 
@@ -124,7 +126,7 @@ public class Monster : MonoBehaviour
         
         if (HpBar.localScale.x > 0.0f)
         {
-            HpBar.localScale = new Vector3(uihp, 0.3f, 1.0f);
+            HpBar.localScale = new Vector3(uihp / 3 , 0.3f, 1.0f);
         }
 
 

@@ -26,8 +26,11 @@ public class Title : MonoBehaviour
     void Start()
     {
         CreateUrl = "http://jajugoguma.synology.me/LogIn.php";
-        // DonDestroyOnLoad(gameobject);
         
+
+
+        // DonDestroyOnLoad(gameobject);
+
     }
 
     // Update is called once per frame
@@ -42,6 +45,8 @@ public class Title : MonoBehaviour
         }
         if (pwd_Input.isSelected && Input.GetKeyDown(KeyCode.Tab))
             id_Input.isSelected = true;
+
+       
     }
 
     public void Onsubmit()

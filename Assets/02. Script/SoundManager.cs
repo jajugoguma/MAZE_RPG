@@ -19,11 +19,10 @@ public class SoundManager : MonoSingleton<SoundManager>
         audioComponent = gameObject.GetComponent<AudioSource>();
 
         audioComponent.time = 0;
-        
+
         //audioComponent.playOnAwake = true;
         audioComponent.Play();
-
-        Debug.Log(gameObject);
+       //Debug.Log(gameObject);
         /*
         // Debug Example
         if (null == audioComponent)

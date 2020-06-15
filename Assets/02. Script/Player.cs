@@ -18,12 +18,17 @@ public class Player : Character
     public Equipment equipment;
     public UI_Inventory uiInventory;
     public UI_Equipment uiEquipment;
+    public UI_Exp ui_exp;
     public GameObject manager;
     public int level;
     public int levPoint;
     public float maxHp;
     public float currentHp;
     private float uihp;
+    public int maxExp;
+    public int exp;
+
+
 
     private PlayerData _playerData;
 
@@ -31,8 +36,7 @@ public class Player : Character
     private float nextTime = 0.0f;
 
 
-    [SerializeField]
-    private UIProgressBar expBar = null;
+   
 
    
 
@@ -49,14 +53,17 @@ public class Player : Character
         //인벤토리 및 장비창 초기화
         inventory = new Inventory(this);
         equipment = new Equipment(this);
-        level = 1;
-        levPoint = 5;
-        maxHp = 100f;
-        attackdamage = 10f;
-        currentHp = maxHp;
+        level = _playerData.level;
+        levPoint = _playerData.ap;
+        maxHp = _playerData.max_hp;
+        attackdamage = _playerData.atk;
+        currentHp = _playerData.cur_hp ;
+        exp = _playerData.exp;
+        maxExp = level * 50;
 
         uiInventory.SetInventory(inventory);
         uiEquipment.SetEquipment(equipment);
+        ui_exp.ExpUIReflash();
 
         //인벤토리에 테스트 값넣음
         inventory.TestInsert();
@@ -89,11 +96,20 @@ public class Player : Character
 #endif
         }
 
-        if (currentHp <= 0 )
+        if (currentHp <= 0)
         {
             //다시시작을 다른방법으로 해야할듯 정보가 다 끊김
 
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            MonsterManager.Instance.mosters.Clear();
+        }
+
+        if (maxExp <= exp)
+        {
+            level += 1;
+            levPoint += 3;
+            exp = 0;
+            maxExp = level * 50;
         }
 
         if (Time.time > nextTime)
