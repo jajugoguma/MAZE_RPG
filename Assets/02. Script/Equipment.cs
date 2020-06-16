@@ -34,6 +34,15 @@ public class Equipment
         player.uiEquipment.RefreshEquipment();
     }
 
+    public void SettingEquipment(Item item)
+    {
+        if (null == item)
+            return;
+        item.OnAction(player);
+        equipmentList.Add(item);
+        player.uiEquipment.RefreshEquipment();
+    }
+
     public List<Item> GetItemEquipment()
     {
         return equipmentList;
@@ -74,4 +83,24 @@ public class Equipment
 
         return result;
     }
+    /*
+    public void EquipSaveCheck()
+    {
+        for (int i = 0; i <equipmentList.Count; i++)
+        {
+            switch (equipmentList[i].itemType)
+            {
+                default:
+                case Item.ItemType.Helmet:
+                    player._playerData.max_hp -= 20;
+                    player.currentHp -= 20;
+                    break;
+                case Item.ItemType.Sword:
+                    player._playerData.atk -= 3;
+                    break;
+
+            }
+        }
+    }
+    */
 }

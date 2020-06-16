@@ -3,67 +3,91 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class Inventory 
+public class Inventory
 {
 
     private List<Item> itemList;
     public Player player;
     public string inven;
+    public string equip;
 
     public const int MaxItemCount = 8;
 
-    public Inventory(Player player_,String inven)
+    public Inventory(Player player_)
     {
         player = player_;
         itemList = new List<Item>();
-        SettingInven(inven);
-     }
 
-    public void SettingInven(String inven)
+    }
+
+    public void SettingInven(string inven, string equip)
     {
         string[] words = inven.Split(' ');
-        for (int i =0; i < words.Length; i++)
+        for (int i = 0; i < words.Length; i++)
         {
-            /*
-            switch (words[i])
+            for (Item.ItemType index = Item.ItemType.Sword; index < Item.ItemType.end; index++)
             {
-                default:
-                    break;
-                case "Armor":
-                    player.worldItem.AddItem(new Item { itemType = Item.ItemType.Armor });
-                    break;
-                case "Potion":
-                    player.worldItem.AddItem(new Item { itemType = Item.ItemType.Potion });
-                    break;
-                case "Helmet":
-                    player.worldItem.AddItem(new Item { itemType = Item.ItemType.Helmet });
-                    break;
-                case "Sword":
-                    player.worldItem.AddItem(new Item { itemType = Item.ItemType.Sword });
-                    break;
-            }
-            */
-            for(Item.ItemType index = Item.ItemType.Sword; index < Item.ItemType.end; index++)
-            {
-                if(words[i].Equals(index.ToString()))
+                if (words[i].Equals(index.ToString()))
                 {
-                    player.worldItem.AddItem(new Item { itemType = index });
+                    AddItem(new Item { itemType = index });
                     break;
                 }
             }
         }
+        
+        words.Initialize();
+        words = equip.Split(' ');
+
+        for (int i = 0; i < words.Length; i++)
+        {
+            if (words[i].Equals("1"))
+                player.equipment.SettingEquipment(itemList[i]);       
+               
+        }
+        player.uiInventory.RefreshInventory();
+
     }
 
-   public string InvenSave()
+    public string InvenSave()
     {
         inven = String.Empty;
-        for (int i = 0; i <itemList.Count; i++)
+        for (int i = 0; i < itemList.Count; i++)
         {
-            inven = String.Concat(inven, " ", itemList[i].itemType.ToString());
+            if (i == 0)
+                inven = itemList[i].itemType.ToString();
+            else
+                inven = String.Concat(inven, " ", itemList[i].itemType.ToString());
         }
 
 
         return inven;
+    }
+
+    public string IsEquipSave()
+    {
+        equip = String.Empty;
+
+        for (int i = 0; i < itemList.Count; i++)
+        {
+            if (i == 0)
+            {
+                if (itemList[i].isWearing)
+                    equip = "1";
+                else
+                    equip = "0";
+            }
+                
+            else
+            {
+                if(itemList[i].isWearing)
+                   equip = String.Concat(equip, " 1");
+                else
+                   equip = String.Concat(equip, " 0");
+            }
+
+        }
+
+        return equip;
     }
 
     public void AddItem(Item item)

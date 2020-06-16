@@ -55,9 +55,11 @@ public class Player : Character
         transform.position = initpos;
 
         //인벤토리 및 장비창 초기화
-        inventory = new Inventory(this,_playerData.inven);
-        equipment = new Equipment(this);
         worldItem = new WorldItem(this);
+        equipment = new Equipment(this);
+        inventory = new Inventory(this);
+        
+        
 
         
 
@@ -69,6 +71,8 @@ public class Player : Character
         uiWorldItem.SetWorldItem(worldItem);
 
         ui_exp.ExpUIReflash();
+        inventory.SettingInven(_playerData.inven,_playerData.equip);
+
 
         uihp = (float)_playerData.cur_hp / _playerData.max_hp;
 
@@ -131,7 +135,8 @@ public class Player : Character
             _playerData.pose_x = transform.position.x;
             _playerData.pose_y = transform.position.y;
             _playerData.inven = inventory.InvenSave();
-           
+            _playerData.equip = inventory.IsEquipSave();
+            //equipment.EquipSaveCheck();
 
             nextTime = Time.time + TimeLeft;
             _playerData.saveData(_playerData);
