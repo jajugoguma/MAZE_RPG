@@ -25,6 +25,8 @@ public class PlayerData : MonoBehaviour
     public int in_y;
     public int out_x;
     public int out_y;
+    public string inven;
+    public string equip;
 
     private string saveURL = "http://jajugoguma.synology.me/SaveChar.php";
 
@@ -61,6 +63,9 @@ public class PlayerData : MonoBehaviour
         in_y = data.in_y;
         out_x = data.out_x;
         out_y = data.out_y;
+        inven = data.inven;
+        equip = data.equip;
+        
     }
 
 
@@ -75,8 +80,10 @@ public class PlayerData : MonoBehaviour
         level = playerData_.level;
         ap = playerData_.ap;
         atk = playerData_.atk;
-
-
+        luck = playerData_.luck;
+        inven = playerData_.inven;
+        equip = playerData_.equip;
+               
         StartCoroutine(createCharacter());
     }
 
@@ -97,6 +104,9 @@ public class PlayerData : MonoBehaviour
         form.AddField("param_pose_y", pose_y.ToString());
         form.AddField("param_world_pose_x", world_pose_x);
         form.AddField("param_world_pose_y", world_pose_y);
+        form.AddField("param_inven", inven);
+        form.AddField("param_equip", equip);
+        
 
         WWW _www = new WWW(saveURL, form);
         yield return _www;

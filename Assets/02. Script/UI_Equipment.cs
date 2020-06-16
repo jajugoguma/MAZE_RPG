@@ -11,7 +11,7 @@ public class UI_Equipment : MonoBehaviour
     [SerializeField]
     private List<SlotItemView> slotItemViewList = new List<SlotItemView>();
 
-    public UILabel speedLabel;
+    public UILabel LuckLabel;
     public UILabel healthLabel;
     public UILabel damageLabel;
     public UILabel levpointLabel;
@@ -31,13 +31,13 @@ public class UI_Equipment : MonoBehaviour
     }
 
 
-    public void SpeedButtonClicked()
+    public void LuckButtonClicked()
     {
         //Debug.Log("speedButtonclicked");
         if (equipment.player._playerData.ap > 0)
         {
             equipment.player._playerData.ap -= 1;
-            equipment.player.speed += 0.5f;
+            equipment.player._playerData.luck += 1;
         }
 
         ResetLabels();
@@ -64,7 +64,7 @@ public class UI_Equipment : MonoBehaviour
             return;
         levelLabel.text = string.Format("Lev : {0}", equipment.player._playerData.level);
         levpointLabel.text = string.Format("Point : {0}", equipment.player._playerData.ap);
-        speedLabel.text = string.Format("Speed : {0}",equipment.player.speed);
+        LuckLabel.text = string.Format("Luck : {0}",equipment.player.speed);
 
 
         if (equipment.IsEquip(Item.ItemType.Armor))

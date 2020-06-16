@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Equipment" Collapsed="true">
+    <Position X="4" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABEAAgAAAAAAAAQAAAAAAAAAAgAIAABAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\02. Script\Equipment.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="player" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Item" Collapsed="true">
+    <Position X="0.5" Y="6.5" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="Item.ItemType" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\02. Script\Item.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAMAAAAAAAAIgQAAAAAAAAAAACAAgBAAA=</HashCode>
+      <FileName>Assets\02. Script\Item.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Inventory" Collapsed="true">
+    <Position X="5.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAACAAAAAAACAAAAAAAAAgAAAAABFAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\02. Script\Inventory.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="player" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Player" Collapsed="true">
+    <Position X="3.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gQQIEAAAAiJAAAIEAIAAwAKEJABGFlCDgAEAAIcAAAA=</HashCode>
+      <FileName>Assets\02. Script\Player.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Character" Collapsed="true">
+    <Position X="3.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAQBAAAAAKAEAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\02. Script\Character.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MonoSingleton&lt;T&gt;" Collapsed="true">
+    <Position X="10.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Assets\02. Script\MonoSingleton.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Monster" Collapsed="true">
+    <Position X="6" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>lAQAEAAAACAACBIAAAAABACABBBAAAABEAAAAIQAAgA=</HashCode>
+      <FileName>Assets\02. Script\Monster.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="S" Collapsed="true">
+    <Position X="8.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>Assets\02. Script\MonsterManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SoundManager" Collapsed="true">
+    <Position X="10.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAAAAAAAAAAAAAAIABAAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>Assets\02. Script\SoundManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InfoManager" Collapsed="true">
+    <Position X="12.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAACAAAAAgA=</HashCode>
+      <FileName>Assets\02. Script\InfoManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UnityEngine.MonoBehaviour" Collapsed="true">
+    <Position X="5.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAIAAAAgAAAAAACAAAAAEAgIAIAAgBAAgA=</HashCode>
+      <FileName>MetadataAsSource\f1a08866f12f4ee0acdbfa18e06f0381\fd710916cba546bcacdfb8bc081fe181\MonoBehaviour.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlayerData" Collapsed="true">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BCQAABAQAAAAAAAAgFAAAACCACEFADEAgCAAEAIACkg=</HashCode>
+      <FileName>Assets\02. Script\PlayerData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WorldItem" Collapsed="true">
+    <Position X="2.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAACAAAAAAACAAAAAAAAAgAAAAABBAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\02. Script\WorldItem.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="player" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Ranking" Collapsed="true">
+    <Position X="0.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAQAAAAAASggAAAAACAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\02. Script\Ranking.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_playerData" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="UI_worldItem" Collapsed="true">
+    <Position X="2.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAACAAAAAAAAAAAAAIAAAACAAAAAAAIAAAA=</HashCode>
+      <FileName>Assets\02. Script\UI_worldItem.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="worldItem" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="UI_Inventory" Collapsed="true">
+    <Position X="5.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAAAAAAAASAAAAAAAQAAACKACAAAAACAA=</HashCode>
+      <FileName>Assets\02. Script\UI_Inventory.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="inventory" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="UI_Equipment" Collapsed="true">
+    <Position X="4" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAACAAAoAAAAAAACAAQABAAAFAAAAKgBAIggAAAA=</HashCode>
+      <FileName>Assets\02. Script\UI_Equipment.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="equipment" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="UI_Exp" Collapsed="true">
+    <Position X="7.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAQEAAAAAAAAAAAAAAAAAIAAAgA=</HashCode>
+      <FileName>Assets\02. Script\UI_Exp.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="player_" />
+    </ShowAsAssociation>
+  </Class>
+  <Font Name="맑은 고딕" Size="9" />
+</ClassDiagram>

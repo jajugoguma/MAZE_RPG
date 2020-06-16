@@ -7,10 +7,12 @@ public class Item
 {
    public enum ItemType
     {
+        start = 0,
         Sword,
         Helmet,
         Armor,
-        Potion
+        Potion,
+        end
     }
     public Item()
     {

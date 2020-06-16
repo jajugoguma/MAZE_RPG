@@ -78,24 +78,29 @@ public class Monster : MonoBehaviour
             gameObject.SetActive(false);
             player._playerData.exp += 20;
             player.ui_exp.ExpUIReflash();
-            int prob = (int)Random.Range(0, 10);
-            if (prob == 0)
+            int prob = (int)Random.Range(0, 100);
+            if (prob < 50 + player._playerData.luck)
             {
-                player.worldItem.AddItem(new Item { itemType = Item.ItemType.Potion, pos = transform.localPosition });
+                prob = prob % 4;
+                if (prob == 0)
+                {
+                    player.worldItem.AddItem(new Item { itemType = Item.ItemType.Potion, pos = transform.localPosition });
+                }
+                else if (prob == 1)
+                {
+                    player.worldItem.AddItem(new Item { itemType = Item.ItemType.Armor, pos = transform.localPosition });
+                }
+                else if (prob == 2)
+                {
+                    player.worldItem.AddItem(new Item { itemType = Item.ItemType.Helmet, pos = transform.localPosition });
+                }
+                else if (prob == 3)
+                {
+                    player.worldItem.AddItem(new Item { itemType = Item.ItemType.Sword, pos = transform.localPosition });
+                }
+                Debug.Log(prob);
             }
-            else if (prob == 1)
-            {
-                player.worldItem.AddItem(new Item { itemType = Item.ItemType.Armor, pos = transform.localPosition });
-            }
-            else if (prob == 2)
-            {
-                player.worldItem.AddItem(new Item { itemType = Item.ItemType.Helmet, pos = transform.localPosition });
-            }
-            else if (prob == 3)
-            {
-                player.worldItem.AddItem(new Item { itemType = Item.ItemType.Sword, pos = transform.localPosition });
-            }
-            Debug.Log(prob);
+           
 
         }
     }

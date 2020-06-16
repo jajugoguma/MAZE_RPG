@@ -55,7 +55,7 @@ public class Player : Character
         transform.position = initpos;
 
         //인벤토리 및 장비창 초기화
-        inventory = new Inventory(this);
+        inventory = new Inventory(this,_playerData.inven);
         equipment = new Equipment(this);
         worldItem = new WorldItem(this);
 
@@ -130,6 +130,8 @@ public class Player : Character
         {
             _playerData.pose_x = transform.position.x;
             _playerData.pose_y = transform.position.y;
+            _playerData.inven = inventory.InvenSave();
+           
 
             nextTime = Time.time + TimeLeft;
             _playerData.saveData(_playerData);
@@ -339,7 +341,6 @@ public class Player : Character
 
         if(collision.gameObject.tag == "item")
         {
-            Debug.Log("find item");
             Destroy(collision.gameObject);
             Sprite sprite = collision.GetComponent<SpriteRenderer>().sprite;
             switch (sprite.name)

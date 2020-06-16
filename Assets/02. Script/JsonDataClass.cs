@@ -31,4 +31,6 @@ public class Chracters
     public int in_y;
     public int out_x;
     public int out_y;
+    public string inven;
+    public string equip;
 }
