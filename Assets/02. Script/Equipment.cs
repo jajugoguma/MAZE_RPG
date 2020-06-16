@@ -24,11 +24,11 @@ public class Equipment
             default:
             case Item.ItemType.Armor:
             case Item.ItemType.Helmet:
-                player.maxHp += 20;
+                player._playerData.max_hp += 20;
                 player.currentHp += 20;
                 break;
             case Item.ItemType.Sword:
-                player.attackdamage += 3;
+                player._playerData.atk += 3;
                 break;
         }
         player.uiEquipment.RefreshEquipment();
@@ -51,11 +51,11 @@ public class Equipment
             default:
             case Item.ItemType.Armor:
             case Item.ItemType.Helmet:
-                player.maxHp -= 20;
+                player._playerData.max_hp -= 20;
                 player.currentHp -= 20;
                 break;
             case Item.ItemType.Sword:
-                player.attackdamage -= 3;
+                player._playerData.atk -= 3;
                 break;
         }
 

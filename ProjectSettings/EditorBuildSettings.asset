@@ -12,8 +12,8 @@ EditorBuildSettings:
     path: Assets/01. Scenes/Title_v3.unity
     guid: 32664fac9f13112449d5a2fb7587adea
   - enabled: 1
-    path: Assets/01. Scenes/SignUp_v2.unity
-    guid: ba3cd622cb783d84db666f86135aabd3
+    path: Assets/01. Scenes/SignUp_v3.unity
+    guid: fe4fa811c2eb32840b2e1c97645801c4
   - enabled: 1
     path: Assets/01. Scenes/SelectCharacter.unity
     guid: 00c350428d65c8f4ab57fd1ea0f68748

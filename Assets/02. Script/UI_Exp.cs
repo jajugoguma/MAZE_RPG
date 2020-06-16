@@ -16,7 +16,7 @@ public class UI_Exp : MonoBehaviour
 
     public void ExpUIReflash()
     {
-        expBar.value = (float)player_.exp / (float)player_.maxExp;
-        expLabel.text = string.Format("Exp {0} / {1}",player_.exp , player_.maxExp);
+        expBar.value = (float)player_._playerData.exp / (float)player_.maxExp;
+        expLabel.text = string.Format("Exp {0} / {1}",player_._playerData.exp, player_.maxExp);
     }
 }

@@ -21,10 +21,10 @@ public class UI_Equipment : MonoBehaviour
     public void HealthButtonClicked()
     {
         //Debug.Log("damageButtonclicked");
-        if (equipment.player.levPoint > 0)
+        if (equipment.player._playerData.ap > 0)
         {
-            equipment.player.levPoint -= 1;
-            equipment.player.maxHp += 1;
+            equipment.player._playerData.ap -= 1;
+            equipment.player._playerData.max_hp += 10;
             equipment.player.currentHp +=1;
         }
         ResetLabels();
@@ -34,9 +34,9 @@ public class UI_Equipment : MonoBehaviour
     public void SpeedButtonClicked()
     {
         //Debug.Log("speedButtonclicked");
-        if (equipment.player.levPoint > 0)
+        if (equipment.player._playerData.ap > 0)
         {
-            equipment.player.levPoint -= 1;
+            equipment.player._playerData.ap -= 1;
             equipment.player.speed += 0.5f;
         }
 
@@ -47,10 +47,10 @@ public class UI_Equipment : MonoBehaviour
     public void DamageButtonClicked()
     {
         //Debug.Log("damageButtonclicked");
-        if (equipment.player.levPoint > 0)
+        if (equipment.player._playerData.ap > 0)
         {
-            equipment.player.levPoint -= 1;
-            equipment.player.attackdamage += 1;
+            equipment.player._playerData.ap -= 1;
+            equipment.player._playerData.atk += 1;
         }
         ResetLabels();
 
@@ -62,26 +62,26 @@ public class UI_Equipment : MonoBehaviour
 
         if (equipment == null)
             return;
-        levelLabel.text = string.Format("Lev : {0}", equipment.player.level);
-        levpointLabel.text = string.Format("Point : {0}", equipment.player.levPoint);
+        levelLabel.text = string.Format("Lev : {0}", equipment.player._playerData.level);
+        levpointLabel.text = string.Format("Point : {0}", equipment.player._playerData.ap);
         speedLabel.text = string.Format("Speed : {0}",equipment.player.speed);
 
 
         if (equipment.IsEquip(Item.ItemType.Armor))
             if (equipment.IsEquip(Item.ItemType.Helmet))
-                healthLabel.text = string.Format("MaxHp : {0}[755CB3](+{1})[-]", equipment.player.maxHp,40);
+                healthLabel.text = string.Format("MaxHp : {0}[755CB3](+{1})[-]", equipment.player._playerData.max_hp, 40);
             else
-                healthLabel.text = string.Format("MaxHp : {0}[755CB3](+{1})[-]", equipment.player.maxHp, 20);
+                healthLabel.text = string.Format("MaxHp : {0}[755CB3](+{1})[-]", equipment.player._playerData.max_hp, 20);
         else if(equipment.IsEquip(Item.ItemType.Helmet))
-            healthLabel.text = string.Format("MaxHp : {0}[755CB3](+{1})[-]", equipment.player.maxHp, 20);
+            healthLabel.text = string.Format("MaxHp : {0}[755CB3](+{1})[-]", equipment.player._playerData.max_hp, 20);
         else
-            healthLabel.text = string.Format("MaxHp : {0}", equipment.player.maxHp); 
+            healthLabel.text = string.Format("MaxHp : {0}", equipment.player._playerData.max_hp); 
 
 
         if (equipment.IsEquip(Item.ItemType.Sword))
-            damageLabel.text = string.Format("DMG :{0}[755CB3](+{1})[-]", equipment.player.attackdamage, 3);
+            damageLabel.text = string.Format("DMG :{0}[755CB3](+{1})[-]", equipment.player._playerData.atk, 3);
         else
-            damageLabel.text = string.Format("DMG :{0}", equipment.player.attackdamage);
+            damageLabel.text = string.Format("DMG :{0}", equipment.player._playerData.atk);
     }
 
 

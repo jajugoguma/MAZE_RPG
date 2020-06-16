@@ -10,10 +10,13 @@ public class Player : Character
     public RectTransform HpBar;
     public Transform player;
     public Vector3 directionVec = Vector3.zero;
-    public float attackdamage;
+
     public Rigidbody2D rb;
     public Vector3 moveVector;
     public bool flag = true;
+
+    public float attackDelay = 0.3f;
+    float lastAttacked = -9999f;
 
     public Inventory inventory;
     public Equipment equipment;
@@ -24,17 +27,14 @@ public class Player : Character
 
     public UI_Exp ui_exp;
     public GameObject manager;
-    public int level;
-    public int levPoint;
-    public int maxHp;
+
     public int currentHp;
     private float uihp;
     public int maxExp;
-    public int exp;
 
 
 
-    private PlayerData _playerData;
+    public PlayerData _playerData;
 
     private float TimeLeft = 10.0f;
     private float nextTime = 0.0f;
@@ -59,13 +59,10 @@ public class Player : Character
         equipment = new Equipment(this);
         worldItem = new WorldItem(this);
 
-        level = _playerData.level;
-        levPoint = _playerData.ap;
-        maxHp = _playerData.max_hp;
-        attackdamage = _playerData.atk;
-        currentHp = _playerData.cur_hp ;
-        exp = _playerData.exp;
-        maxExp = level * 50;
+        
+
+      
+        maxExp = _playerData.level * 50;
 
         uiInventory.SetInventory(inventory);
         uiEquipment.SetEquipment(equipment);
@@ -73,7 +70,7 @@ public class Player : Character
 
         ui_exp.ExpUIReflash();
 
-        uihp = (float)currentHp / maxHp;
+        uihp = (float)_playerData.cur_hp / _playerData.max_hp;
 
         if (HpBar.localScale.x > 0.0f)
             HpBar.localScale = new Vector3(uihp, 1.0f, 1.0f);
@@ -109,32 +106,34 @@ public class Player : Character
 #endif
         }
 
-        if (currentHp <= 0)
+        if (_playerData.cur_hp <= 0)
         {
             
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             MonsterManager.Instance.mosters.Clear();
-            currentHp = maxHp;
-            _playerData.saveData(transform.position.x, transform.position.y, maxHp, currentHp, exp, level);
+            _playerData.cur_hp = _playerData.max_hp;
+            _playerData.saveData(_playerData);
          }
 
-        if (maxExp <= exp)
+        if (maxExp <= _playerData.exp)
         {
-            level += 1;
-            levPoint += 3;
-            exp = 0;
-            currentHp = maxHp;
-            maxExp = level * 50;
+            _playerData.level += 1;
+            _playerData.ap += 3;
+            _playerData.exp = _playerData.exp - maxExp;
+            _playerData.cur_hp = _playerData.max_hp;
+            maxExp = _playerData.level * 50;
             ui_exp.ExpUIReflash();
             uiEquipment.RefreshEquipment();
         }
 
         if (Time.time > nextTime)
         {
+            _playerData.pose_x = transform.position.x;
+            _playerData.pose_y = transform.position.y;
+
             nextTime = Time.time + TimeLeft;
-            _playerData.saveData(transform.position.x, transform.position.y, maxHp,currentHp,exp,level);
+            _playerData.saveData(_playerData);
            
-            
         }
 
     }
@@ -169,9 +168,15 @@ public class Player : Character
 
     private void AttackMoster(Monster monster)
     {
-        Debug.Log("attack");
+        
         // 나중에 맞는 애니메이션 및 채력 관련한 func 추가
-        monster.attacked(attackdamage);
+        if (Time.time > lastAttacked + attackDelay)
+        {
+            Debug.Log("attack");
+            monster.attacked(_playerData.atk);
+            lastAttacked = Time.time;
+        }
+        
 
     }
 
@@ -300,14 +305,14 @@ public class Player : Character
     {
         //캐릭터 맞는 애니메이션 추가자리
 
-        if (currentHp <= 0)
+        if (_playerData.cur_hp <= 0)
         {
-            currentHp = 0;
+            _playerData.cur_hp = 0;
             return;
         }
 
-        currentHp -= (int)attackdamage;
-        uihp = (float)currentHp / maxHp;
+        _playerData.cur_hp -= (int)attackdamage;
+        uihp = (float)_playerData.cur_hp / _playerData.max_hp;
       
         if (HpBar.localScale.x > 0.0f)
             HpBar.localScale = new Vector3(uihp, 1.0f, 1.0f);
@@ -316,12 +321,12 @@ public class Player : Character
     public void UsePotion()
     {
         Debug.Log("use potion");
-        if (currentHp + 20 > maxHp)
-            currentHp = maxHp;
+        if (_playerData.cur_hp + 20 > _playerData.max_hp)
+            _playerData.cur_hp = _playerData.max_hp;
         else
-            currentHp += 20;
+            _playerData.cur_hp += 20;
 
-        uihp = (float)currentHp / maxHp;
+        uihp = (float)_playerData.cur_hp / _playerData.max_hp;
         HpBar.localScale = new Vector3(uihp, 1.0f, 1.0f);
      }
 

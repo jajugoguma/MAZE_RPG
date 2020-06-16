@@ -65,14 +65,17 @@ public class PlayerData : MonoBehaviour
 
 
 
-    public void saveData(float posi_x, float posi_y, int max_hp_, int cur_hp_, int exp_, int level_)
+    public void saveData(PlayerData playerData_)
     {
-        pose_x = posi_x;
-        pose_y = posi_y;
-        max_hp = max_hp_;
-        cur_hp = cur_hp_;
-        exp = exp_;
-        level = level_;
+        pose_x = playerData_.pose_x;
+        pose_y = playerData_.pose_y;
+        max_hp = playerData_.max_hp;
+        cur_hp = playerData_.cur_hp;
+        exp = playerData_.exp;
+        level = playerData_.level;
+        ap = playerData_.ap;
+        atk = playerData_.atk;
+
 
         StartCoroutine(createCharacter());
     }

@@ -76,7 +76,7 @@ public class Monster : MonoBehaviour
         {
             //TODO : 죽음 애니메이션 추가
             gameObject.SetActive(false);
-            player.exp += 20;
+            player._playerData.exp += 20;
             player.ui_exp.ExpUIReflash();
             int prob = (int)Random.Range(0, 10);
             if (prob == 0)

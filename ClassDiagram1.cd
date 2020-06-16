@@ -1,0 +1,279 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ButtonHandler" Collapsed="true">
+    <Position X="9.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAgAAAAAAABAACCAAACQAAAAAAAABAAIAAAAACAA=</HashCode>
+      <FileName>Assets\02. Script\ButtonHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CameraFollow" Collapsed="true">
+    <Position X="11" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAIAAAIAAAAAAQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\02. Script\CameraFollow.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Character" Collapsed="true">
+    <Position X="2" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAQBAAAAAKAEAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\02. Script\Character.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DashButtonHandler" Collapsed="true">
+    <Position X="5.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAgAAAAAAABAACCAAACQAAAAAAAABAAIAAAAACAA=</HashCode>
+      <FileName>Assets\02. Script\DashButtonHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Equipment" Collapsed="true">
+    <Position X="16.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABEAAgAAAAAAAAQAAAAAAAAAAgAIAABAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\02. Script\Equipment.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InfoManager" Collapsed="true">
+    <Position X="6.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAACAAAAAgA=</HashCode>
+      <FileName>Assets\02. Script\InfoManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Inventory" Collapsed="true">
+    <Position X="9.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAACAAAAAAACAAAAAAAAAgAAAAABFAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\02. Script\Inventory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Item" Collapsed="true">
+    <Position X="11" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAMAAAAAAAAIgQAAAAAAAAAAACAAgBAAA=</HashCode>
+      <FileName>Assets\02. Script\Item.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ItemAsset" Collapsed="true">
+    <Position X="12.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAAAAAAACAAAAAAAAAAAgAAAAAQAIAAAAAAEA=</HashCode>
+      <FileName>Assets\02. Script\ItemAsset.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Joystick" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="14.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IECAAQAAACEIAAAAAIBAAAAAAAAAIACJAAQAEAAAaAA=</HashCode>
+      <FileName>Assets\02. Script\JoyStick.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="JsonDataClass" Collapsed="true">
+    <Position X="16.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>Assets\02. Script\JsonDataClass.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Chracters" Collapsed="true">
+    <Position X="12.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BCAAAAAAgAAAAAAAgEAAAACCACEFADEAgCAEEAAAAgg=</HashCode>
+      <FileName>Assets\02. Script\JsonDataClass.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MazeGenerator" Collapsed="true">
+    <Position X="18" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAEAgABCAACgAQAAACgAACACADETEAQAAABAQCAQA=</HashCode>
+      <FileName>Assets\02. Script\MazeGenerator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Menubutton" Collapsed="true">
+    <Position X="9.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgAEAAAAAAAANgAgAIAAAAAABAAAAAQAAAAA=</HashCode>
+      <FileName>Assets\02. Script\Menubutton.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MonoSingleton&lt;T&gt;" Collapsed="true">
+    <Position X="4.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Assets\02. Script\MonoSingleton.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Monster" Collapsed="true">
+    <Position X="12.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>lAQAEAAAACAACBIAAAAABACABBBAAAABEAAAAIQAAgA=</HashCode>
+      <FileName>Assets\02. Script\Monster.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MonsterManager" Collapsed="true">
+    <Position X="2.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>Assets\02. Script\MonsterManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Player" Collapsed="true">
+    <Position X="2" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gQQIEAAAAiJAAAIEAIAAwAKEJABGFlCDgAEAAIcAAgA=</HashCode>
+      <FileName>Assets\02. Script\Player.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlayerData" Collapsed="true">
+    <Position X="14.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BCQAABAQAAAAAAAAgFAAAACCACEFADEAgCAAEAIACkg=</HashCode>
+      <FileName>Assets\02. Script\PlayerData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ranking" Collapsed="true">
+    <Position X="16.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAQAAAAAASggAAAAACAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\02. Script\Ranking.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SelectCharacter" Collapsed="true">
+    <Position X="18" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAQAIAhBCSIhCgAgAiCAQAAABIIQAAAAQgAEAAICCg=</HashCode>
+      <FileName>Assets\02. Script\SelectCharacter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Shot" Collapsed="true">
+    <Position X="9.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAACAAAIAAIAAAICIAAAAAAAAACAACAAAAAAA=</HashCode>
+      <FileName>Assets\02. Script\Shot.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SignUp" Collapsed="true">
+    <Position X="11" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAgAABCAAAAAAAAAABAEAACAAAQAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Assets\02. Script\SignUp.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SignUp_v2" Collapsed="true">
+    <Position X="12.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEQAIgAAACAAAAACAACADAEMACABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\02. Script\SignUp_v2.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SlotItemView" Collapsed="true">
+    <Position X="14.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAABAAAAAAAAAABAABAEAAgAAAAAAEAAAAA=</HashCode>
+      <FileName>Assets\02. Script\SlotItemView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SoundManager" Collapsed="true">
+    <Position X="4.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAAAAAAAAAAAAAAIABAAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>Assets\02. Script\SoundManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StartScene" Collapsed="true">
+    <Position X="16.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\02. Script\StartScene.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Timer" Collapsed="true">
+    <Position X="11" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAIAAACAQIAAAAgAAAAAAAAAAAAEAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\02. Script\Timer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Title" Collapsed="true">
+    <Position X="12.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEQAAgAAAGIAAAAAAACACAAIAAABABAAAAIAAAAAAAA=</HashCode>
+      <FileName>Assets\02. Script\Title.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TitleScene" Collapsed="true">
+    <Position X="14.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\02. Script\TitleScene.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UI_Equipment" Collapsed="true">
+    <Position X="16.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAACAAAoAAAAAAACAAQABAAAFAAAAKgBAIggAAAA=</HashCode>
+      <FileName>Assets\02. Script\UI_Equipment.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UI_Exp" Collapsed="true">
+    <Position X="18" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAQEAAAAAAAAAAAAAAAAAIAAAgA=</HashCode>
+      <FileName>Assets\02. Script\UI_Exp.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UI_Inventory" Collapsed="true">
+    <Position X="5.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAAAAAAAASAAAAAAAQAAACKACAAAAACAA=</HashCode>
+      <FileName>Assets\02. Script\UI_Inventory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UI_worldItem" Collapsed="true">
+    <Position X="11" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAACAAAAAAAAAAAAAIAAAACAAAAAAAIAAAA=</HashCode>
+      <FileName>Assets\02. Script\UI_worldItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WorldItem" Collapsed="true">
+    <Position X="12.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAACAAAAAAACAAAAAAAAAgAAAAABBAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\02. Script\WorldItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UnityStandardAssets.CrossPlatformInput.InputAxisScrollbar" Collapsed="true">
+    <Position X="18" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAACAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\02. Script\InputAxisScrollbar.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UnityStandardAssets.CrossPlatformInput.MobileControlRig" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="11" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAIAEACQAAAAAAAAAAAAAAAAAAAAIAAAABAAACAA=</HashCode>
+      <FileName>Assets\02. Script\MobileControlRig.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="UnityStandardAssets.CrossPlatformInput.TiltInput" Collapsed="true">
+    <Position X="18" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACQACAAAAAEAAAAAAQAAAgAAAAAAAAAIAAAAAAAACAA=</HashCode>
+      <FileName>Assets\02. Script\TiltInput.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UnityStandardAssets.CrossPlatformInput.Inspector.TiltInputAxisStylePropertyDrawer" Collapsed="true">
+    <Position X="9.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAA=</HashCode>
+      <FileName>Assets\02. Script\TiltInput.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="맑은 고딕" Size="9" />
+</ClassDiagram>

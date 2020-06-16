@@ -123,6 +123,7 @@ public class SelectCharacter : MonoBehaviour
   
     public void LogoutButoonClicked()
     {
+        Destroy(PlayerData.gameObject);
         SceneManager.LoadScene("Title_v3");
     }
 
