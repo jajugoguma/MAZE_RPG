@@ -59,8 +59,8 @@ MonoBehaviour:
     paddingTop: 15
     paddingBottom: 6
   - name: blackbar
-    x: 668
-    y: 13
+    x: 497
+    y: 11
     width: 120
     height: 18
     borderLeft: 0
@@ -124,7 +124,7 @@ MonoBehaviour:
     paddingTop: 5
     paddingBottom: 5
   - name: iconfinder_29_Sound_alt_106217
-    x: 562
+    x: 497
     y: 30
     width: 64
     height: 64
@@ -163,8 +163,8 @@ MonoBehaviour:
     paddingTop: 5
     paddingBottom: 5
   - name: iconfinder_screenshot_2639913
-    x: 733
-    y: 353
+    x: 627
+    y: 7
     width: 48
     height: 48
     borderLeft: 0
@@ -175,9 +175,22 @@ MonoBehaviour:
     paddingRight: 8
     paddingTop: 8
     paddingBottom: 8
+  - name: key
+    x: 627
+    y: 56
+    width: 38
+    height: 38
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 13
+    paddingRight: 13
+    paddingTop: 13
+    paddingBottom: 13
   - name: Playerimg
     x: 733
-    y: 318
+    y: 302
     width: 32
     height: 34
     borderLeft: 0
@@ -189,7 +202,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: plusButton
-    x: 497
+    x: 562
     y: 30
     width: 64
     height: 64
@@ -202,8 +215,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: potion
-    x: 627
-    y: 30
+    x: 733
+    y: 337
     width: 40
     height: 64
     borderLeft: 0
@@ -215,8 +228,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: redbar
-    x: 497
-    y: 12
+    x: 676
+    y: 14
     width: 119
     height: 17
     borderLeft: 0

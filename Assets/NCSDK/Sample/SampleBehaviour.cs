@@ -35,12 +35,14 @@ public class SampleBehaviour : MonoBehaviour {
 
     void Start()
     {
+#if UNITY_ANDORID
         GLink.sharedInstance().init(CafeId, NaverLoginClientId, NaverLoginClientSecret);
 
         if (SupportGlobal)
         {
             GLink.sharedInstance().initGlobal(ConsumerKey, ConsumerSecureKey, CommunityNo, LoungeNo);
         }
+#endif
     }
 
     public void OnClickGlinkButton () {

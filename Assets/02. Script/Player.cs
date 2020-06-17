@@ -116,7 +116,7 @@ public class Player : Character
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             MonsterManager.Instance.mosters.Clear();
             _playerData.cur_hp = _playerData.max_hp;
-            _playerData.saveData(_playerData);
+            DataSave();
          }
 
         if (maxExp <= _playerData.exp)
@@ -132,19 +132,24 @@ public class Player : Character
 
         if (Time.time > nextTime)
         {
-            _playerData.pose_x = transform.position.x;
-            _playerData.pose_y = transform.position.y;
-            _playerData.inven = inventory.InvenSave();
-            _playerData.equip = inventory.IsEquipSave();
+            
             //equipment.EquipSaveCheck();
 
             nextTime = Time.time + TimeLeft;
-            _playerData.saveData(_playerData);
+            DataSave();
            
         }
 
     }
 
+    public void DataSave()
+    {
+        _playerData.pose_x = transform.position.x;
+        _playerData.pose_y = transform.position.y;
+        _playerData.inven = inventory.InvenSave();
+        _playerData.equip = inventory.IsEquipSave();
+        _playerData.saveData(_playerData);
+    }
     
 
     //public void attack(Vector3 directionVec)
@@ -243,20 +248,7 @@ public class Player : Character
         {
             //animator.SetBool("attack", false);
         }
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            if (HpBar.localScale.x > 0.0f)
-            {
-                HpBar.localScale = new Vector3(HpBar.localScale.x - 0.1f, 1.0f, 1.0f);
-            }
-        }
-        if (Input.GetKeyDown(KeyCode.LeftAlt))
-        {
-            if (HpBar.localScale.x < 1.0f)
-            {
-                HpBar.localScale = new Vector3(HpBar.localScale.x + 0.1f, 1.0f, 1.0f);
-            }
-        }
+        
 
     }
 
@@ -344,6 +336,12 @@ public class Player : Character
         if (collision == null)
             return;
 
+        if (collision.gameObject.tag == "key")
+        {
+            inventory.AddItem(new Item { itemType = Item.ItemType.Key });
+            collision.gameObject.SetActive(false);
+        }
+
         if(collision.gameObject.tag == "item")
         {
             Destroy(collision.gameObject);
@@ -355,6 +353,7 @@ public class Player : Character
                 case "potion": inventory.AddItem(new Item { itemType = Item.ItemType.Potion }); break;
                 case "sword": inventory.AddItem(new Item { itemType = Item.ItemType.Sword }); break;
                 case "helmet": inventory.AddItem(new Item { itemType = Item.ItemType.Helmet }); break;
+                case "key": inventory.AddItem(new Item { itemType = Item.ItemType.Key });  break;
 
             }
             
@@ -365,9 +364,21 @@ public class Player : Character
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                Debug.Log("key down space");
-                
-                manager.GetComponent<ManagerController>().change_map(collision.gameObject.name);
+                if (inventory.HaveKey())
+                {
+                    inventory.RemoveKey();
+                    Debug.Log("key down space");
+                    manager.GetComponent<ManagerController>().change_map(collision.gameObject.name);
+                }
+            }
+        }
+
+
+        if (collision.gameObject.tag == "restgoal")
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                   manager.GetComponent<ManagerController>().change_map(collision.gameObject.name);
             }
         }
     }

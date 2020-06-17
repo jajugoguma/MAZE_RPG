@@ -12,6 +12,7 @@ public class Item
         Helmet,
         Armor,
         Potion,
+        Key,
         end
     }
     public Item()
@@ -28,6 +29,7 @@ public class Item
             case ItemType.Sword: return "sword";
             case ItemType.Helmet: return "helmet";
             case ItemType.Potion: return "potion";
+            case ItemType.Key: return "key";
             }
     }
 
@@ -41,6 +43,7 @@ public class Item
             case ItemType.Sword: return ItemAsset.Instance.swordSprite;
             case ItemType.Helmet: return ItemAsset.Instance.helmetSprite;
             case ItemType.Potion: return ItemAsset.Instance.potionSprite;
+            case ItemType.Key: return ItemAsset.Instance.keySprite;
         }
     }
 
@@ -58,6 +61,7 @@ public class Item
             case ItemType.Sword: if (isWearing == false) { isWearing = true; } else { isWearing = false; } break;
             case ItemType.Helmet: if (isWearing == false) { isWearing = true; } else { isWearing = false; };  break;
             case ItemType.Potion: player.UsePotion(); break;
+            case ItemType.Key: break;
         }
     }
 

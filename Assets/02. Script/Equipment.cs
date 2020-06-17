@@ -83,6 +83,9 @@ public class Equipment
 
         return result;
     }
+    
+    
+    
     /*
     public void EquipSaveCheck()
     {

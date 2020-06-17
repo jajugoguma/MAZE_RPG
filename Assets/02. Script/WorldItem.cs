@@ -8,19 +8,6 @@ public class WorldItem
     public Player player;
 
     public const int MaxItemCount = 8;
-    public void TestInsert()
-    {
-        AddItem(new Item { itemType = Item.ItemType.Potion });
-        AddItem(new Item { itemType = Item.ItemType.Sword });
-     //   AddItem(new Item { itemType = Item.ItemType.Potion });
-       // AddItem(new Item { itemType = Item.ItemType.Sword });
-       // AddItem(new Item { itemType = Item.ItemType.Helmet });
-       // AddItem(new Item { itemType = Item.ItemType.Sword });
-        //AddItem(new Item { itemType = Item.ItemType.Armor });
-        //AddItem(new Item { itemType = Item.ItemType.Potion });
-    }
-
-
 
     public WorldItem(Player player_)
     {

@@ -9,6 +9,9 @@ TagManager:
   - goal
   - map
   - item
+  - Drag and Drop Root
+  - restgoal
+  - key
   layers:
   - Default
   - TransparentFX

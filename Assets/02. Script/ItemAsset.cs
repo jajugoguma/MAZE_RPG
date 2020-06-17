@@ -16,6 +16,7 @@ public class ItemAsset : MonoBehaviour
     public Sprite helmetSprite;
     public Sprite potionSprite;
     public Sprite armorSprite;
+    public Sprite keySprite;
 
 
 }

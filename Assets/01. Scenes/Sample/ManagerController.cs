@@ -33,6 +33,9 @@ public class ManagerController : MonoBehaviour
         rest_left_door_position
         , rest_right_door_position, rest_top_door_position, rest_bottom_door_position;
 
+    [SerializeField]
+    private GameObject key;
+
     void Start()
     {
         init_world_map();
@@ -190,6 +193,7 @@ public class ManagerController : MonoBehaviour
         //now_map =maps[random_map[0, 0]];
         now_map = maps[random_map[(int)world_position_l,(int)world_position_r]];
         now_map.SetActive(true);
+        key.SetActive(true);
         select_door();
     }
 
@@ -355,6 +359,7 @@ public class ManagerController : MonoBehaviour
         //maps[random_map[(int)world_postion_l, (int)world_position_r]].SetActive(true);
         now_map = maps[random_map[(int)world_position_l, (int)world_position_r]];
         now_map.SetActive(true);
+        key.SetActive(true);
         rest_room.SetActive(false);
         close_all_rest_door();
         select_door();

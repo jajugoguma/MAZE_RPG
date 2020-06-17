@@ -119,6 +119,7 @@ public class Inventory
 
                 break;
             case Item.ItemType.Potion:
+            case Item.ItemType.Key:
                 itemList.Remove(item);
                 break;
         }
@@ -133,6 +134,29 @@ public class Inventory
 
         itemList.Remove(item);
         */
+    }
+
+    public bool HaveKey()
+    {
+        bool result = false;
+
+        Item curItem = itemList.Find(find => find.itemType == Item.ItemType.Key);
+
+        if (null != curItem)
+            result = true;
+
+
+        return result;
+    }
+
+    public void RemoveKey()
+    {
+        Item curItem = itemList.Find(find => find.itemType == Item.ItemType.Key);
+
+        if (null != curItem)
+            RemoveItem(curItem);
+
+        player.uiInventory.RefreshInventory();
     }
 
 }

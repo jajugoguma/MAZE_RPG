@@ -17,6 +17,8 @@ public class Menubutton : MonoBehaviour
 
     public void exitButtonClicked()
     {
+
+        player.DataSave();
         Application.Quit();
     }
 
