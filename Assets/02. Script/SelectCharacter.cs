@@ -264,11 +264,14 @@ public class SelectCharacter : MonoBehaviour
     public void CheckHardMode()
     {
         if (isHardMode == 0)
+        {
+            mazeGen.maze_size = 15;
             isHardMode = 1;
+        }
         else
+        {
             isHardMode = 0;
-        Debug.Log(isHardMode);
-                   
+            mazeGen.maze_size = 10;
+        }
     }
-
 }

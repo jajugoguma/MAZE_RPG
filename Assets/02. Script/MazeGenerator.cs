@@ -31,7 +31,7 @@ public class MazeGenerator : MonoBehaviour
     public void generate()
     {
         //추후 미로 크기 선택 토글 추가로 변경 가능하게 수정
-        maze_size = 10;
+        //maze_size = 10;
 
         //maze의 값  =>  NO : 0    R : 1    D : 2    RL : 3
         int[] maze = new int[maze_size * maze_size];
