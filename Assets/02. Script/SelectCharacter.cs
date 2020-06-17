@@ -29,8 +29,12 @@ public class SelectCharacter : MonoBehaviour
     public GameObject namInputGO;
     public GameObject createButton;
     public GameObject cancelButton;
+    public GameObject checkBox;
 
     public MazeGenerator mazeGen;
+    private int isHardMode = 1;
+
+
 
     //Andoroid only
 
@@ -98,6 +102,7 @@ public class SelectCharacter : MonoBehaviour
         namInputGO.SetActive(false);
         createButton.SetActive(false);
         cancelButton.SetActive(false);
+        checkBox.SetActive(false);
     }
 
     private void enableCreateObjects()
@@ -105,6 +110,7 @@ public class SelectCharacter : MonoBehaviour
         namInputGO.SetActive(true);
         createButton.SetActive(true);
         cancelButton.SetActive(true);
+        checkBox.SetActive(true);
     }
 
     private void disableSelectObjects()
@@ -254,4 +260,15 @@ public class SelectCharacter : MonoBehaviour
         }
 
     }
+
+    public void CheckHardMode()
+    {
+        if (isHardMode == 0)
+            isHardMode = 1;
+        else
+            isHardMode = 0;
+        Debug.Log(isHardMode);
+                   
+    }
+
 }
