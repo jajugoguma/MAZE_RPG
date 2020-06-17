@@ -7,11 +7,11 @@ public class Menubutton : MonoBehaviour
 {
 
     public GameObject panel;
-    public Joystick joystick;
     public GameObject joystick_;
     public GameObject menu;
     public GameObject uiInventory;
     public GameObject uiEquipment;
+    public GameObject uiSound;
     public Player player;
 
 
@@ -32,6 +32,12 @@ public class Menubutton : MonoBehaviour
         uiEquipment.SetActive(true);
     }
 
+    public void SoundClicked()
+    {
+        menu.SetActive(false);
+        uiSound.SetActive(true);
+    }
+
 
 
     public void onClicked()
@@ -49,11 +55,7 @@ public class Menubutton : MonoBehaviour
             panel.SetActive(true);
             
         }
-      
-       
-       
             
-        
         
         if (menu.activeInHierarchy)
 
@@ -72,6 +74,14 @@ public class Menubutton : MonoBehaviour
         if (uiEquipment.activeInHierarchy)
         {
             uiEquipment.SetActive(false);
+            player.flag = false;
+            panel.SetActive(false);
+            joystick_.SetActive(false);
+        }
+
+        if (uiSound.activeInHierarchy)
+        {
+            uiSound.SetActive(false);
             player.flag = false;
             panel.SetActive(false);
             joystick_.SetActive(false);
