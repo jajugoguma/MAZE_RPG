@@ -22,8 +22,12 @@ public class SlotItemView : MonoBehaviour
     public void SetBtnEvent(UIEventListener.VoidDelegate event_)
     {
         if (null != eventListner)
+        {
             eventListner.onClick = event_;
-        
+        }
+            
+
+
     }
 
     public void SetItemInfo(Item itemInfo_)

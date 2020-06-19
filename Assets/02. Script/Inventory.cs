@@ -101,6 +101,13 @@ public class Inventory
         return itemList;
     }
 
+    public void DropItem(Item item)
+    {
+        if (null == item)
+            return;
+        itemList.Remove(item);
+    }
+
     public void RemoveItem(Item item)
     {
         item.OnAction(player);
