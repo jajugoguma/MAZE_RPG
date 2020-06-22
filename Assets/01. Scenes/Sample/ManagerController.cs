@@ -110,6 +110,7 @@ public class ManagerController : MonoBehaviour
             top_door_position = GameObject.Find("goal_top_15").transform.position;
             bottom_door_position = GameObject.Find("goal_bottom_15").transform.position;
             doors = doors_fifteen;
+
         }
     }
 
@@ -168,6 +169,21 @@ public class ManagerController : MonoBehaviour
         }
     }
 
+    void init_player_position(int size)
+    {
+        Vector3 position;
+
+        if(size==TEN)
+        {
+            position = new Vector3(6, -26, 0);            
+        }
+        else
+        {
+            position = new Vector3(10, -25, 0);            
+        }
+        player.transform.position = position;
+    }
+
     void init_world_map()
     {
         PlayerData data = GameObject.Find("PlayerData").GetComponent<PlayerData>();
@@ -202,6 +218,9 @@ public class ManagerController : MonoBehaviour
         */
         //MonsterManager.Instance.Able();
         select_door();
+        init_player_position(map_size);
+        Debug.Log("player position: "+player.transform.position.x+" "+player.transform.position.y);
+        
     }
 
 
@@ -336,12 +355,12 @@ public class ManagerController : MonoBehaviour
 
     public void select_rest_door(string name)
     {
-        if(name == "goal_left" || name == "goal_right")
+        if(name == "goal_left" || name == "goal_right" || name=="goal_left_15" || name=="goal_right_15")
         {
             rest_doors[3].SetActive(true);
             rest_doors[2].SetActive(true);
         }
-        else
+        else if(name=="goal_bottom" || name=="goal_top" || name == "goal_bottom_15" || name == "goal_top_15")
         {
             rest_doors[0].SetActive(true);
             rest_doors[1].SetActive(true);
@@ -378,25 +397,25 @@ public class ManagerController : MonoBehaviour
     private void set_player_position(string name)
     {
    
-        if (name == "goal_left")
+        if (name == "goal_left" || name == "goal_left_15")
         {
             player.transform.position = rest_right_door_position;      
             world_position_r -= 0.5;
             select_rest_door(name);
         }
-        else if (name == "goal_right")
+        else if (name == "goal_right"|| name == "goal_right_15")
         {
             player.transform.position = rest_left_door_position;
             world_position_r += 0.5;
             select_rest_door(name);
         }
-        else if (name == "goal_top")
+        else if (name == "goal_top"|| name == "goal_top_15")
         {
             player.transform.position = rest_bottom_door_position;
             world_position_l -= 0.5;
             select_rest_door(name);
         }
-        else if(name == "goal_bottom")
+        else if(name == "goal_bottom"|| name == "goal_bottom_15")
         {
             player.transform.position = rest_top_door_position;
             world_position_l += 0.5;
