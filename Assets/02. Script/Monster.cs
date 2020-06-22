@@ -13,7 +13,7 @@ public class Monster : MonoBehaviour
     public float maxHp;
     public float currentHp;
     private float uihp;
-
+    public Vector2 initpos;
 
 
     int MoveSpeed = 3;
@@ -32,7 +32,12 @@ public class Monster : MonoBehaviour
         maxHp = 100f;
         currentHp = maxHp;
         MonsterManager.Instance.mosters.Add(this);
+        initpos = transform.position;
     }
+
+    
+
+
     // Update is called once per frame
     void Update()
     {

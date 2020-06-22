@@ -194,6 +194,13 @@ public class ManagerController : MonoBehaviour
         now_map = maps[random_map[(int)world_position_l,(int)world_position_r]];
         now_map.SetActive(true);
         key.SetActive(true);
+        /*
+        for (int i = 0; i < MonsterManager.Instance.mosters.Count; i++)
+        {
+            MonsterManager.Instance.mosters[i].gameObject.SetActive(true);
+        }
+        */
+        //MonsterManager.Instance.Able();
         select_door();
     }
 
@@ -360,6 +367,8 @@ public class ManagerController : MonoBehaviour
         now_map = maps[random_map[(int)world_position_l, (int)world_position_r]];
         now_map.SetActive(true);
         key.SetActive(true);
+        MonsterManager.Instance.Able();
+        
         rest_room.SetActive(false);
         close_all_rest_door();
         select_door();

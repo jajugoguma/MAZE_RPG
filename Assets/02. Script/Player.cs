@@ -368,6 +368,7 @@ public class Player : Character
                 {
                     inventory.RemoveKey();
                     Debug.Log("key down space");
+                    MonsterManager.Instance.Disable();
                     manager.GetComponent<ManagerController>().change_map(collision.gameObject.name);
                 }
             }
@@ -378,7 +379,11 @@ public class Player : Character
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                   manager.GetComponent<ManagerController>().change_map(collision.gameObject.name);
+                for (int i = 0; i < MonsterManager.Instance.mosters.Count; i++)
+                {
+                    MonsterManager.Instance.mosters[i].resurrection();
+                }
+                manager.GetComponent<ManagerController>().change_map(collision.gameObject.name);
             }
         }
     }

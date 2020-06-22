@@ -12,4 +12,22 @@ public class MonsterManager : MonoSingleton<MonsterManager>
         DontDestroyOnLoad(gameObject);
      //   Debug.Log("xxxxx");
     }
+
+    public void Disable()
+    {
+       for (int i = 0; i<mosters.Count; i++)
+        {
+            mosters[i].gameObject.SetActive(false);
+        }
+    }
+
+    public void Able()
+    {
+        for (int i = 0; i < mosters.Count; i++)
+        {
+            Debug.Log("able");
+            mosters[i].gameObject.SetActive(true);
+            mosters[i].transform.position = mosters[i].initpos;
+        }
+    }
 }
