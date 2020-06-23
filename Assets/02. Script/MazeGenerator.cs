@@ -12,9 +12,14 @@ public class MazeGenerator : MonoBehaviour
     //Door opened cases (Full direction)
     public const int YET = -1, U = 0, D = 1, R = 2, L = 3, UD = 4, UR = 5, UL = 6, UDR = 7,
      UDL = 8, URL = 9, UDRL = 10, DR = 11, DL = 12, DRL = 13, RL = 14;
+#if UNITY_ANDROID
+            [DllImport ("mazeGen")]
+            public static extern int maze_gen(int[] list, int size);
 
+#else
     [DllImport("maze_generator")]
     public static extern int maze_gen(int[] list, int size);
+#endif
     public string mazes;
     public string doors;
     public int maze_size;
