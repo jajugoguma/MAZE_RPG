@@ -6,6 +6,8 @@ public class ManagerController : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject player;
+    public PlayerData data;
+
     public GameObject[] maps;
     public GameObject[] maps_10;
     public GameObject[] maps_15;
@@ -38,6 +40,7 @@ public class ManagerController : MonoBehaviour
 
     void Start()
     {
+        data = GameObject.Find("PlayerData").GetComponent<PlayerData>();
         init_world_map();
         
         //maps = GameObject.FindGameObjectsWithTag("map");
@@ -171,7 +174,7 @@ public class ManagerController : MonoBehaviour
 
     void init_world_map()
     {
-        PlayerData data = GameObject.Find("PlayerData").GetComponent<PlayerData>();
+        
         map_size = data.maze_size;
         off_active(map_size);
         world_position_l = data.world_pose_y;        
@@ -408,7 +411,6 @@ public class ManagerController : MonoBehaviour
 
     private void set_player_position(string name)
     {
-   
         if (name == "goal_left" || name == "goal_left_15")
         {
             player.transform.position = rest_right_door_position;      
@@ -459,6 +461,12 @@ public class ManagerController : MonoBehaviour
             world_position_l += 0.5;
             select_map();
         }
+
+        data.world_pose_x = (int)world_position_r;
+        data.world_pose_y = (int)world_position_l;
+ 
+        data.saveData(data);
+       
     }
 
    

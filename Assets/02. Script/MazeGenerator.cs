@@ -46,8 +46,6 @@ public class MazeGenerator : MonoBehaviour
         int size = 0;
         size = maze_gen(maze, maze_size);
 
-
-        //mazes는 추후 미로의 인덱스 값으로 변경
         mazes = "";
 
         System.Random r = new System.Random();
