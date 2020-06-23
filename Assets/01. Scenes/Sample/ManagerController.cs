@@ -227,12 +227,41 @@ public class ManagerController : MonoBehaviour
     public void select_door()
     {
         close_all_rest_door();
-        //activeAllWalls();
+        activeAllWalls();
         int now = world_doors[(int)world_position_l, (int)world_position_r];
         const int YET = -1, U = 0, D = 1, R = 2, L = 3, UD = 4, UR = 5, UL = 6, UDR = 7,
      UDL = 8, URL = 9, UDRL = 10, DR = 11, DL = 12, DRL = 13, RL = 14;
 
+        const int Up = 2, Down = 3, Right = 5, Left = 7;
+
+
         Debug.Log("select_door call! now door: " + now);
+
+        if (now % Up == 0)
+        {
+            doors[0].SetActive(true);
+            door_walls[0].SetActive(false);
+        }
+
+        if (now % Down == 0)
+        {
+            doors[1].SetActive(true);
+            door_walls[1].SetActive(false);
+        }
+
+        if (now % Right == 0)
+        {
+            doors[3].SetActive(true);
+            door_walls[3].SetActive(false);
+        }
+
+        if (now % Left == 0)
+        {
+            doors[2].SetActive(true);
+            door_walls[2].SetActive(false);
+        }
+
+        /*
         switch (now)
         {
             case YET:
@@ -332,6 +361,7 @@ public class ManagerController : MonoBehaviour
                 door_walls[3].SetActive(true);
                 break;
         }
+        */
 
         }
 

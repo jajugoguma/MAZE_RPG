@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using System.Runtime.InteropServices;
 
@@ -8,10 +9,8 @@ public class MazeGenerator : MonoBehaviour
 {
     //Door opened cases (Self view)
     public const int NO = 0, RIGHT = 1, DOWN = 2, DOWNRIGHT = 3;
+    public const int Up = 2, Down = 3, Right = 5, Left = 7;
 
-    //Door opened cases (Full direction)
-    public const int YET = -1, U = 0, D = 1, R = 2, L = 3, UD = 4, UR = 5, UL = 6, UDR = 7,
-     UDL = 8, URL = 9, UDRL = 10, DR = 11, DL = 12, DRL = 13, RL = 14;
 #if UNITY_ANDROID
             [DllImport ("mazeGen")]
             public static extern int maze_gen(int[] list, int size);
@@ -39,6 +38,9 @@ public class MazeGenerator : MonoBehaviour
         //maze_size = 10;
 
         //maze의 값  =>  NO : 0    R : 1    D : 2    RL : 3
+
+        //maze door의 값 => Up : 2    Down : 3    Right : 5   Left : 7    의 곱
+
         int[] maze = new int[maze_size * maze_size];
 
         int size = 0;
@@ -52,8 +54,8 @@ public class MazeGenerator : MonoBehaviour
 
         for (int i = 0; i < maze_size * maze_size; i++)
         {
-            maze[i] = r.Next(0, maze_size - 1);
-            mazes = mazes + maze[i].ToString() + ' ';
+            int tmp = r.Next(0, maze_size - 1);
+            mazes = mazes + tmp.ToString() + ' ';
         }
 
         in_x = 0;
@@ -61,89 +63,45 @@ public class MazeGenerator : MonoBehaviour
 
         out_x = maze_size - 1;
         out_y = maze_size - 1;
-               
+
 
         //door open cases
-        
-        int[] door = new int[maze_size * maze_size];
+
+        //int[] door = new int[maze_size * maze_size];
+        int[] door = Enumerable.Repeat<int>(1, maze_size * maze_size).ToArray<int>();
 
         for (int i = 0; i < maze_size; i++)
         {
             for (int j = 0; j < maze_size; j++) 
             {
                 int index = maze_size * i + j;
-                //Check self view
-                switch(maze[index])
+
+                switch (maze[index])
                 {
                     case NO:
-                        door[index] = YET;
                         break;
                     case RIGHT:
-                        door[index] = R;
+                        door[index] *= Right;
+                        door[index + 1] *= Left;
                         break;
                     case DOWN:
-                        door[index] = D;
+                        door[index] *= Down;
+                        door[index + maze_size] *= Up;
                         break;
                     case DOWNRIGHT:
-                        door[index] = DR;
+                        door[index] *= Right;
+                        door[index] *= Down;
+                        door[index + 1] *= Left;
+                        door[index + maze_size] *= Up;
                         break;
-                }
-
-                //왼쪽 값 검사 (오른쪽이 열렸는지만 검사)
-                if (j != 0 && maze[index - 1] == R) {
-                    switch(door[index])
-                    {
-                        case YET:
-                            door[index] = L;
-                            break;
-                        case R:
-                            door[index] = RL;
-                            break;
-                        case D:
-                            door[index] = DL;
-                            break;
-                        case DR:
-                            door[index] = DRL;
-                            break;
-                    }
-                }
-
-                //위쪽 값 검사 (아래가 열렸는지만 검사)
-                if (i != 0 && maze[index - (maze_size * i)] == D) 
-                {
-                    switch(door[index])
-                    {
-                        case YET:
-                            door[index] = U;
-                            break;
-                        case R:
-                            door[index] = UR;
-                            break;
-                        case D:
-                            door[index] = UD;
-                            break;
-                        case DR:
-                            door[index] = UDR;
-                            break;
-                        case L:
-                            door[index] = UL;
-                            break;
-                        case RL:
-                            door[index] = URL;
-                            break;
-                        case DL:
-                            door[index] = UDL;
-                            break;
-                        case DRL:
-                            door[index] = UDRL;
-                            break;
-                    }
                 }
             }
         }
 
-        doors = "";
+        door[maze_size * maze_size - 1] *= Right;
 
+        doors = "";
+         
         for (int i = 0; i < maze_size * maze_size; i++)
         {
             doors = doors + door[i].ToString() + ' ';
