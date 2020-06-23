@@ -157,7 +157,7 @@ public class Player : Character
     {
         animator.SetFloat("Attack_Horizontal", directionVec.x);
         animator.SetFloat("Attack_Vertical", directionVec.y);
-
+        
         animator.SetBool("attack", true);
 
         for (int i = 0; i < MonsterManager.Instance.mosters.Count; i++)
@@ -197,9 +197,30 @@ public class Player : Character
     {
         moveVector.x = CrossPlatformInputManager.GetAxisRaw("Horizontal");
         moveVector.y = CrossPlatformInputManager.GetAxisRaw("Vertical");
+
+        if (Mathf.Abs(moveVector.x) >= 0.5 || Mathf.Abs(moveVector.y) >= 0.5) 
+        {
+            if (moveVector.x >= 0.5) 
+            {
+                directionVec = Vector3.right;
+            }
+            else if (moveVector.x <= -0.5) 
+            {
+                directionVec = Vector3.left;
+            }
+            else if (moveVector.y >= 0.5)
+            {
+                directionVec = Vector3.up;
+            }
+            else if (moveVector.y <= -0.5) 
+            {
+                directionVec = Vector3.down;
+            }
+        }
+
         moveVector.z = 0f;
         moveVector.Normalize();
-        Debug.Log(moveVector);
+        //Debug.Log(moveVector);
         movement = moveVector;
     }
 

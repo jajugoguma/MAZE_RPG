@@ -51,7 +51,7 @@ public class Monster : MonoBehaviour
             if (Vector3.Distance(transform.position, player.transform.position) >= MinDist)
             {
                 Ray(moveVec);
-                Debug.Log("chasing");
+                //Debug.Log("chasing");
             }
         }
         else
@@ -113,7 +113,7 @@ public class Monster : MonoBehaviour
     void Ray(Vector3 vec)
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, vec, MaxDist);
-        Debug.Log(hit.transform.name);
+        //Debug.Log(hit.transform.name);
         if (hit.transform.name.Equals("wall"))
         {
             //animator.SetBool("move", false);

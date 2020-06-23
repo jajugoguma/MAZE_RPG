@@ -71,7 +71,7 @@ public class ManagerController : MonoBehaviour
             {
                 for (int j = 0; j < 15; j++)
                 {
-                    random_map[i, j] = int.Parse(token[i * 10 + j]);
+                    random_map[i, j] = int.Parse(token[i * 15 + j]);
                 }
             }
         }
@@ -169,21 +169,6 @@ public class ManagerController : MonoBehaviour
         }
     }
 
-    void init_player_position(int size)
-    {
-        Vector3 position;
-
-        if(size==TEN)
-        {
-            position = new Vector3(6, -26, 0);            
-        }
-        else
-        {
-            position = new Vector3(10, -25, 0);            
-        }
-        player.transform.position = position;
-    }
-
     void init_world_map()
     {
         PlayerData data = GameObject.Find("PlayerData").GetComponent<PlayerData>();
@@ -218,9 +203,6 @@ public class ManagerController : MonoBehaviour
         */
         //MonsterManager.Instance.Able();
         select_door();
-        init_player_position(map_size);
-        Debug.Log("player position: "+player.transform.position.x+" "+player.transform.position.y);
-        
     }
 
 

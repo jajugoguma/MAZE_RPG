@@ -34,7 +34,7 @@ using UnityStandardAssets.CrossPlatformInput;
         void Start()
         {
             m_StartPos = transform.position;
-            Debug.Log(Cursor.lockState);
+            //Debug.Log(Cursor.lockState);
             Cursor.lockState = CursorLockMode.Confined;
 
     }

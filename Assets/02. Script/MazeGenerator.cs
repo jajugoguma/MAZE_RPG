@@ -52,61 +52,15 @@ public class MazeGenerator : MonoBehaviour
 
         for (int i = 0; i < maze_size * maze_size; i++)
         {
-            maze[i] = r.Next(0, 9);
+            maze[i] = r.Next(0, maze_size - 1);
             mazes = mazes + maze[i].ToString() + ' ';
         }
 
+        in_x = 0;
+        in_y = 0;
 
-        //입구의 위치 랜덤하게 생성
-        if (r.Next(0,1) == 0)
-        {
-            if (r.Next(0, 1) == 0) 
-            {
-                in_x = 0;            
-            } 
-            else 
-            {
-                in_x = 9;
-            }
-            in_y = r.Next(0, 9);
-        }
-        else
-        {
-            if (r.Next(0, 1) == 0)
-            {
-                in_y = 0;
-            }
-            else
-            {
-                in_y = 9;
-            }
-            in_y = r.Next(0, 9);
-        }
-        //출구의 위치 랜덤하게 생성
-         if (r.Next(0,1) == 0)
-        {
-            if (r.Next(0, 1) == 0) 
-            {
-                out_x = 0;            
-            } 
-            else 
-            {
-                out_x = 9;
-            }
-            out_y = r.Next(0, 9);
-        }
-        else
-        {
-            if (r.Next(0, 1) == 0)
-            {
-                out_y = 0;
-            }
-            else
-            {
-                out_y = 9;
-            }
-            out_y = r.Next(0, 9);
-        }
+        out_x = maze_size - 1;
+        out_y = maze_size - 1;
                
 
         //door open cases
