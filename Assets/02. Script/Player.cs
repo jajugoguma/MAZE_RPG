@@ -421,8 +421,8 @@ public class Player : Character
 
             if (inventory.HaveKey())
             {
-                MobileActionBtn.SetActive(true);
                 tmp_collision = collision;
+                MobileActionBtn.SetActive(true);       
             }
             
 #endif
@@ -446,6 +446,7 @@ public class Player : Character
             if (!_playerData.printRanking)
                 description.text = "<space> to enter";
 #if UNITY_ANDROID
+            tmp_collision = collision;
             MobileActionBtn2.SetActive(true);
            
 #endif
