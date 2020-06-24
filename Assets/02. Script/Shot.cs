@@ -138,7 +138,7 @@ public class Shot : MonoBehaviour
 
         byte[] bytes = virtualPhoto.EncodeToPNG();
 
-        System.IO.File.WriteAllBytes(@"C:\Users\jajug\Pictures\map_10_" + num.ToString() + ".png", bytes);
+        System.IO.File.WriteAllBytes(@"C:\Users\jajug\Pictures\15\map_15_" + num.ToString() + ".png", bytes);
 
         Debug.Log("All done! Always happy to help you :)");
     }
