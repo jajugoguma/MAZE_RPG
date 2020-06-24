@@ -211,6 +211,8 @@ public class SelectCharacter : MonoBehaviour
     {
         mazeGen.generate();
 
+        Debug.Log(mazeGen.maze_size.ToString());
+
         WWWForm form = new WWWForm();
         form.AddField("param_id", InfoManager.Instance.id);
         form.AddField("param_name", name_Input.value);
@@ -266,6 +268,7 @@ public class SelectCharacter : MonoBehaviour
         if (isHardMode == 0)
         {
             mazeGen.maze_size = 15;
+            Debug.Log("selected");
             isHardMode = 1;
         }
         else

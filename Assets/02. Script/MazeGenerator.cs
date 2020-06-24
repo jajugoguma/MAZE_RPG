@@ -29,7 +29,7 @@ public class MazeGenerator : MonoBehaviour
 
     void Start()
     {
-        generate();
+ 
     }
 
     public void generate()
@@ -40,7 +40,7 @@ public class MazeGenerator : MonoBehaviour
         //maze의 값  =>  NO : 0    R : 1    D : 2    RL : 3
 
         //maze door의 값 => Up : 2    Down : 3    Right : 5   Left : 7    의 곱
-
+        Debug.Log(maze_size.ToString());
         int[] maze = new int[maze_size * maze_size];
 
         int size = 0;

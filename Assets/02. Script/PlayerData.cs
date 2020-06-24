@@ -29,6 +29,7 @@ public class PlayerData : MonoBehaviour
     public string equip;
 
     private string saveURL = "http://jajugoguma.synology.me/SaveChar.php";
+    public bool printRanking = false;
 
     void Awake()
     {

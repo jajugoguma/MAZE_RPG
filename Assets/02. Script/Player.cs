@@ -32,17 +32,13 @@ public class Player : Character
     private float uihp;
     public int maxExp;
 
-
+    public UILabel description;
 
     public PlayerData _playerData;
 
     private float TimeLeft = 10.0f;
     private float nextTime = 0.0f;
 
-
-   
-
-   
 
     private bool isKeyDwnRight, isKeyDwnLeft, isKeyDwnUp, isKeyDwnDown;
 
@@ -58,12 +54,12 @@ public class Player : Character
         worldItem = new WorldItem(this);
         equipment = new Equipment(this);
         inventory = new Inventory(this);
-        
-        
 
-        
 
-      
+
+
+
+
         maxExp = _playerData.level * 50;
 
         uiInventory.SetInventory(inventory);
@@ -71,7 +67,7 @@ public class Player : Character
         uiWorldItem.SetWorldItem(worldItem);
 
         ui_exp.ExpUIReflash();
-        inventory.SettingInven(_playerData.inven,_playerData.equip);
+        inventory.SettingInven(_playerData.inven, _playerData.equip);
 
 
         uihp = (float)_playerData.cur_hp / _playerData.max_hp;
@@ -86,15 +82,31 @@ public class Player : Character
         isKeyDwnRight = false; isKeyDwnLeft = false; isKeyDwnUp = false; isKeyDwnDown = false;
 
         //expBar.value = 1;
+
+        if ((_playerData.maze_size == 10 && _playerData.pose_x == 6 && _playerData.pose_y == -26)
+            || (_playerData.maze_size == 15 && _playerData.pose_x == 10 && _playerData.pose_y == -25))
+        {
+            StartCoroutine(printFirst());
+        }
+    }
+
+    IEnumerator printFirst()
+    {
+        description.text = "여긴 어디지...?";
+        yield return new WaitForSeconds(3);
+        description.text = "도대체 뭐하는 곳이야...";
+        yield return new WaitForSeconds(3);
+        description.text = "어서 탈출해야겠어";
+        yield return new WaitForSeconds(3);
+        description.text = "";
     }
 
     // Update is called once per frame
     protected override void Update()
     {
 
-
         GetInput();
-        
+
 
 #if UNITY_ANDROID
         if(flag)
@@ -112,12 +124,12 @@ public class Player : Character
 
         if (_playerData.cur_hp <= 0)
         {
-            
+
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             MonsterManager.Instance.mosters.Clear();
             _playerData.cur_hp = _playerData.max_hp;
             DataSave();
-         }
+        }
 
         if (maxExp <= _playerData.exp)
         {
@@ -132,12 +144,12 @@ public class Player : Character
 
         if (Time.time > nextTime)
         {
-            
+
             //equipment.EquipSaveCheck();
 
             nextTime = Time.time + TimeLeft;
             DataSave();
-           
+
         }
 
     }
@@ -150,14 +162,14 @@ public class Player : Character
         _playerData.equip = inventory.IsEquipSave();
         _playerData.saveData(_playerData);
     }
-    
+
 
     //public void attack(Vector3 directionVec)
     public void attack()
     {
         animator.SetFloat("Attack_Horizontal", directionVec.x);
         animator.SetFloat("Attack_Vertical", directionVec.y);
-        
+
         animator.SetBool("attack", true);
 
         for (int i = 0; i < MonsterManager.Instance.mosters.Count; i++)
@@ -180,7 +192,7 @@ public class Player : Character
 
     private void AttackMoster(Monster monster)
     {
-        
+
         // 나중에 맞는 애니메이션 및 채력 관련한 func 추가
         if (Time.time > lastAttacked + attackDelay)
         {
@@ -188,7 +200,7 @@ public class Player : Character
             monster.attacked(_playerData.atk);
             lastAttacked = Time.time;
         }
-        
+
 
     }
 
@@ -198,13 +210,13 @@ public class Player : Character
         moveVector.x = CrossPlatformInputManager.GetAxisRaw("Horizontal");
         moveVector.y = CrossPlatformInputManager.GetAxisRaw("Vertical");
 
-        if (Mathf.Abs(moveVector.x) >= 0.5 || Mathf.Abs(moveVector.y) >= 0.5) 
+        if (Mathf.Abs(moveVector.x) >= 0.5 || Mathf.Abs(moveVector.y) >= 0.5)
         {
-            if (moveVector.x >= 0.5) 
+            if (moveVector.x >= 0.5)
             {
                 directionVec = Vector3.right;
             }
-            else if (moveVector.x <= -0.5) 
+            else if (moveVector.x <= -0.5)
             {
                 directionVec = Vector3.left;
             }
@@ -212,7 +224,7 @@ public class Player : Character
             {
                 directionVec = Vector3.up;
             }
-            else if (moveVector.y <= -0.5) 
+            else if (moveVector.y <= -0.5)
             {
                 directionVec = Vector3.down;
             }
@@ -231,7 +243,7 @@ public class Player : Character
 
     private void GetInput()
     {
-        
+
         moveVector.x = Input.GetAxisRaw("Horizontal");
         moveVector.y = Input.GetAxisRaw("Vertical");
         moveVector.z = 0f;
@@ -269,7 +281,7 @@ public class Player : Character
         {
             //animator.SetBool("attack", false);
         }
-        
+
 
     }
 
@@ -333,7 +345,7 @@ public class Player : Character
 
         _playerData.cur_hp -= (int)attackdamage;
         uihp = (float)_playerData.cur_hp / _playerData.max_hp;
-      
+
         if (HpBar.localScale.x > 0.0f)
             HpBar.localScale = new Vector3(uihp, 1.0f, 1.0f);
     }
@@ -348,14 +360,17 @@ public class Player : Character
 
         uihp = (float)_playerData.cur_hp / _playerData.max_hp;
         HpBar.localScale = new Vector3(uihp, 1.0f, 1.0f);
-     }
+    }
 
-    
+
 
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision == null)
+        {
+
             return;
+        }
 
         if (collision.gameObject.tag == "key")
         {
@@ -363,7 +378,7 @@ public class Player : Character
             collision.gameObject.SetActive(false);
         }
 
-        if(collision.gameObject.tag == "item")
+        if (collision.gameObject.tag == "item")
         {
             Destroy(collision.gameObject);
             Sprite sprite = collision.GetComponent<SpriteRenderer>().sprite;
@@ -374,19 +389,30 @@ public class Player : Character
                 case "potion": inventory.AddItem(new Item { itemType = Item.ItemType.Potion }); break;
                 case "sword": inventory.AddItem(new Item { itemType = Item.ItemType.Sword }); break;
                 case "helmet": inventory.AddItem(new Item { itemType = Item.ItemType.Helmet }); break;
-                case "key": inventory.AddItem(new Item { itemType = Item.ItemType.Key });  break;
-
+                case "key": inventory.AddItem(new Item { itemType = Item.ItemType.Key }); break;
             }
-            
-            
         }
 
         if (collision.gameObject.tag == "goal")
         {
+            
+            if (!_playerData.printRanking)
+            {
+                if (!inventory.HaveKey())
+                {
+                    description.text = "Need key to escape";
+                }
+                else
+                {
+                    description.text = "<space> to escape";
+                }  
+            }
+
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 if (inventory.HaveKey())
                 {
+                    description.text = "";
                     inventory.RemoveKey();
                     Debug.Log("key down space");
                     MonsterManager.Instance.Disable();
@@ -398,8 +424,11 @@ public class Player : Character
 
         if (collision.gameObject.tag == "restgoal")
         {
+            if (!_playerData.printRanking)
+                description.text = "<space> to enter";
             if (Input.GetKeyDown(KeyCode.Space))
             {
+                description.text = "";
                 for (int i = 0; i < MonsterManager.Instance.mosters.Count; i++)
                 {
                     MonsterManager.Instance.mosters[i].resurrection();
@@ -409,11 +438,18 @@ public class Player : Character
         }
     }
 
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (!_playerData.printRanking)
+            description.text = "";
+    }
+
+
     //공격 애니메이션 종료 확인
     public void setAttackfalse()
     {
         animator.SetBool("attack", false);
     }
 
-    
+
 }

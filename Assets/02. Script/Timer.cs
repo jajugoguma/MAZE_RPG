@@ -14,9 +14,7 @@ public class Timer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        sw = new Stopwatch();
-        pre_second = 0;
-        sw.Start();
+        setTimer();
     }
 
     // Update is called once per frame
@@ -34,6 +32,13 @@ public class Timer : MonoBehaviour
             pre_second = second;
             Debug.Log("StopWatch : " + second.ToString() + "s");
         }
+    }
+
+    public void setTimer()
+    {
+        sw = new Stopwatch();
+        pre_second = 0;
+        sw.Start();
     }
 
     public int getDuration()

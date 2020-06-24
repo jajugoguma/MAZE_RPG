@@ -22,6 +22,8 @@ public class ManagerController : MonoBehaviour
     public GameObject[] rest_doors;
     public GameObject rest_room;
 
+    public Timer timer;
+
     private GameObject now_map;
     public Image image;
     public int[,] world_map_ten;
@@ -38,11 +40,19 @@ public class ManagerController : MonoBehaviour
     [SerializeField]
     private GameObject key;
 
+    public UILabel description;
+
+    private string[] ranks;
+
+
+    private string rankURL = "http://jajugoguma.synology.me/Ranking.php";
+
     void Start()
     {
+        timer = GameObject.Find("Timer").GetComponent<Timer>();
         data = GameObject.Find("PlayerData").GetComponent<PlayerData>();
         init_world_map();
-        
+
         //maps = GameObject.FindGameObjectsWithTag("map");
         Debug.Log("maps length: " + maps.Length);
 #if UNITY_ANDROID
@@ -56,7 +66,7 @@ public class ManagerController : MonoBehaviour
     void set_random_map(string r_str)
     {
         string[] token = r_str.Split(' ');
-        if(map_size == TEN)
+        if (map_size == TEN)
         {
             random_map = new int[10, 10];
             for (int i = 0; i < 10; i++)
@@ -82,7 +92,7 @@ public class ManagerController : MonoBehaviour
 
     void close_all_door()
     {
-        for(int i=0;i<doors.Length;i++)
+        for (int i = 0; i < doors.Length; i++)
         {
             doors[i].SetActive(false);
         }
@@ -90,7 +100,7 @@ public class ManagerController : MonoBehaviour
 
     void close_all_rest_door()
     {
-        for(int i=0;i<rest_doors.Length;i++)
+        for (int i = 0; i < rest_doors.Length; i++)
         {
             rest_doors[i].SetActive(false);
         }
@@ -98,7 +108,7 @@ public class ManagerController : MonoBehaviour
 
     void set_doors()
     {
-        if(map_size == TEN)
+        if (map_size == TEN)
         {
             left_door_position = GameObject.Find("goal_left").transform.position;
             right_door_position = GameObject.Find("goal_right").transform.position;
@@ -161,10 +171,10 @@ public class ManagerController : MonoBehaviour
     }
     private void select_maps(int size)
     {
-        if(size == TEN)
+        if (size == TEN)
         {
             maps = maps_10;
-            
+
         }
         else
         {
@@ -174,10 +184,10 @@ public class ManagerController : MonoBehaviour
 
     void init_world_map()
     {
-        
+
         map_size = data.maze_size;
         off_active(map_size);
-        world_position_l = data.world_pose_y;        
+        world_position_l = data.world_pose_y;
         world_position_r = data.world_pose_x;
         Debug.Log("l:" + world_position_l + " " + " r:" + world_position_r);
         set_doors_array(data.doors, map_size);
@@ -195,7 +205,7 @@ public class ManagerController : MonoBehaviour
         close_all_rest_door();
         close_all_door();
         //now_map =maps[random_map[0, 0]];
-        now_map = maps[random_map[(int)world_position_l,(int)world_position_r]];
+        now_map = maps[random_map[(int)world_position_l, (int)world_position_r]];
         now_map.SetActive(true);
         key.SetActive(true);
         /*
@@ -209,12 +219,12 @@ public class ManagerController : MonoBehaviour
     }
 
 
-   
 
-    
+
+
     IEnumerator Fade()
     {
-        for (float f = 1f; f >= 0; f -= 0.0045f) 
+        for (float f = 1f; f >= 0; f -= 0.0045f)
         {
             Color c = image.material.color;
             c.a = f;
@@ -223,7 +233,7 @@ public class ManagerController : MonoBehaviour
         }
     }
 
-    
+
     /*
      * 문을 어떻게 할지
      */
@@ -232,8 +242,6 @@ public class ManagerController : MonoBehaviour
         close_all_rest_door();
         activeAllWalls();
         int now = world_doors[(int)world_position_l, (int)world_position_r];
-        const int YET = -1, U = 0, D = 1, R = 2, L = 3, UD = 4, UR = 5, UL = 6, UDR = 7,
-     UDL = 8, URL = 9, UDRL = 10, DR = 11, DL = 12, DRL = 13, RL = 14;
 
         const int Up = 2, Down = 3, Right = 5, Left = 7;
 
@@ -263,119 +271,16 @@ public class ManagerController : MonoBehaviour
             doors[2].SetActive(true);
             door_walls[2].SetActive(false);
         }
-
-        /*
-        switch (now)
-        {
-            case YET:
-                break;
-            case U:
-                doors[0].SetActive(true);
-                door_walls[0].SetActive(true);
-                break;
-            case D:
-                doors[1].SetActive(true);
-                door_walls[1].SetActive(true);
-                break;
-            case R:
-                doors[3].SetActive(true);
-                door_walls[3].SetActive(true);
-                break;
-            case L:
-                doors[2].SetActive(true);
-                door_walls[2].SetActive(true);
-                break;
-            case UD:
-                doors[0].SetActive(true);
-                door_walls[0].SetActive(true);
-                doors[1].SetActive(true);
-                door_walls[1].SetActive(true);
-                break;
-            case UL:
-                doors[2].SetActive(true);
-                door_walls[2].SetActive(true);
-                doors[0].SetActive(true);
-                door_walls[0].SetActive(true);
-                break;
-            case UR:
-                doors[3].SetActive(true);
-                door_walls[3].SetActive(true);
-                doors[0].SetActive(true);
-                door_walls[0].SetActive(true);
-                break;
-            case UDR:
-                doors[3].SetActive(true);
-                door_walls[3].SetActive(true);
-                doors[1].SetActive(true);
-                door_walls[1].SetActive(true);
-                doors[0].SetActive(true);
-                door_walls[0].SetActive(true);
-                break;
-            case UDL:
-                doors[2].SetActive(true);
-                door_walls[2].SetActive(true);
-                doors[1].SetActive(true);
-                door_walls[1].SetActive(true);
-                doors[0].SetActive(true);
-                door_walls[0].SetActive(true);
-                break;
-            case URL:
-                doors[2].SetActive(true);
-                door_walls[2].SetActive(true);
-                doors[3].SetActive(true);
-                door_walls[3].SetActive(true);
-                doors[0].SetActive(true);
-                door_walls[0].SetActive(true);
-                break;
-            case UDRL:
-                doors[2].SetActive(true);
-                door_walls[2].SetActive(true);
-                doors[3].SetActive(true);
-                door_walls[3].SetActive(true);
-                doors[1].SetActive(true);
-                door_walls[1].SetActive(true);
-                doors[0].SetActive(true);
-                door_walls[0].SetActive(true);
-                break;
-            case DR:
-                doors[3].SetActive(true);
-                door_walls[3].SetActive(true);
-                doors[1].SetActive(true);
-                door_walls[1].SetActive(true);
-                break;
-            case DL:
-                doors[2].SetActive(true);
-                door_walls[2].SetActive(true);
-                doors[1].SetActive(true);
-                door_walls[1].SetActive(true);
-                break;
-            case DRL:
-                doors[2].SetActive(true);
-                door_walls[2].SetActive(true);
-                doors[3].SetActive(true);
-                door_walls[3].SetActive(true);
-                doors[1].SetActive(true);
-                door_walls[1].SetActive(true);
-                break;
-            case RL:
-                doors[2].SetActive(true);
-                door_walls[2].SetActive(true);
-                doors[3].SetActive(true);
-                door_walls[3].SetActive(true);
-                break;
-        }
-        */
-
-        }
+    }
 
     public void select_rest_door(string name)
     {
-        if(name == "goal_left" || name == "goal_right" || name=="goal_left_15" || name=="goal_right_15")
+        if (name == "goal_left" || name == "goal_right" || name == "goal_left_15" || name == "goal_right_15")
         {
             rest_doors[3].SetActive(true);
             rest_doors[2].SetActive(true);
         }
-        else if(name=="goal_bottom" || name=="goal_top" || name == "goal_bottom_15" || name == "goal_top_15")
+        else if (name == "goal_bottom" || name == "goal_top" || name == "goal_bottom_15" || name == "goal_top_15")
         {
             rest_doors[0].SetActive(true);
             rest_doors[1].SetActive(true);
@@ -402,7 +307,7 @@ public class ManagerController : MonoBehaviour
         now_map.SetActive(true);
         key.SetActive(true);
         MonsterManager.Instance.Able();
-        
+
         rest_room.SetActive(false);
         close_all_rest_door();
         select_door();
@@ -413,63 +318,70 @@ public class ManagerController : MonoBehaviour
     {
         if (name == "goal_left" || name == "goal_left_15")
         {
-            player.transform.position = rest_right_door_position;      
+            player.transform.position = rest_right_door_position;
             world_position_r -= 0.5;
             select_rest_door(name);
+            ranking((int)(world_position_r + 0.5), (int)world_position_l);
         }
-        else if (name == "goal_right"|| name == "goal_right_15")
+        else if (name == "goal_right" || name == "goal_right_15")
         {
             player.transform.position = rest_left_door_position;
             world_position_r += 0.5;
             select_rest_door(name);
+            ranking((int)(world_position_r - 0.5), (int)world_position_l);
         }
-        else if (name == "goal_top"|| name == "goal_top_15")
+        else if (name == "goal_top" || name == "goal_top_15")
         {
             player.transform.position = rest_bottom_door_position;
             world_position_l -= 0.5;
             select_rest_door(name);
+            ranking((int)world_position_r, (int)(world_position_l + 0.5));
         }
-        else if(name == "goal_bottom"|| name == "goal_bottom_15")
+        else if (name == "goal_bottom" || name == "goal_bottom_15")
         {
             player.transform.position = rest_top_door_position;
             world_position_l += 0.5;
-            
             select_rest_door(name);
+            ranking((int)world_position_r, (int)(world_position_l - 0.5));
         }
-        else if(name == "rest_goal_left")
+        else if (name == "rest_goal_left")
         {
             player.transform.position = right_door_position;
             world_position_r -= 0.5;
             select_map();
+            timer.setTimer();
         }
-        else if(name == "rest_goal_right")
+        else if (name == "rest_goal_right")
         {
-            
+
             player.transform.position = left_door_position;
             world_position_r += 0.5;
             select_map();
+            timer.setTimer();
         }
-        else if(name == "rest_goal_top")
+        else if (name == "rest_goal_top")
         {
             player.transform.position = bottom_door_position;
             world_position_l -= 0.5;
             select_map();
+            timer.setTimer();
         }
-        else if(name == "rest_goal_bottom")
+        else if (name == "rest_goal_bottom")
         {
             player.transform.position = top_door_position;
             world_position_l += 0.5;
             select_map();
+            timer.setTimer();
         }
 
         data.world_pose_x = (int)world_position_r;
         data.world_pose_y = (int)world_position_l;
- 
+
         data.saveData(data);
-       
+
     }
 
-   
+
     public void change_map(string name)
     {
         Debug.Log("function change_map call");
@@ -480,4 +392,71 @@ public class ManagerController : MonoBehaviour
         StartCoroutine("Fade");
 #endif    
     }
+
+    public void ranking(int world_pose_x, int world_pose_y)
+    {
+        data.printRanking = true;
+        int duration = timer.getDuration();
+        if (duration > 20)
+        {
+            StartCoroutine(setRank(duration, world_pose_y, world_pose_y));
+        }
+    }
+
+    IEnumerator setRank(int dur, int world_pose_x, int world_pose_y)
+    {
+        WWWForm form = new WWWForm();
+        form.AddField("param_maze_size", data.maze_size);
+        form.AddField("param_maze_index", random_map[world_pose_x, world_pose_y]);
+        form.AddField("param_name", data.name);
+        form.AddField("param_duration", dur);
+
+        WWW _www = new WWW(rankURL, form);
+        yield return _www;
+
+        Debug.Log(_www.text);
+
+        if (_www.error == null)
+        {
+            ranks = _www.text.Split(';');
+        }
+        else
+        {
+            Debug.Log("Something worng...");
+        }
+
+        StartCoroutine(printRank());
+    }
+
+    IEnumerator printRank()
+    {
+        description.text = "Ranking of previous maze";
+        yield return new WaitForSeconds(2);
+        for (int i = 0; i < ranks.Length - 1; i++)
+        {
+            string s;
+            switch(i)
+            {
+                case 0:
+                    s = "1st : ";
+                    break;
+                case 1:
+                    s = "2nd : ";
+                    break;
+                case 2:
+                    s = "3rd : ";
+                    break;
+                default:
+                    s = (i + 1).ToString() + "th : ";
+                    break;
+            }
+            description.text = s + " : " + ranks[i] + "s";
+            yield return new WaitForSeconds(2);
+
+            if (i >= 4) break;
+        }
+        description.text = "";
+        data.printRanking = false;
+    }
 }
+
