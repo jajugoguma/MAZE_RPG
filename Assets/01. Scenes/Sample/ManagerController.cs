@@ -29,7 +29,7 @@ public class ManagerController : MonoBehaviour
     public int[,] world_map_ten;
     public int[,] random_map;
     private int[,] world_doors;
-    public double world_position_l, world_position_r;
+    public float world_position_l, world_position_r;
     private const int TEN = 10;
     private const int FIFTEEN = 15;
     public int map_size;
@@ -204,6 +204,7 @@ public class ManagerController : MonoBehaviour
 
         close_all_rest_door();
         close_all_door();
+
         //now_map =maps[random_map[0, 0]];
         now_map = maps[random_map[(int)world_position_l, (int)world_position_r]];
         now_map.SetActive(true);
@@ -216,6 +217,19 @@ public class ManagerController : MonoBehaviour
         */
         //MonsterManager.Instance.Able();
         select_door();
+
+        if (world_position_r % 1 != 0)
+        {
+            select_rest_door("goal_left");
+            MonsterManager.Instance.Disable();
+            key.SetActive(false);
+        }
+        else if (world_position_l % 1 != 0)
+        {
+            select_rest_door("goal_bottom");
+            MonsterManager.Instance.Disable();
+            key.SetActive(false);
+        }
     }
 
 
@@ -319,35 +333,35 @@ public class ManagerController : MonoBehaviour
         if (name == "goal_left" || name == "goal_left_15")
         {
             player.transform.position = rest_right_door_position;
-            world_position_r -= 0.5;
+            world_position_r -= 0.5f;
             select_rest_door(name);
             ranking((int)(world_position_r + 0.5), (int)world_position_l);
         }
         else if (name == "goal_right" || name == "goal_right_15")
         {
             player.transform.position = rest_left_door_position;
-            world_position_r += 0.5;
+            world_position_r += 0.5f;
             select_rest_door(name);
             ranking((int)(world_position_r - 0.5), (int)world_position_l);
         }
         else if (name == "goal_top" || name == "goal_top_15")
         {
             player.transform.position = rest_bottom_door_position;
-            world_position_l -= 0.5;
+            world_position_l -= 0.5f;
             select_rest_door(name);
             ranking((int)world_position_r, (int)(world_position_l + 0.5));
         }
         else if (name == "goal_bottom" || name == "goal_bottom_15")
         {
             player.transform.position = rest_top_door_position;
-            world_position_l += 0.5;
+            world_position_l += 0.5f;
             select_rest_door(name);
             ranking((int)world_position_r, (int)(world_position_l - 0.5));
         }
         else if (name == "rest_goal_left")
         {
             player.transform.position = right_door_position;
-            world_position_r -= 0.5;
+            world_position_r -= 0.5f;
             select_map();
             timer.setTimer();
         }
@@ -355,27 +369,27 @@ public class ManagerController : MonoBehaviour
         {
 
             player.transform.position = left_door_position;
-            world_position_r += 0.5;
+            world_position_r += 0.5f;
             select_map();
             timer.setTimer();
         }
         else if (name == "rest_goal_top")
         {
             player.transform.position = bottom_door_position;
-            world_position_l -= 0.5;
+            world_position_l -= 0.5f;
             select_map();
             timer.setTimer();
         }
         else if (name == "rest_goal_bottom")
         {
             player.transform.position = top_door_position;
-            world_position_l += 0.5;
+            world_position_l += 0.5f;
             select_map();
             timer.setTimer();
         }
 
-        data.world_pose_x = (int)world_position_r;
-        data.world_pose_y = (int)world_position_l;
+        data.world_pose_x = world_position_r;
+        data.world_pose_y = world_position_l;
 
         data.saveData(data);
 
@@ -400,6 +414,10 @@ public class ManagerController : MonoBehaviour
         if (duration > 20)
         {
             StartCoroutine(setRank(duration, world_pose_y, world_pose_y));
+        }
+        else
+        {
+            data.printRanking = false;
         }
     }
 

@@ -34,7 +34,7 @@ public class Ranking : MonoBehaviour
         int duration = _timer.getDuration();
 
         WWWForm form = new WWWForm();
-        form.AddField("param_maze_index", _playerData.mazes[_playerData.maze_size * _playerData.world_pose_x + _playerData.world_pose_y]);
+        form.AddField("param_maze_index", _playerData.mazes[_playerData.maze_size * (int)_playerData.world_pose_x + (int)_playerData.world_pose_y]);
         form.AddField("param_name", _playerData.name);
         form.AddField("param_duration", duration);
 

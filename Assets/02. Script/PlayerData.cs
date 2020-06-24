@@ -19,8 +19,8 @@ public class PlayerData : MonoBehaviour
     public int maze_size;
     public string mazes;
     public string doors;
-    public int world_pose_x;
-    public int world_pose_y;
+    public float world_pose_x;
+    public float world_pose_y;
     public int in_x;
     public int in_y;
     public int out_x;
@@ -58,8 +58,8 @@ public class PlayerData : MonoBehaviour
         maze_size = data.maze_size;
         mazes = data.mazes;
         doors = data.doors;
-        world_pose_x = data.world_pos_x;
-        world_pose_y = data.world_pos_y;
+        world_pose_x = float.Parse(data.world_pos_x);
+        world_pose_y = float.Parse(data.world_pos_y);
         in_x = data.in_x;
         in_y = data.in_y;
         out_x = data.out_x;
@@ -103,8 +103,8 @@ public class PlayerData : MonoBehaviour
         form.AddField("param_ap", ap);
         form.AddField("param_pose_x", pose_x.ToString());
         form.AddField("param_pose_y", pose_y.ToString());
-        form.AddField("param_world_pose_x", world_pose_x);
-        form.AddField("param_world_pose_y", world_pose_y);
+        form.AddField("param_world_pose_x", world_pose_x.ToString());
+        form.AddField("param_world_pose_y", world_pose_y.ToString());
         form.AddField("param_inven", inven);
         form.AddField("param_equip", equip);
         
