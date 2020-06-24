@@ -44,6 +44,8 @@ public class UI_Inventory : MonoBehaviour
 
                 if (itemList[i].isWearing == true)
                     continue;
+                if (itemList[i].itemType == Item.ItemType.Key)
+                    continue;
 
                 slotItemViewList[i].SetItemInfo(itemList[i]);
                 slotItemViewList[i].SetSprite(itemList[i].GetImage());
