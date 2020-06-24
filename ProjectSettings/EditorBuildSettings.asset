@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/01. Scenes/ApplicationStartScene.unity
     guid: 105a1e77ef03d8644b4f6311093cf1b4
   - enabled: 0
-    path: Assets/01. Scenes/Title_test.unity
+    path: Assets/__DELETED_GUID_Trash/32664fac9f13112449d5a2fb7587adea
     guid: 32664fac9f13112449d5a2fb7587adea
   - enabled: 1
     path: Assets/01. Scenes/SignUp_v3.unity
@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/01. Scenes/Title_v3.unity
     guid: b5a36281d818daf45810c7a1596c69c4
+  - enabled: 1
+    path: Assets/01. Scenes/gameover.unity
+    guid: a18f82c99f58e4c48bae86acacfc773f
   m_configObjects: {}

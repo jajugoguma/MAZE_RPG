@@ -18,6 +18,10 @@ public class Player : Character
     public float attackDelay = 0.3f;
     float lastAttacked = -9999f;
 
+    public GameObject MobileActionBtn;
+    public GameObject MobileActionBtn2;
+    public Collider2D tmp_collision;
+
     public Inventory inventory;
     public Equipment equipment;
     public WorldItem worldItem;
@@ -41,7 +45,7 @@ public class Player : Character
 
 
     private bool isKeyDwnRight, isKeyDwnLeft, isKeyDwnUp, isKeyDwnDown;
-
+    private bool mflag = false;
 
 
     void Start()
@@ -117,6 +121,7 @@ public class Player : Character
         {
 #if UNITY_ANDROID
             base.MoveMobile();
+            
 #else
             base.Move();
 #endif
@@ -412,6 +417,16 @@ public class Player : Character
                 }  
             }
 
+#if UNITY_ANDROID
+
+            if (inventory.HaveKey())
+            {
+                MobileActionBtn.SetActive(true);
+                tmp_collision = collision;
+            }
+            
+#endif
+
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 if (inventory.HaveKey())
@@ -430,6 +445,10 @@ public class Player : Character
         {
             if (!_playerData.printRanking)
                 description.text = "<space> to enter";
+#if UNITY_ANDROID
+            MobileActionBtn2.SetActive(true);
+           
+#endif
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 description.text = "";
@@ -446,6 +465,12 @@ public class Player : Character
     {
         if (!_playerData.printRanking)
             description.text = "";
+#if UNITY_ANDROID
+        if (MobileActionBtn.activeInHierarchy)
+            MobileActionBtn.SetActive(false);
+        if (MobileActionBtn2.activeInHierarchy)
+            MobileActionBtn2.SetActive(false);
+#endif
     }
 
 
@@ -455,5 +480,30 @@ public class Player : Character
         animator.SetBool("attack", false);
     }
 
+    public void MobileBtnAction1()
+    {
+        if (tmp_collision == null)
+            return;
+        description.text = "";
+        inventory.RemoveKey();
+        Debug.Log("key down space");
+        MonsterManager.Instance.Disable();
+        manager.GetComponent<ManagerController>().change_map(tmp_collision.gameObject.name);
+
+    }
+
+    public void MobileBtnAction2()
+    {
+        if (tmp_collision == null)
+            return;
+
+        description.text = "";
+        for (int i = 0; i < MonsterManager.Instance.mosters.Count; i++)
+        {
+            MonsterManager.Instance.mosters[i].resurrection();
+        }
+        manager.GetComponent<ManagerController>().change_map(tmp_collision.gameObject.name);
+    }
+    
 
 }
