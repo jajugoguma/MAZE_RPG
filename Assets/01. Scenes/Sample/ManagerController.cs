@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 public class ManagerController : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -234,8 +235,6 @@ public class ManagerController : MonoBehaviour
 
 
 
-
-
     IEnumerator Fade()
     {
         for (float f = 1f; f >= 0; f -= 0.0045f)
@@ -339,10 +338,17 @@ public class ManagerController : MonoBehaviour
         }
         else if (name == "goal_right" || name == "goal_right_15")
         {
-            player.transform.position = rest_left_door_position;
-            world_position_r += 0.5f;
-            select_rest_door(name);
-            ranking((int)(world_position_r - 0.5), (int)world_position_l);
+            if (world_position_l == 9 && world_position_r == 9)
+            {
+                SceneManager.LoadScene("gameover");
+            }
+            else
+            {
+                player.transform.position = rest_left_door_position;
+                world_position_r += 0.5f;
+                select_rest_door(name);
+                ranking((int)(world_position_r - 0.5), (int)world_position_l);
+            }
         }
         else if (name == "goal_top" || name == "goal_top_15")
         {
