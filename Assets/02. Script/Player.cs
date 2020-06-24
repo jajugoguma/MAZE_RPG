@@ -232,7 +232,7 @@ public class Player : Character
 
         moveVector.z = 0f;
         moveVector.Normalize();
-        //Debug.Log(moveVector);
+        Debug.Log(moveVector);
         movement = moveVector;
     }
 
@@ -374,12 +374,16 @@ public class Player : Character
 
         if (collision.gameObject.tag == "key")
         {
+            if (inventory.GetItemList().Count == 8)
+                return;
             inventory.AddItem(new Item { itemType = Item.ItemType.Key });
             collision.gameObject.SetActive(false);
         }
 
         if (collision.gameObject.tag == "item")
         {
+            if (inventory.GetItemList().Count == 8)
+                return;
             Destroy(collision.gameObject);
             Sprite sprite = collision.GetComponent<SpriteRenderer>().sprite;
             switch (sprite.name)

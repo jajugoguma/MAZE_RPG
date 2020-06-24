@@ -44,7 +44,7 @@ public class UI_Inventory : MonoBehaviour
 
                 if (itemList[i].isWearing == true)
                     continue;
-
+                
                 slotItemViewList[i].SetItemInfo(itemList[i]);
                 slotItemViewList[i].SetSprite(itemList[i].GetImage());
                 slotItemViewList[i].SetBtnEvent(DoubleClickedItemObject);
@@ -65,6 +65,9 @@ public class UI_Inventory : MonoBehaviour
         }
 
         SlotItemView item = itemObj.GetComponent<SlotItemView>();
+
+        if (item.ItemInfo.itemType == Item.ItemType.Key)
+            return;
 
         inventory.RemoveItem(item.ItemInfo);
         RefreshInventory();
