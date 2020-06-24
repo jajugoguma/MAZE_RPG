@@ -10,10 +10,12 @@ public class Timer : MonoBehaviour
     private long millisecond;
     private int second;
     private int pre_second;
+    public PlayerData _playerData;
 
     // Start is called before the first frame update
     void Start()
     {
+        _playerData = GameObject.Find("PlayerData").GetComponent<PlayerData>();
         setTimer();
     }
 
@@ -30,6 +32,7 @@ public class Timer : MonoBehaviour
         if (second != pre_second)
         {
             pre_second = second;
+            _playerData.play_time += 1;
             Debug.Log("StopWatch : " + second.ToString() + "s");
         }
     }

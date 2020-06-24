@@ -27,6 +27,7 @@ public class PlayerData : MonoBehaviour
     public int out_y;
     public string inven;
     public string equip;
+    public int play_time;
 
     private string saveURL = "http://jajugoguma.synology.me/SaveChar.php";
     public bool printRanking = false;
@@ -66,7 +67,7 @@ public class PlayerData : MonoBehaviour
         out_y = data.out_y;
         inven = data.inven;
         equip = data.equip;
-        
+        play_time = data.play_time;
     }
 
 
@@ -107,7 +108,8 @@ public class PlayerData : MonoBehaviour
         form.AddField("param_world_pose_y", world_pose_y.ToString());
         form.AddField("param_inven", inven);
         form.AddField("param_equip", equip);
-        
+        form.AddField("param_play_time", play_time);
+
 
         WWW _www = new WWW(saveURL, form);
         yield return _www;

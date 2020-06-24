@@ -33,4 +33,5 @@ public class Chracters
     public int out_y;
     public string inven;
     public string equip;
+    public int play_time;
 }
